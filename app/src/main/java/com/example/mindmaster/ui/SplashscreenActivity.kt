@@ -16,9 +16,10 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.mindmaster.R.layout.activity_splashscreen)
+
         Log.e("Splasscreen","Erstellt")
         // Hier wird der Splashscreen für 6 Sekunden angezeigt
-        val splashDuration = 6000 //
+        val splashDuration = 8000 //
         val animation = AnimationUtils.loadAnimation(this, R.anim.rotate_scale)
         val imageView = findViewById<ImageView>(R.id.splashScreenIV)
 
