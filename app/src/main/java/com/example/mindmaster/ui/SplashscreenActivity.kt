@@ -18,8 +18,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(com.example.mindmaster.R.layout.activity_splashscreen)
 
         Log.e("Splasscreen","Erstellt")
-        // Hier wird der Splashscreen für 6 Sekunden angezeigt
-        val splashDuration = 8000 //
+        // Hier wird der Splashscreen für 8 Sekunden angezeigt
+        val splashDuration = 5000 //
         val animation = AnimationUtils.loadAnimation(this, R.anim.rotate_scale)
         val imageView = findViewById<ImageView>(R.id.splashScreenIV)
 

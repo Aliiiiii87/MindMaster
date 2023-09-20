@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:id="@+id/homeFragment"/>
+    <item android:title="Course"
+        android:icon="@drawable/baseline_leaderboard_24"
+        android:id="@+id/courseFragment"/>
+    <item android:title="Detail"
+        android:icon="@drawable/baseline_show_chart_24"
+        android:id="@+id/detailCourseFragment"/>
 </menu>

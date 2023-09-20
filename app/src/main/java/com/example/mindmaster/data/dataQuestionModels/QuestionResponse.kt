@@ -1,4 +1,10 @@
 package com.example.mindmaster.data.dataQuestionModels
 
-class QuestionResponse {
-}
+import com.example.mindmaster.data.Question
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionApi
+
+data class QuestionResponse (
+
+    val results : List<QuestionApi>
+
+        )
