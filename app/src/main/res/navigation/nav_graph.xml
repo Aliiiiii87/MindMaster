@@ -26,7 +26,11 @@
         android:id="@+id/quizFragment"
         android:name="com.example.mindmaster.ui.QuizFragment"
         android:label="fragment_quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/courseFragment"
         android:name="com.example.mindmaster.ui.CourseFragment"

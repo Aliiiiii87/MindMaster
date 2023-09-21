@@ -14,7 +14,9 @@
         android:layout_height="300dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="100dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,31 +54,34 @@
                 android:id="@+id/userNameTV"
                 android:layout_width="250dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
                 android:text="Willkommen Max Mustermann"
                 android:textColor="#D5FFFFFF"
                 android:textSize="17sp"
                 android:textStyle="bold"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/userImageIV"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toTopOf="@+id/punktestandTV"
+                app:layout_constraintEnd_toEndOf="@+id/punktestandTV"
+                app:layout_constraintStart_toStartOf="@+id/punktestandTV" />
 
             <TextView
                 android:id="@+id/jokeTV"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/custom_backround"
                 android:gravity="center"
                 android:maxLines="2"
-                android:textStyle="bold"
                 android:scrollbars="vertical"
                 android:text="TextView"
                 android:textColor="#B4FFFFFF"
-                app:layout_constraintEnd_toEndOf="@+id/userNameTV"
-                app:layout_constraintStart_toStartOf="@+id/userNameTV"
-                app:layout_constraintTop_toBottomOf="@+id/userNameTV" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/userNameTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
             <TextView
                 android:id="@+id/punktestandTV"
@@ -92,18 +97,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userImageIV"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="100dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
                 app:civ_border_color="@color/orange"
                 app:civ_border_width="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/punktestandTV"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.825"
                 tools:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

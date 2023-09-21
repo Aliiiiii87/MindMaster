@@ -1,22 +1,25 @@
 package com.example.mindmaster.adapter
 
-import android.app.AlertDialog
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mindmaster.R
-import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.databinding.ListItemCategoryBinding
-import com.example.mindmaster.databinding.ListItemHomeBinding
+import com.example.mindmaster.ui.CategoryFragmentDirections
 import com.example.mindmaster.ui.MindMasterViewModel
+import kotlin.math.min
 
-class CategoryAdapter (val data : List<QuestionWithIncorrectAnswers>):RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>(){
+class CategoryAdapter(
 
-    inner class ItemViewHolder(val binding: ListItemCategoryBinding):
-            RecyclerView.ViewHolder(binding.root)
+    val viewModel: MindMasterViewModel,
+    val categories: List<String>
+
+) : RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
+
+    inner class ItemViewHolder(val binding: ListItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,30 +30,37 @@ class CategoryAdapter (val data : List<QuestionWithIncorrectAnswers>):RecyclerVi
         return ItemViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: CategoryAdapter.ItemViewHolder, position: Int) {
-        val category = data[position]
-
-        holder.binding.categoryIV.setImageResource(R.drawable._4556165_qqvt_fw79_220211)
-
-        val difficultyLevels = arrayOf("Leicht", "Mittel", "Schwer")
-        val adapter = ArrayAdapter(holder.itemView.context, android.R.layout.simple_spinner_item, difficultyLevels)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        holder.binding.spinner.adapter = adapter
+        val category = categories[position]
+        holder.binding.category2TV.text = category
 
 
+        val imageResources = viewModel.getImageRessourceId()
+        if (position >= 0 && position < imageResources.size) {
+            val imageResource = imageResources[position]
+
+            holder.binding.categoryIV.setImageResource(imageResource)
+
+            holder.binding.categoryCV.setOnClickListener {
 
 
+
+                val navController = holder.itemView.findNavController()
+                navController.navigate(CategoryFragmentDirections.actionCategoryFragmentToQuizFragment(category))
+            }
+        }
 
 
 
 
     }
 
+
+    // Hier begrneze ich die ansichten der Kategorien in der Recyclerview auf 9
     override fun getItemCount(): Int {
-     return   data.size
+        return categories.size
     }
-
-
 
 
 }

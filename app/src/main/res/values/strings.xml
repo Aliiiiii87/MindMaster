@@ -5,4 +5,12 @@
     <string name="title_activity_splash_detail_host">SplashActivityDetailHostActivity</string>
     <string name="title_splashactivity_list">Items</string>
     <string name="title_splashactivity_detail">SplashActivity Detail</string>
+
+    <string-array name="difficulty_levels">
+        <item><b>Leicht</b></item>
+        <item><b>Mittel</b></item>
+        <item><b>Schwer</b></item>
+    </string-array>
+
+
 </resources>

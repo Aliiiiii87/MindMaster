@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.SpinnerAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.mindmaster.R
 import com.example.mindmaster.adapter.CategoryAdapter
 import com.example.mindmaster.data.Question
@@ -36,19 +39,23 @@ class CategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-      viewModel.question.observe(viewLifecycleOwner){
-
-          binding.categoryRV.adapter = CategoryAdapter(it)
 
 
+        viewModel.categories.observe(viewLifecycleOwner) { categories ->
+            val adapter = CategoryAdapter(viewModel,categories)
+            binding.categoryRV.adapter = adapter
 
 
+            // Hier wird für den Spinner das Dialogfeld initialsiert
 
-      }
-
-
-
-
+            val difficultyLevels = resources.getStringArray(R.array.difficulty_levels)
+            val spinnerAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                difficultyLevels
+            )
+            spinnerAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice)
+            binding.spinner.adapter = spinnerAdapter
 
 
         }
@@ -56,9 +63,10 @@ class CategoryFragment : Fragment() {
 
 
 
-
-
     }
+
+
+}
 
 
 

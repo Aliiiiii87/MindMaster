@@ -2,6 +2,7 @@ package com.example.mindmaster.remote
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.QuestionResponse
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
@@ -26,6 +27,20 @@ class MindMasterRepository(
         get() = _joke
 
 
+    val categories = database.mindMasterDao.getCategories()
+
+
+
+
+
+// toDo für die Quiz
+    suspend fun getQuestionByCategory(category: String): List<Question> {
+        return database.mindMasterDao.getQuestionByCategory(category)
+    }
+
+
+
+
     suspend fun getJokes() {
         try {
 
@@ -39,6 +54,8 @@ class MindMasterRepository(
             Log.e("JokeApiservice", "Error $e")
         }
     }
+
+
 
 
     suspend fun getAllQuestions() {

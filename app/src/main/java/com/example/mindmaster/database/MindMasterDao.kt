@@ -34,6 +34,12 @@ interface MindMasterDao{
     @Query("SELECT*FROM question WHERE category= :category")
     fun getQuestionByCategory(category: String):List<Question>
 
+
+    @Query("SELECT DISTINCT category FROM question ")
+    fun getCategories():LiveData<List<String>>
+
+
+
     @Delete
    fun deleteQuestion(question: Question)
 
