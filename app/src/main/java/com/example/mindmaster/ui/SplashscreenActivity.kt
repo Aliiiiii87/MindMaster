@@ -1,6 +1,7 @@
 package com.example.mindmaster.ui
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -19,7 +20,12 @@ class SplashActivity : AppCompatActivity() {
 
         Log.e("Splasscreen","Erstellt")
         // Hier wird der Splashscreen für 8 Sekunden angezeigt
-        val splashDuration = 5000 //
+
+        val mediaplayer = MediaPlayer.create(this,R.raw.audio2)
+        mediaplayer.start()
+
+
+        val splashDuration = 8000 //
         val animation = AnimationUtils.loadAnimation(this, R.anim.rotate_scale)
         val imageView = findViewById<ImageView>(R.id.splashScreenIV)
 

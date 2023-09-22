@@ -6,7 +6,7 @@
         android:toDegrees="360"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="3000"
+        android:duration="6000"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator" />
     <scale
         android:fromXScale="0.5"
@@ -15,6 +15,6 @@
         android:toYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="3000" />
+        android:duration="6000" />
 
 </set>

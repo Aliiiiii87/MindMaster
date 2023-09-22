@@ -5,7 +5,20 @@
         <item name="colorPrimary">@color/black</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="spinnerStyle">@style/Widget.AppCompat.Spinner.Underlined</item>
+
+       <item name="android:progressBarStyleHorizontal">@style/CustomProgressBar</item>
+
+
     </style>
+
+    <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/custom_progress_bar</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+        <item name="android:indeterminateOnly">false</item>
+    </style>
+
+
 
     <style name="Theme.MindMaster" parent="Base.Theme.MindMaster" />
     <style name="Theme.MindMaster.NoActionBar">
@@ -14,6 +27,7 @@
     </style>
     <style name="Theme.MindMaster.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.MindMaster.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 
 </resources>

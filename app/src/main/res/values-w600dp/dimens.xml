@@ -2,4 +2,5 @@
 <resources>
     <dimen name="fab_margin">48dp</dimen>
     <dimen name="container_horizontal_margin">48dp</dimen>
+    <dimen name ="progress_bar_height_material">24dp</dimen>
 </resources>

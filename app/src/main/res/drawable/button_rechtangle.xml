@@ -3,12 +3,13 @@
 <corners android:radius="0dp"/>
 
 <solid
-  android:color="@color/orange"/>
+  android:color="#FDD835"/>
 
 
 
     <gradient
-        android:startColor="#FB8C00"
+        android:startColor="#FDD835"
+        android:endColor="@color/orange"
         />
 
 
