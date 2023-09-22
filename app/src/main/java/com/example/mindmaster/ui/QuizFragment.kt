@@ -38,12 +38,10 @@ class QuizFragment : Fragment() {
         val category = requireArguments().getString("category")
         viewModel.getQuestionsByCategory(category.toString())
 
-
-
-
-
-
         Log.e("Question", "$category")
+
+
+
 
 
         val progressBarHeight =
