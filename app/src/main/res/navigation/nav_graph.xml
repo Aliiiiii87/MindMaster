@@ -30,6 +30,9 @@
         <argument
             android:name="category"
             app:argType="string" />
+        <argument
+            android:name="difficulty"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"

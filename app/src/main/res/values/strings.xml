@@ -7,9 +7,9 @@
     <string name="title_splashactivity_detail">SplashActivity Detail</string>
 
     <string-array name="difficulty_levels">
-        <item><b>Leicht</b></item>
-        <item><b>Mittel</b></item>
-        <item><b>Schwer</b></item>
+        <item><b>easy</b></item>
+        <item><b>medium</b></item>
+        <item><b>hard</b></item>
     </string-array>
 
 

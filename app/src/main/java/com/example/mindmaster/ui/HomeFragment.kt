@@ -58,8 +58,11 @@ class HomeFragment : Fragment() {
         viewModel.getJokes()
 
         viewModel.joke.observe(viewLifecycleOwner) {
+           if(it.isNotEmpty()){
 
-           binding.jokeTV.text = it.random().joke
+               binding.jokeTV.text = it.random().joke
+           }
+
         }
 
 

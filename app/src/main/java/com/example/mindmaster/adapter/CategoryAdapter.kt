@@ -1,8 +1,10 @@
 package com.example.mindmaster.adapter
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Spinner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
@@ -14,7 +16,8 @@ import kotlin.math.min
 class CategoryAdapter(
 
     val viewModel: MindMasterViewModel,
-    val categories: List<String>
+    val categories: List<String>,
+    val spinner: Spinner
 
 ) : RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
 
@@ -45,10 +48,17 @@ class CategoryAdapter(
             holder.binding.categoryCV.setOnClickListener {
 
 
-
+                val difficulty = spinner.selectedItem.toString()
+                Log.e("Diff","$difficulty")
                 val navController = holder.itemView.findNavController()
-                navController.navigate(CategoryFragmentDirections.actionCategoryFragmentToQuizFragment(category))
+                navController.navigate(
+                    CategoryFragmentDirections.actionCategoryFragmentToQuizFragment(
+                        category,difficulty
+                    )
+                )
             }
+
+
         }
 
 

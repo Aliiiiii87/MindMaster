@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 const val BASE_URL1 = "https://opentdb.com/"
 
@@ -30,8 +31,15 @@ private val retrofit = Retrofit.Builder()
 interface MindMasterApiService{
 
 
-    @GET("api.php?amount=20")
+    @GET("api.php?amount=5&type=multiple")
     suspend fun getQuestions():QuestionResponse
+
+    @GET("api.php?amount=20&type=multiple")
+    suspend fun getQuestionsLevel(@Query("difficulty")difficulty : String,
+                                   @Query("category")category : Int): QuestionResponse
+
+
+
 }
 
 

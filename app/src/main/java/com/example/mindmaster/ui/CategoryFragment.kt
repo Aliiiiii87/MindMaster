@@ -42,7 +42,7 @@ class CategoryFragment : Fragment() {
 
 
         viewModel.categories.observe(viewLifecycleOwner) { categories ->
-            val adapter = CategoryAdapter(viewModel,categories)
+            val adapter = CategoryAdapter(viewModel, categories, binding.spinner)
             binding.categoryRV.adapter = adapter
 
 
@@ -59,8 +59,6 @@ class CategoryFragment : Fragment() {
 
 
         }
-
-
 
 
     }

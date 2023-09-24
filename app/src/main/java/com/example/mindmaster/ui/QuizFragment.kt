@@ -1,4 +1,5 @@
 package com.example.mindmaster.ui
+
 import android.animation.ObjectAnimator
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -23,6 +24,7 @@ class QuizFragment : Fragment() {
     private lateinit var quizProgressBar: ProgressBar
     private var countDownTimer: CountDownTimer? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,12 +38,33 @@ class QuizFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val category = requireArguments().getString("category")
-        viewModel.getQuestionsByCategory(category.toString())
+        val difficulty = requireArguments().getString("difficulty")
+        viewModel.getQuestionsByCategory(category.toString(), difficulty.toString())
+
+
+        viewModel.question.observe(viewLifecycleOwner) {
+            Log.e("Question","$it")
+            if (it.isNotEmpty()) {
+
+                val firstQuestion = it[1].question
+                binding.qustionTV.text = firstQuestion.question
+                binding.tvAnswerA.text = firstQuestion.correct_answer
+
+                val incorrectAnswers = it[1].incorrectAnswers
+                binding.tvAnswerB.text = incorrectAnswers[0].incorrectAnswer
+                binding.tvAnswerC.text = incorrectAnswers[1].incorrectAnswer
+                binding.tvAnswerD.text = incorrectAnswers[2].incorrectAnswer
+
+
+            }
+        }
+
+
+
+
+
 
         Log.e("Question", "$category")
-
-
-
 
 
         val progressBarHeight =
@@ -59,14 +82,9 @@ class QuizFragment : Fragment() {
     private fun startCountdownTimer() {
 
 
-
-        val mediaPlayer = MediaPlayer.create(requireContext(), R.raw.audio)
-        mediaPlayer.start()
-
-
         // 20 Sekunden, alle 1000 Millisekunden (1 Sekunde) aktualisieren
 
-        countDownTimer = object : CountDownTimer(25000, 1000) {
+        countDownTimer = object : CountDownTimer(20000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
                 updateProgressBar(secondsRemaining)
@@ -99,7 +117,6 @@ class QuizFragment : Fragment() {
         countDownTimer?.cancel()
 
     }
-
 
 
 }

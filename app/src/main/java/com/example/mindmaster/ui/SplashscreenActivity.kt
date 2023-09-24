@@ -21,8 +21,8 @@ class SplashActivity : AppCompatActivity() {
         Log.e("Splasscreen","Erstellt")
         // Hier wird der Splashscreen für 8 Sekunden angezeigt
 
-        val mediaplayer = MediaPlayer.create(this,R.raw.audio2)
-        mediaplayer.start()
+//        val mediaplayer = MediaPlayer.create(this,R.raw.audio2)
+//        mediaplayer.start()
 
 
         val splashDuration = 8000 //

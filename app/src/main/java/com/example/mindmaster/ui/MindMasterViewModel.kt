@@ -2,9 +2,15 @@ package com.example.mindmaster.ui
 
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mindmaster.R
+import com.example.mindmaster.data.Question
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.database.getInstance
 import com.example.mindmaster.remote.JokeApi
 import com.example.mindmaster.remote.MindMasterApi
@@ -21,6 +27,16 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     val question = repository.question
     val joke = repository.joke
 
+    var answerIndex = 0
+
+   val _currentQuestion =
+        MutableLiveData<QuestionWithIncorrectAnswers>(question.value?.get(answerIndex))
+    val currentQuestion: LiveData<QuestionWithIncorrectAnswers>
+        get() = _currentQuestion
+
+
+
+
 
     fun getQuestions() {
 
@@ -31,6 +47,26 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         }
 
 
+    }
+
+// Todo
+    fun nextQuestion() {
+
+        answerIndex++
+        _currentQuestion.postValue(question.value?.get(answerIndex))
+
+
+    }
+
+
+    fun questionLevels() {
+
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            repository.getQuestionsLevelAndCategory()
+
+        }
     }
 
 
@@ -63,17 +99,18 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-    fun getQuestionsByCategory(category: String) {
+    fun getQuestionsByCategory(category: String, difficulty :String) {
         viewModelScope.launch(Dispatchers.IO) {
-           repository.getQuestionByCategory(category)
+
+
+           repository.getQuestionByCategory(category,difficulty)
 
 
         }
 
     }
+
     val categories = repository.categories
-
-
 
 
 }

@@ -31,12 +31,24 @@ interface MindMasterDao{
     @Query("SELECT * FROM question")
    fun getAllQuestion():LiveData<List<QuestionWithIncorrectAnswers>>
 
-    @Query("SELECT*FROM question WHERE category= :category")
-    fun getQuestionByCategory(category: String):List<Question>
+    @Query("SELECT*FROM question WHERE category= :category and difficulty= :difficulty")
+    fun getQuestionByCategory(category: String, difficulty : String):List<QuestionWithIncorrectAnswers>
+
+    @Query("SELECT count(*) FROM question")
+    fun getCount(): Int
+
 
 
     @Query("SELECT DISTINCT category FROM question ")
     fun getCategories():LiveData<List<String>>
+
+
+
+
+
+
+
+
 
 
 

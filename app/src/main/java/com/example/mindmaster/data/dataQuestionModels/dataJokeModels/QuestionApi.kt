@@ -5,6 +5,7 @@ data class QuestionApi(
     val type: String,
     val question: String,
     val correct_answer: String,
+    val difficulty : String,
     val incorrect_answers: List<String>
 
     )

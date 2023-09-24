@@ -83,15 +83,76 @@
         app:layout_constraintStart_toStartOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
-    <TextView
-        android:id="@+id/qustionTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="450dp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-25dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/qustionTV"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="200dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAnswerA"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="120dp"
+            android:background="@color/white"
+            android:text="TextView"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/qustionTV" />
+
+        <TextView
+            android:id="@+id/tvAnswerB"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="120dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/qustionTV"
+            app:layout_constraintStart_toEndOf="@+id/tvAnswerA" />
+
+        <TextView
+            android:id="@+id/tvAnswerC"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:text="TextView"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvAnswerA"
+            app:layout_constraintStart_toStartOf="@+id/tvAnswerA"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnswerA" />
+
+        <TextView
+            android:id="@+id/tvAnswerD"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:text="TextView"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvAnswerB"
+            app:layout_constraintStart_toStartOf="@+id/tvAnswerB"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnswerB" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

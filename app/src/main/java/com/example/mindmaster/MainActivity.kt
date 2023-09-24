@@ -25,10 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel.question.observe(this){
 
-            Log.e("Datentest",it.toString())
-        }
+        viewModel.questionLevels()
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
