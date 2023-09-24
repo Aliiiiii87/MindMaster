@@ -35,6 +35,19 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _currentQuestion
 
 
+    private val _playerPoints = MutableLiveData<Int>()
+    val playerPoints: LiveData<Int>
+        get()=_playerPoints
+
+    init {
+        _playerPoints.value = 0
+    }
+
+    fun addPoints(points: Int) {
+        val currentPoints = _playerPoints.value ?: 0
+        _playerPoints.value = currentPoints + points
+    }
+
 
 
 

@@ -43,12 +43,13 @@ class QuizFragment : Fragment() {
 
 
         viewModel.question.observe(viewLifecycleOwner) {
-            Log.e("Question","$it")
+
             if (it.isNotEmpty()) {
 
                 val firstQuestion = it[1].question
                 binding.qustionTV.text = firstQuestion.question
                 binding.tvAnswerA.text = firstQuestion.correct_answer
+
 
                 val incorrectAnswers = it[1].incorrectAnswers
                 binding.tvAnswerB.text = incorrectAnswers[0].incorrectAnswer
@@ -57,14 +58,47 @@ class QuizFragment : Fragment() {
 
 
             }
+
+
+            viewModel.playerPoints.observe(viewLifecycleOwner) { points ->
+
+                binding.scoreTV.text = "Punkte: $points"
+
+
+            }
+
+
         }
 
 
 
 
+        viewModel.question.observe(viewLifecycleOwner) { questionsWithAnswers ->
+            if (questionsWithAnswers.isNotEmpty()) {
+                val firstQuestionWithAnswers = questionsWithAnswers[0]
+                val question = firstQuestionWithAnswers.question
+                val difficulty = question.difficulty
+
+                binding.tvAnswerA.setOnClickListener {
 
 
-        Log.e("Question", "$category")
+                    val points = when (difficulty) {
+                        "easy" -> 100
+                        "medium" -> 200
+                        "hard" -> 300
+                        else -> 0
+                    }
+
+                    viewModel.addPoints(points)
+
+
+                }
+
+
+            }
+
+
+        }
 
 
         val progressBarHeight =
@@ -117,6 +151,43 @@ class QuizFragment : Fragment() {
         countDownTimer?.cancel()
 
     }
+
+//    private fun checkIfAnswerIsCorrect(selectedAnswer: String, correctAnswer: String): Boolean {
+//        return selectedAnswer == correctAnswer
+//    }
+
+
+//    var questionAnswered = false
+
+
+//    binding.tvAnswerA.setOnClickListener {
+//        if (!questionAnswered) {
+//            val selectedAnswer = binding.tvAnswerA.toString()
+//            val currentQuestion = viewModel.currentQuestion.value
+//            val correctAnswer = currentQuestion?.question?.correct_answer
+//
+//            if (correctAnswer != null) {
+//                val isCorrect = checkIfAnswerIsCorrect(selectedAnswer, correctAnswer)
+//
+//                if (isCorrect) {
+//                    binding.tvAnswerA.setBackgroundResource(R.color.red)
+//                } else {
+//                    binding.tvAnswerA.setBackgroundResource(R.color.orange)
+//                }
+//
+//                val points = when (difficulty) {
+//                    "easy" -> 100
+//                    "medium" -> 200
+//                    "hard" -> 300
+//                    else -> 0
+//                }
+//                viewModel.addPoints(points)
+//
+//                questionAnswered = true
+//            }
+//        }
+//    }
+
 
 
 }

@@ -34,34 +34,34 @@ class MindMasterRepository(
     suspend fun getQuestionsLevelAndCategory() {
 
 
-        if (database.mindMasterDao.getCount() == 0){
-        val categoryId = (9..24).toList()
+        if (database.mindMasterDao.getCount() == 0) {
+            val categoryId = (9..24).toList()
 
 
-        val difficulty = listOf<String>(
+            val difficulty = listOf<String>(
 
-            "easy",
-            "medium",
-            "hard"
-        )
+                "easy",
+                "medium",
+                "hard"
+            )
 
-        categoryId.forEach { id ->
-            difficulty.forEach { difficulty ->
+            categoryId.forEach { id ->
+                difficulty.forEach { difficulty ->
 
-                val questions = api1.retrofitService.getQuestionsLevel(difficulty, id)
-                saveQuestionsList(questions.results)
+                    val questions = api1.retrofitService.getQuestionsLevel(difficulty, id)
+                    saveQuestionsList(questions.results)
+
+                }
+
 
             }
 
 
         }
-
-
     }
-         }
 
 
-    fun saveQuestionsList(questionList: List<QuestionApi>) {
+    private fun saveQuestionsList(questionList: List<QuestionApi>) {
         questionList.forEach { questionApi ->
             val questionDb = Question(
                 0,
@@ -70,6 +70,7 @@ class MindMasterRepository(
                 question = questionApi.question,
                 difficulty = questionApi.difficulty,
                 correct_answer = questionApi.correct_answer
+
             )
             val id = database.mindMasterDao.insertQuestion(questionDb)
 
@@ -91,18 +92,14 @@ class MindMasterRepository(
     }
 
 
-    suspend fun getQuestionByCategory(category: String, difficulty : String) {
+    suspend fun getQuestionByCategory(category: String, difficulty: String) {
 
-        val questionLevel =  (database.mindMasterDao.getQuestionByCategory(category,difficulty))
+        val questionLevel = (database.mindMasterDao.getQuestionByCategory(category, difficulty))
 
         _question.postValue(questionLevel)
 
-//        Log.e("WhatgetBack","$questionLevel")
 
     }
-
-
-
 
 
     suspend fun getJokes() {
