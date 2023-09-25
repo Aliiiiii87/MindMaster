@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
         viewModel.questionLevels()
 
 

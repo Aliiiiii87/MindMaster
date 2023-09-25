@@ -1,15 +1,15 @@
 package com.example.mindmaster.ui
 
 
+
 import android.app.Application
+import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mindmaster.R
-import com.example.mindmaster.data.Question
-import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.database.getInstance
 import com.example.mindmaster.remote.JokeApi
@@ -18,35 +18,85 @@ import com.example.mindmaster.remote.MindMasterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class MindMasterViewModel(application: Application) : AndroidViewModel(application) {
 
     var database = getInstance(application)
 
     private val repository = MindMasterRepository(MindMasterApi, JokeApi, database)
 
+
+
+
     val question = repository.question
     val joke = repository.joke
 
     var answerIndex = 0
 
-   val _currentQuestion =
-        MutableLiveData<QuestionWithIncorrectAnswers>(question.value?.get(answerIndex))
+    private val _currentQuestion =
+        MutableLiveData<QuestionWithIncorrectAnswers>()
     val currentQuestion: LiveData<QuestionWithIncorrectAnswers>
         get() = _currentQuestion
 
 
+
+
     private val _playerPoints = MutableLiveData<Int>()
     val playerPoints: LiveData<Int>
-        get()=_playerPoints
+        get() = _playerPoints
 
     init {
         _playerPoints.value = 0
     }
 
     fun addPoints(points: Int) {
-        val currentPoints = _playerPoints.value ?: 0
-        _playerPoints.value = currentPoints + points
+        if (!_questionAnswered.value!!) {
+            _playerPoints.value = (_playerPoints.value ?: 0) + points
+            _questionAnswered.value = true
+        }
     }
+
+
+    private val _questionAnswered = MutableLiveData<Boolean>()
+    val questionAnswered: LiveData<Boolean>
+        get() = _questionAnswered
+
+    init {
+        _questionAnswered.value = false
+    }
+    fun setCurrentQuestion(){
+
+        _currentQuestion.postValue(question.value?.get(answerIndex))
+
+    }
+
+
+
+
+
+
+
+    fun nextQuestion() {
+        val delayMillis = 1000 // Verzögerung um 1 Sekunde (1000 Millisekunden)
+        Handler().postDelayed({
+            viewModelScope.launch(Dispatchers.Main) {
+                if (answerIndex < (question.value?.size ?: 0)) {
+                    answerIndex++
+                    _questionAnswered.value = false
+                    _currentQuestion.postValue(question.value?.get(answerIndex))
+                    Log.e("Next", "${_currentQuestion.value}")
+                } else {
+                    // Todo
+                }
+            }
+        }, delayMillis.toLong())
+    }
+
+
+
+
+
+
 
 
 
@@ -63,13 +113,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 // Todo
-    fun nextQuestion() {
-
-        answerIndex++
-        _currentQuestion.postValue(question.value?.get(answerIndex))
-
-
-    }
 
 
     fun questionLevels() {
@@ -81,6 +124,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
         }
     }
+
+
+
 
 
     fun getJokes() {
@@ -112,11 +158,11 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-    fun getQuestionsByCategory(category: String, difficulty :String) {
+    fun getQuestionsByCategory(category: String, difficulty: String) {
         viewModelScope.launch(Dispatchers.IO) {
 
 
-           repository.getQuestionByCategory(category,difficulty)
+            repository.getQuestionByCategory(category, difficulty)
 
 
         }

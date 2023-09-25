@@ -1,10 +1,9 @@
 package com.example.mindmaster.ui
 
 import android.animation.ObjectAnimator
-import android.media.MediaPlayer
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +11,9 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
-import com.example.mindmaster.data.Question
-import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.databinding.FragmentQuizBinding
+
+
 
 
 class QuizFragment : Fragment() {
@@ -34,6 +33,7 @@ class QuizFragment : Fragment() {
         return binding.root
     }
 
+    private var isAnswered = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,16 +42,27 @@ class QuizFragment : Fragment() {
         viewModel.getQuestionsByCategory(category.toString(), difficulty.toString())
 
 
-        viewModel.question.observe(viewLifecycleOwner) {
 
+
+
+        viewModel.question.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
 
-                val firstQuestion = it[1].question
+                viewModel.setCurrentQuestion()
+            }
+        }
+
+
+        viewModel.currentQuestion.observe(viewLifecycleOwner) {
+
+            if (it != null) {
+
+                val firstQuestion = it.question
                 binding.qustionTV.text = firstQuestion.question
                 binding.tvAnswerA.text = firstQuestion.correct_answer
 
 
-                val incorrectAnswers = it[1].incorrectAnswers
+                val incorrectAnswers = it.incorrectAnswers
                 binding.tvAnswerB.text = incorrectAnswers[0].incorrectAnswer
                 binding.tvAnswerC.text = incorrectAnswers[1].incorrectAnswer
                 binding.tvAnswerD.text = incorrectAnswers[2].incorrectAnswer
@@ -72,32 +83,89 @@ class QuizFragment : Fragment() {
 
 
 
+        binding.tvAnswerA.setBackgroundResource(R.drawable.background_green)
+        binding.tvAnswerA.setOnClickListener {
 
-        viewModel.question.observe(viewLifecycleOwner) { questionsWithAnswers ->
-            if (questionsWithAnswers.isNotEmpty()) {
-                val firstQuestionWithAnswers = questionsWithAnswers[0]
-                val question = firstQuestionWithAnswers.question
-                val difficulty = question.difficulty
+            countDownTimer?.cancel()
+            val isQuestionAnswered = viewModel.questionAnswered.value ?: false
+            if (!isQuestionAnswered) {
 
-                binding.tvAnswerA.setOnClickListener {
-
-
-                    val points = when (difficulty) {
-                        "easy" -> 100
-                        "medium" -> 200
-                        "hard" -> 300
-                        else -> 0
-                    }
-
-                    viewModel.addPoints(points)
-
+                val points = when (difficulty) {
+                    "easy" -> 100
+                    "medium" -> 200
+                    "hard" -> 300
+                    else -> 0
 
                 }
+                viewModel.addPoints(points)
+                viewModel.nextQuestion()
+                startCountdownTimer()
 
 
             }
+        }
 
 
+
+
+
+        binding.tvAnswerB.setBackgroundResource(R.drawable.background_red)
+        binding.tvAnswerB.setOnClickListener {
+            countDownTimer?.cancel()
+            val isQuestionAnswered = viewModel.questionAnswered.value ?: false
+            if (!isQuestionAnswered) {
+            val points = when(difficulty){
+
+                "easy"-> 0
+                "medium"->0
+                "hard"->0
+                else->0
+            }
+
+                viewModel.addPoints(points)
+                viewModel.nextQuestion()
+                startCountdownTimer()
+
+        }
+             }
+
+        binding.tvAnswerC.setBackgroundResource(R.drawable.background_red)
+        binding.tvAnswerC.setOnClickListener {
+            countDownTimer?.cancel()
+            val isQuestionAnswered = viewModel.questionAnswered.value ?: false
+            if (!isQuestionAnswered) {
+                val points = when(difficulty){
+
+                    "easy"-> 0
+                    "medium"->0
+                    "hard"->0
+                    else->0
+                }
+
+                viewModel.addPoints(points)
+                viewModel.nextQuestion()
+                startCountdownTimer()
+
+            }
+        }
+        binding.tvAnswerD.setBackgroundResource(R.drawable.background_red)
+        binding.tvAnswerD.setOnClickListener {
+            countDownTimer?.cancel()
+            val isQuestionAnswered = viewModel.questionAnswered.value ?: false
+            if (!isQuestionAnswered) {
+                val points = when(difficulty){
+
+                    "easy"-> 0
+                    "medium"->0
+                    "hard"->0
+                    else->0
+                }
+
+                viewModel.addPoints(points)
+                viewModel.nextQuestion()
+                startCountdownTimer()
+
+            }
         }
 
 
@@ -115,6 +183,8 @@ class QuizFragment : Fragment() {
 
     private fun startCountdownTimer() {
 
+        countDownTimer?.cancel()
+
 
         // 20 Sekunden, alle 1000 Millisekunden (1 Sekunde) aktualisieren
 
@@ -122,10 +192,26 @@ class QuizFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
                 updateProgressBar(secondsRemaining)
+
+
+
             }
 
             override fun onFinish() {
-                // Der Timer ist abgelaufen, führe hier deine Aktionen aus
+
+                if (!viewModel.questionAnswered.value!!){
+
+                    isAnswered = true
+                    val points = 0
+                    viewModel.addPoints(points)
+                    viewModel.nextQuestion()
+                    startCountdownTimer()
+
+
+
+
+                }
+
             }
         }
 
@@ -152,41 +238,7 @@ class QuizFragment : Fragment() {
 
     }
 
-//    private fun checkIfAnswerIsCorrect(selectedAnswer: String, correctAnswer: String): Boolean {
-//        return selectedAnswer == correctAnswer
-//    }
 
-
-//    var questionAnswered = false
-
-
-//    binding.tvAnswerA.setOnClickListener {
-//        if (!questionAnswered) {
-//            val selectedAnswer = binding.tvAnswerA.toString()
-//            val currentQuestion = viewModel.currentQuestion.value
-//            val correctAnswer = currentQuestion?.question?.correct_answer
-//
-//            if (correctAnswer != null) {
-//                val isCorrect = checkIfAnswerIsCorrect(selectedAnswer, correctAnswer)
-//
-//                if (isCorrect) {
-//                    binding.tvAnswerA.setBackgroundResource(R.color.red)
-//                } else {
-//                    binding.tvAnswerA.setBackgroundResource(R.color.orange)
-//                }
-//
-//                val points = when (difficulty) {
-//                    "easy" -> 100
-//                    "medium" -> 200
-//                    "hard" -> 300
-//                    else -> 0
-//                }
-//                viewModel.addPoints(points)
-//
-//                questionAnswered = true
-//            }
-//        }
-//    }
 
 
 
