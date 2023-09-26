@@ -77,7 +77,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
     fun nextQuestion() {
-        val delayMillis = 1000 // Verzögerung um 1 Sekunde (1000 Millisekunden)
+        val delayMillis = 3000
         Handler().postDelayed({
             viewModelScope.launch(Dispatchers.Main) {
                 if (answerIndex < (question.value?.size ?: 0)) {

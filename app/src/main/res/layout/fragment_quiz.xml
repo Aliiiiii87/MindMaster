@@ -28,24 +28,35 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headlineQuizTV">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/glow_effect"
+            android:orientation="horizontal"></LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/scoreTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,10 +105,10 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="200dp"
-            android:background="@color/white"
+            android:background="@drawable/gardient_scoretv"
             android:gravity="center"
             android:text="TextView"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -117,8 +128,7 @@
             android:id="@+id/tvAnswerB"
             android:layout_width="170dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="30dp"
             android:layout_marginBottom="120dp"
             android:background="@color/white"
             android:gravity="center"

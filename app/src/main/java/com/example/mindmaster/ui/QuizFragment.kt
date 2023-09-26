@@ -1,19 +1,21 @@
 package com.example.mindmaster.ui
 
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.app.AlertDialog
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentQuizBinding
-
-
+import kotlin.time.Duration.Companion.seconds
 
 
 class QuizFragment : Fragment() {
@@ -22,6 +24,9 @@ class QuizFragment : Fragment() {
     private lateinit var binding: FragmentQuizBinding
     private lateinit var quizProgressBar: ProgressBar
     private var countDownTimer: CountDownTimer? = null
+    private var currentPoints = 0
+    private  var scoreAnimator = ValueAnimator()
+
 
 
     override fun onCreateView(
@@ -31,15 +36,22 @@ class QuizFragment : Fragment() {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
         quizProgressBar = binding.progressBar
         return binding.root
+
+
+
     }
 
     private var isAnswered = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val category = requireArguments().getString("category")
         val difficulty = requireArguments().getString("difficulty")
         viewModel.getQuestionsByCategory(category.toString(), difficulty.toString())
+
+
 
 
 
@@ -68,16 +80,19 @@ class QuizFragment : Fragment() {
                 binding.tvAnswerD.text = incorrectAnswers[2].incorrectAnswer
 
 
+
             }
 
 
             viewModel.playerPoints.observe(viewLifecycleOwner) { points ->
 
+
+
+                createScoreAnimation()
                 binding.scoreTV.text = "Punkte: $points"
 
 
             }
-
 
         }
 
@@ -86,9 +101,17 @@ class QuizFragment : Fragment() {
         binding.tvAnswerA.setBackgroundResource(R.drawable.background_green)
         binding.tvAnswerA.setOnClickListener {
 
+            val scaleAnimation = AnimationUtils.loadAnimation(requireContext(),R.anim.text_scale)
+            binding.scoreTV.startAnimation(scaleAnimation)
+
+
+
+
             countDownTimer?.cancel()
             val isQuestionAnswered = viewModel.questionAnswered.value ?: false
             if (!isQuestionAnswered) {
+
+
 
                 val points = when (difficulty) {
                     "easy" -> 100
@@ -97,6 +120,9 @@ class QuizFragment : Fragment() {
                     else -> 0
 
                 }
+                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
+                mediaplayer.start()
+                increasePoints(points)
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -104,10 +130,6 @@ class QuizFragment : Fragment() {
 
             }
         }
-
-
-
-
 
         binding.tvAnswerB.setBackgroundResource(R.drawable.background_red)
         binding.tvAnswerB.setOnClickListener {
@@ -121,7 +143,8 @@ class QuizFragment : Fragment() {
                 "hard"->0
                 else->0
             }
-
+                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -141,7 +164,8 @@ class QuizFragment : Fragment() {
                     "hard"->0
                     else->0
                 }
-
+                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -161,6 +185,8 @@ class QuizFragment : Fragment() {
                     else->0
                 }
 
+                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -184,10 +210,6 @@ class QuizFragment : Fragment() {
     private fun startCountdownTimer() {
 
         countDownTimer?.cancel()
-
-
-        // 20 Sekunden, alle 1000 Millisekunden (1 Sekunde) aktualisieren
-
         countDownTimer = object : CountDownTimer(20000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
@@ -236,6 +258,24 @@ class QuizFragment : Fragment() {
         super.onDestroy()
         countDownTimer?.cancel()
 
+    }
+
+
+    private fun createScoreAnimation() {
+        scoreAnimator = ValueAnimator.ofInt( currentPoints)
+        scoreAnimator.duration = 2000
+        scoreAnimator.addUpdateListener { animator ->
+            val animatedValue = animator.animatedValue as Int
+            binding.scoreTV.text = "Punkte: $animatedValue"
+        }
+    }
+
+    private fun increasePoints(points:Int) {
+        currentPoints += points
+
+        // Starte die Animation für den Punktestand
+        scoreAnimator.setIntValues(currentPoints - points, currentPoints)
+        scoreAnimator.start()
     }
 
 

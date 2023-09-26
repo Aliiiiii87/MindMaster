@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@android:id/background">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Hintergrundbalken (grau) -->
+    <item android:id="@android:id/background">
         <shape>
-            <corners
-                android:radius="10dip"/>
-            <solid android:color="#FB8C00"/>
+            <corners android:radius="10dp" />
+            <solid android:color="@color/my_green" /> <!-- Graue Farbe für den Hintergrund -->
         </shape>
     </item>
-    <item
-        android:id="@android:id/progress">
+
+    <!-- Fortschrittsbalken (mit Glanzeffekt) -->
+    <item android:id="@android:id/progress">
         <clip>
-            <shape>
-                <corners
-                    android:radius="10dip"/>
-                <solid android:color="@color/white"/>
-            </shape>
+            <scale
+                android:scaleWidth="100%"
+                android:drawable="@drawable/gardient_scoretv" />
         </clip>
     </item>
 </layer-list>
