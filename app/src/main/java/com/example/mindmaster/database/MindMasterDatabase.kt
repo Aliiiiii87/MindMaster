@@ -7,8 +7,9 @@ import androidx.room.RoomDatabase
 import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.Joke
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 
-@Database(entities = [Question::class,Joke::class,IncorrectAnswer::class,],version =1)
+@Database(entities = [Question::class,Joke::class,IncorrectAnswer::class,QuizResult::class],version =1)
 abstract class  MindMasterDatabase : RoomDatabase(){
     
     abstract val mindMasterDao : MindMasterDao

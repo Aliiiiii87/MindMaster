@@ -47,9 +47,8 @@ class QuizFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val category = requireArguments().getString("category")
-        val difficulty = requireArguments().getString("difficulty")
-        viewModel.getQuestionsByCategory(category.toString(), difficulty.toString())
+
+        viewModel.getQuestionsByCategory()
 
 
 
@@ -71,6 +70,8 @@ class QuizFragment : Fragment() {
             viewModel.question.observe(viewLifecycleOwner) { question ->
                 if (question.size <= (index)) {
 
+
+                    viewModel.saveResult()
                     findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
 
                     viewModel.indexReset()
@@ -129,7 +130,7 @@ class QuizFragment : Fragment() {
             if (!isQuestionAnswered) {
 
 
-                val points = when (difficulty) {
+                val points = when (viewModel.currentDifficulty) {
                     "easy" -> 100
                     "medium" -> 200
                     "hard" -> 300
@@ -155,7 +156,7 @@ class QuizFragment : Fragment() {
             countDownTimer?.cancel()
             val isQuestionAnswered = viewModel.questionAnswered.value ?: false
             if (!isQuestionAnswered) {
-                val points = when (difficulty) {
+                val points = when (viewModel.currentDifficulty) {
 
                     "easy" -> 0
                     "medium" -> 0
@@ -176,7 +177,7 @@ class QuizFragment : Fragment() {
             countDownTimer?.cancel()
             val isQuestionAnswered = viewModel.questionAnswered.value ?: false
             if (!isQuestionAnswered) {
-                val points = when (difficulty) {
+                val points = when (viewModel.currentDifficulty) {
 
                     "easy" -> 0
                     "medium" -> 0
@@ -196,7 +197,7 @@ class QuizFragment : Fragment() {
             countDownTimer?.cancel()
             val isQuestionAnswered = viewModel.questionAnswered.value ?: false
             if (!isQuestionAnswered) {
-                val points = when (difficulty) {
+                val points = when (viewModel.currentDifficulty) {
 
                     "easy" -> 0
                     "medium" -> 0

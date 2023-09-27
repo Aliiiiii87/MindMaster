@@ -36,6 +36,7 @@ class CategoryAdapter(
 
     override fun onBindViewHolder(holder: CategoryAdapter.ItemViewHolder, position: Int) {
         val category = categories[position]
+        viewModel.currentCategory = category
         holder.binding.category2TV.text = category
 
 
@@ -49,12 +50,11 @@ class CategoryAdapter(
 
 
                 val difficulty = spinner.selectedItem.toString()
-                Log.e("Diff","$difficulty")
+                viewModel.currentDifficulty = difficulty
+
                 val navController = holder.itemView.findNavController()
                 navController.navigate(
-                    CategoryFragmentDirections.actionCategoryFragmentToQuizFragment(
-                        category,difficulty
-                    )
+                    CategoryFragmentDirections.actionCategoryFragmentToQuizFragment()
                 )
             }
 

@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mindmaster.R
 import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 import com.example.mindmaster.databinding.ListItemHomeBinding
 
-class HomeAdapter (val results : List<QuestionWithIncorrectAnswers>)
+class HomeAdapter (val results : List<QuizResult>)
     : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>(){
 
 
@@ -28,8 +29,10 @@ class HomeAdapter (val results : List<QuestionWithIncorrectAnswers>)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val question = results[position]
+        val questionResult = results[position]
 
+        holder.binding.pointsTV.text = questionResult.score.toString()
+        holder.binding.categoryTV.text = questionResult.category
 
 
         holder.binding.pointsImageIV.setImageResource(R.drawable.baseline_monetization_on_24)

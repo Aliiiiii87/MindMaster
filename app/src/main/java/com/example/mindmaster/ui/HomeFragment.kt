@@ -40,9 +40,9 @@ class HomeFragment : Fragment() {
         bottomNavigationView?.visibility = View.VISIBLE
 
 
-        viewModel.question.observe(viewLifecycleOwner) { points ->
+        viewModel.questionResult.observe(viewLifecycleOwner) { questionResult ->
 
-            binding.homeRV.adapter = HomeAdapter(points)
+            binding.homeRV.adapter = HomeAdapter(questionResult)
             binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
 
 

@@ -12,6 +12,7 @@ import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.Joke
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 
 @Dao
 interface MindMasterDao{
@@ -21,6 +22,21 @@ interface MindMasterDao{
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertQuestion(question: Question): Long
+
+
+
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertQuizResult(quizResult:QuizResult)
+
+    @Query("SELECT * FROM QuizResult ")
+     fun getQuizResults() :LiveData<List<QuizResult>>
+
+     @Query("SELECT COUNT (*) FROM QuizResult")
+     fun getCountQuizResult (): Long
+
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIncorrectAnswer(incorrectAnswer: IncorrectAnswer)

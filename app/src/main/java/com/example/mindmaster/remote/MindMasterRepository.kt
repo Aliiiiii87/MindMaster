@@ -10,9 +10,11 @@ import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAn
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.Joke
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionApi
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 import com.example.mindmaster.database.MindMasterDatabase
-import com.example.mindmaster.ui.QuizFragmentDirections
-import java.lang.Exception
+
+
+import kotlin.Exception
 
 class MindMasterRepository(
     private val api1: MindMasterApi, private val api2: JokeApi,
@@ -25,9 +27,17 @@ class MindMasterRepository(
         get() = _question
 
 
+    private val _questionResult = database.mindMasterDao.getQuizResults()
+    val questionResult : LiveData<List<QuizResult>>
+        get()= _questionResult
+
+
     private val _joke = database.mindMasterDao.getAllJokes()
     val joke: LiveData<List<Joke>>
         get() = _joke
+
+
+
 
 
     val categories = database.mindMasterDao.getCategories()
@@ -63,6 +73,26 @@ class MindMasterRepository(
     }
 
 
+    fun insertResult(quizResult : QuizResult){
+
+        try {
+            database.mindMasterDao.insertQuizResult(quizResult)
+        }catch (e : Exception){
+
+
+        }
+
+
+
+    }
+
+    fun getCountResult(): Long{
+
+
+       return database.mindMasterDao.getCountQuizResult()
+    }
+
+
     private fun saveQuestionsList(questionList: List<QuestionApi>) {
         questionList.forEach { questionApi ->
             val questionDb = Question(
@@ -92,6 +122,9 @@ class MindMasterRepository(
 
 
     }
+
+
+
 
 
     suspend fun getQuestionByCategory(category: String, difficulty: String) {

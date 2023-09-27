@@ -13,6 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 
 import com.example.mindmaster.R
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
+import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 import com.example.mindmaster.database.getInstance
 import com.example.mindmaster.remote.JokeApi
 import com.example.mindmaster.remote.MindMasterApi
@@ -21,7 +22,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+
+
 class MindMasterViewModel(application: Application) : AndroidViewModel(application) {
+
+    lateinit var currentCategory : String
+    lateinit var currentDifficulty : String
+
 
     var database = getInstance(application)
 
@@ -29,6 +36,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
     val question = repository.question
+    val questionResult = repository.questionResult
     val joke = repository.joke
 
 
@@ -60,6 +68,20 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
+    fun getCountOfQuizResult():Long{
+
+        return repository.getCountResult()
+    }
+
+    fun saveResult(){
+
+       viewModelScope.launch (Dispatchers.IO){
+
+           _playerPoints.value?.let { QuizResult(id = getCountOfQuizResult()+1,category = currentCategory, difficulty = currentDifficulty, score = it) }
+               ?.let { repository.insertResult(it) }
+       }
+    }
+
     private var _answerIndex = MutableLiveData<Int>(0)
     val answerIndex: LiveData<Int>
         get() = _answerIndex
@@ -80,6 +102,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
 
     }
+
+
+
 
 
     fun nextQuestion() {
@@ -154,21 +179,19 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable._46471_44702_o48f37
     )
 
+
+
     fun getImageRessourceId(): List<Int> {
 
         return imageResourceId
     }
 
 
-    fun getQuestionsByCategory(category: String, difficulty: String) {
+    fun getQuestionsByCategory() {
         viewModelScope.launch(Dispatchers.IO) {
 
-
-            repository.getQuestionByCategory(category, difficulty)
-
-
+            repository.getQuestionByCategory(currentCategory, currentDifficulty)
         }
-
     }
 
     val categories = repository.categories
