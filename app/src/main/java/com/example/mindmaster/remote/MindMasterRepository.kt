@@ -3,6 +3,7 @@ package com.example.mindmaster.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.NavHostFragment
 import com.example.mindmaster.data.Question
 import com.example.mindmaster.data.dataQuestionModels.QuestionResponse
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.IncorrectAnswer
@@ -10,6 +11,7 @@ import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.Joke
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionApi
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.database.MindMasterDatabase
+import com.example.mindmaster.ui.QuizFragmentDirections
 import java.lang.Exception
 
 class MindMasterRepository(
@@ -115,6 +117,9 @@ class MindMasterRepository(
             Log.e("JokeApiservice", "Error $e")
         }
     }
+
+
+
 
 
     suspend fun getAllQuestions() {

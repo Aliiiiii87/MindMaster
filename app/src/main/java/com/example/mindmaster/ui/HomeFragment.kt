@@ -49,6 +49,8 @@ class HomeFragment : Fragment() {
         }
 
 
+
+
         binding.startBT.setOnClickListener {
 
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment())

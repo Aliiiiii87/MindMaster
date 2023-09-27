@@ -46,6 +46,7 @@ class CategoryFragment : Fragment() {
             binding.categoryRV.adapter = adapter
 
 
+
             // Hier wird für den Spinner das Dialogfeld initialsiert
 
             val difficultyLevels = resources.getStringArray(R.array.difficulty_levels)

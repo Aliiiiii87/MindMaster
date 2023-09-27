@@ -33,6 +33,9 @@
         <argument
             android:name="difficulty"
             app:argType="string" />
+        <action
+            android:id="@+id/action_quizFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/courseFragment"

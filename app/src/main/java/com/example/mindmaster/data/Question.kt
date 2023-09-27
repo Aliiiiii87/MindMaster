@@ -15,7 +15,7 @@ data class Question(
     val type: String,
     val question : String,
     val difficulty : String,
-    val correct_answer : String,
+    val correct_answer : String
 
 
 

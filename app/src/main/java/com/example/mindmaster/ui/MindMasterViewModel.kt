@@ -1,7 +1,6 @@
 package com.example.mindmaster.ui
 
 
-
 import android.app.Application
 import android.os.Handler
 import android.util.Log
@@ -9,6 +8,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+
 import com.example.mindmaster.R
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.database.getInstance
@@ -26,19 +28,14 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     private val repository = MindMasterRepository(MindMasterApi, JokeApi, database)
 
 
-
-
     val question = repository.question
     val joke = repository.joke
 
-    var answerIndex = 0
 
     private val _currentQuestion =
         MutableLiveData<QuestionWithIncorrectAnswers>()
     val currentQuestion: LiveData<QuestionWithIncorrectAnswers>
         get() = _currentQuestion
-
-
 
 
     private val _playerPoints = MutableLiveData<Int>()
@@ -51,10 +48,21 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     fun addPoints(points: Int) {
         if (!_questionAnswered.value!!) {
-            _playerPoints.value = (_playerPoints.value ?: 0) + points
+            updatePlayerPoints(points)
             _questionAnswered.value = true
         }
     }
+
+    fun updatePlayerPoints(newPoints: Int) {
+        val currentPoints = _playerPoints.value ?: 0
+        val updatedPoints = currentPoints + newPoints
+        _playerPoints.postValue(updatedPoints)
+
+    }
+
+    private var _answerIndex = MutableLiveData<Int>(0)
+    val answerIndex: LiveData<Int>
+        get() = _answerIndex
 
 
     private val _questionAnswered = MutableLiveData<Boolean>()
@@ -64,41 +72,34 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     init {
         _questionAnswered.value = false
     }
-    fun setCurrentQuestion(){
 
-        _currentQuestion.postValue(question.value?.get(answerIndex))
+    fun setCurrentQuestion() {
+
+        Log.e("First", "${_currentQuestion.value}")
+
+        _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
 
     }
-
-
-
-
-
 
 
     fun nextQuestion() {
-        val delayMillis = 3000
-        Handler().postDelayed({
-            viewModelScope.launch(Dispatchers.Main) {
-                if (answerIndex < (question.value?.size ?: 0)) {
-                    answerIndex++
-                    _questionAnswered.value = false
-                    _currentQuestion.postValue(question.value?.get(answerIndex))
-                    Log.e("Next", "${_currentQuestion.value}")
-                } else {
-                    // Todo
-                }
-            }
-        }, delayMillis.toLong())
+        // val delayMillis = 1000
+        // Handler().postDelayed({
+
+
+        if (_answerIndex.value!! < (question.value?.size!!)) {
+            _answerIndex.value = _answerIndex.value!! + 1
+            _questionAnswered.value = false
+            _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+
+
+        } else {
+
+
+        }
+
+        // }, delayMillis.toLong())
     }
-
-
-
-
-
-
-
-
 
 
     fun getQuestions() {
@@ -112,7 +113,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
-// Todo
+    fun indexReset() {
+
+        _answerIndex.value = 0
+    }
 
 
     fun questionLevels() {
@@ -122,11 +126,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
             repository.getQuestionsLevelAndCategory()
 
+
         }
     }
-
-
-
 
 
     fun getJokes() {

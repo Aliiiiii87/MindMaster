@@ -30,10 +30,10 @@
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
-        app:cardElevation="4dp"
         app:cardBackgroundColor="@color/orange"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headlineQuizTV">
@@ -41,13 +41,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/glow_effect"
+            android:background="@drawable/gardient_scoretv"
             android:orientation="horizontal"></LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/scoreTV"
@@ -55,8 +54,8 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="@color/black"
-                android:textStyle="bold"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="12dp"
         android:progressDrawable="@drawable/custom_progress_bar"
         android:visibility="visible"
@@ -100,8 +99,8 @@
 
         <TextView
             android:id="@+id/qustionTV"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="200dp"
@@ -109,6 +108,7 @@
             android:gravity="center"
             android:text="TextView"
             android:textColor="@color/white"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -118,9 +118,12 @@
             android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_marginBottom="120dp"
-            android:background="@color/white"
+            android:background="@drawable/answer_gardient"
             android:text="TextView"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:gravity="center"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/qustionTV" />
 
@@ -130,8 +133,11 @@
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
             android:layout_marginBottom="120dp"
-            android:background="@color/white"
+            android:background="@drawable/answer_wrong"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:gravity="center"
+            android:textSize="16dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/qustionTV"
@@ -141,9 +147,12 @@
             android:id="@+id/tvAnswerC"
             android:layout_width="170dp"
             android:layout_height="50dp"
-            android:background="@color/white"
+            android:background="@drawable/answer_wrong"
             android:text="TextView"
             android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvAnswerA"
             app:layout_constraintStart_toStartOf="@+id/tvAnswerA"
@@ -153,9 +162,12 @@
             android:id="@+id/tvAnswerD"
             android:layout_width="170dp"
             android:layout_height="50dp"
-            android:background="@color/white"
+            android:background="@drawable/answer_wrong"
             android:text="TextView"
             android:gravity="center"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvAnswerB"
             app:layout_constraintStart_toStartOf="@+id/tvAnswerB"

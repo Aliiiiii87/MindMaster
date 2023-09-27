@@ -1,0 +1,25 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Klickzustand (Pressed) -->
+    <item android:state_pressed="true">
+        <transition xmlns:android="http://schemas.android.com/apk/res/android">
+            <!-- Von Normalzustand (grau) zu Klickzustand (grün) -->
+            <item android:drawable="@drawable/gardient_red" />
+            <item>
+                <animation-list>
+                    <item android:drawable="@drawable/gardient_gray" android:duration="2000" />
+                    <item android:drawable="@drawable/gardient_red" android:duration="1000" />
+                </animation-list>
+            </item>
+        </transition>
+    </item>
+    <!-- Normalzustand -->
+    <item>
+        <shape>
+            <gradient
+                android:startColor="#FB8C00"
+                android:endColor="@color/black"
+                android:angle="0" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+</selector>
