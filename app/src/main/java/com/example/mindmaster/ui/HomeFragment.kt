@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.mindmaster.R
 import com.example.mindmaster.adapter.HomeAdapter
 import com.example.mindmaster.data.dataQuestionModels.QuestionResponse
@@ -33,6 +35,9 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -42,11 +47,16 @@ class HomeFragment : Fragment() {
 
         viewModel.questionResult.observe(viewLifecycleOwner) { questionResult ->
 
-            binding.homeRV.adapter = HomeAdapter(questionResult)
+            val gifRescourceIds = MutableList(questionResult.size){R.drawable.marissa}
+            val context = requireContext()
+
+            binding.homeRV.adapter = HomeAdapter(questionResult,gifRescourceIds,context)
             binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
 
 
         }
+
+
 
 
 
@@ -73,7 +83,11 @@ class HomeFragment : Fragment() {
         binding.jokeTV.movementMethod = ScrollingMovementMethod()
 
 
+
     }
+
+
+
 
 
 }

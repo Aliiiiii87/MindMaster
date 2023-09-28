@@ -4,9 +4,11 @@ package com.example.mindmaster
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.example.mindmaster.databinding.ActivityMainBinding
 import com.example.mindmaster.ui.MindMasterViewModel
 
@@ -18,9 +20,12 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("MainActivity", "Erstellt")
-
         super.onCreate(savedInstanceState)
+
+
+
+
+
 
 
 
@@ -70,6 +75,9 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+
 
 
 }
