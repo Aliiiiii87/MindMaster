@@ -72,8 +72,8 @@ class QuizFragment : Fragment() {
 
 
                     viewModel.saveResult()
-                    findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
-
+//                    findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
+                findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
                     viewModel.indexReset()
 
                 } else {
@@ -85,7 +85,7 @@ class QuizFragment : Fragment() {
 
 
 
-        viewModel.currentQuestion.observe(viewLifecycleOwner) {question->
+        viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
 
             if (question != null) {
 

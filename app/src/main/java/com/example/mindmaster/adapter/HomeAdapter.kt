@@ -40,9 +40,9 @@ class HomeAdapter (val results : List<QuizResult>, private val gifResourceIds : 
         val questionResult = results[position]
         val gifResourceId = gifResourceIds[position]
 
-        holder.binding.pointsTV.text = questionResult.score.toString()
+        holder.binding.pointsTV.text = "Punkte: "+questionResult.score.toString()
         holder.binding.categoryTV.text = questionResult.category
-        holder.binding.difficultyTV.text = questionResult.difficulty
+        holder.binding.difficultyTV.text = "Level: "+questionResult.difficulty
 
 
 

@@ -55,7 +55,7 @@ class CategoryFragment : Fragment() {
                 android.R.layout.simple_spinner_item,
                 difficultyLevels
             )
-            spinnerAdapter.setDropDownViewResource(android.R.layout.select_dialog_item)
+            spinnerAdapter.setDropDownViewResource(android.R.layout.select_dialog_multichoice)
             binding.spinner.adapter = spinnerAdapter
 
 
