@@ -20,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="110dp">
+            android:layout_height="100dp">
 
             <ImageView
                 android:id="@+id/pointsImageIV"
@@ -39,11 +39,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
-                android:text="Mathe"
                 android:fontFamily="@font/irish_grover_regular"
+                android:text="Mathe"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/pointsTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/pointsImageIV"
@@ -68,9 +68,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="24dp"
                 android:text="TextView"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/pointsTV"
                 app:layout_constraintStart_toStartOf="@+id/pointsTV"
