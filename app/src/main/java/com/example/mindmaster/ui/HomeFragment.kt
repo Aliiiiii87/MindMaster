@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -36,8 +37,6 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -47,11 +46,11 @@ class HomeFragment : Fragment() {
 
         viewModel.questionResult.observe(viewLifecycleOwner) { questionResult ->
 
-            val gifRescourceIds = MutableList(questionResult.size){R.drawable.marissa}
+            val gifRescourceIds = MutableList(questionResult.size) { R.drawable.marissa }
             val context = requireContext()
-            val mutableQuestionResult = questionResult.toMutableList()
 
-            binding.homeRV.adapter = HomeAdapter(mutableQuestionResult,gifRescourceIds,context)
+
+            binding.homeRV.adapter = HomeAdapter(questionResult, gifRescourceIds, context)
             binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
 
 
@@ -71,10 +70,10 @@ class HomeFragment : Fragment() {
         viewModel.getJokes()
 
         viewModel.joke.observe(viewLifecycleOwner) {
-           if(it.isNotEmpty()){
+            if (it.isNotEmpty()) {
 
-               binding.jokeTV.text = it.random().joke
-           }
+                binding.jokeTV.text = it.random().joke
+            }
 
         }
 
@@ -84,11 +83,7 @@ class HomeFragment : Fragment() {
         binding.jokeTV.movementMethod = ScrollingMovementMethod()
 
 
-
     }
-
-
-
 
 
 }
