@@ -72,7 +72,7 @@ class QuizFragment : Fragment() {
 
 
                     viewModel.saveResult()
-//                    findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
+
                 findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
                     viewModel.indexReset()
 

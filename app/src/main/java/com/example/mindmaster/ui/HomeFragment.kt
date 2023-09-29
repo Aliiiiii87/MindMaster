@@ -49,8 +49,9 @@ class HomeFragment : Fragment() {
 
             val gifRescourceIds = MutableList(questionResult.size){R.drawable.marissa}
             val context = requireContext()
+            val mutableQuestionResult = questionResult.toMutableList()
 
-            binding.homeRV.adapter = HomeAdapter(questionResult,gifRescourceIds,context)
+            binding.homeRV.adapter = HomeAdapter(mutableQuestionResult,gifRescourceIds,context)
             binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
 
 

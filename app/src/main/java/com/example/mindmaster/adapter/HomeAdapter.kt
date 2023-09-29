@@ -2,6 +2,7 @@ package com.example.mindmaster.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -13,7 +14,7 @@ import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWit
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult
 import com.example.mindmaster.databinding.ListItemHomeBinding
 
-class HomeAdapter (val results : List<QuizResult>, private val gifResourceIds : List<Int>, private val context: Context)
+class HomeAdapter (val results : MutableList<QuizResult>, private val gifResourceIds : List<Int>, private val context: Context)
     : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>(){
 
 
@@ -52,7 +53,16 @@ class HomeAdapter (val results : List<QuizResult>, private val gifResourceIds : 
         Glide.with(context).load(gifResourceId).into(holder.binding.pointsImageIV)
 
 
-
+        holder.binding.root.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                // Hier können Sie den gewünschten Wisch-Entfernen-Effekt hinzufügen
+                results.removeAt(position)
+                notifyItemRemoved(position)
+                true
+            } else {
+                false
+            }
+        }
 
 
 
