@@ -7,14 +7,15 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     android:layout_marginBottom="16dp"
-    android:background="@drawable/custom_backround"
+    android:background="@drawable/gardient_backround_result"
     app:cardCornerRadius="5dp"
     app:circularflow_radiusInDP="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/gardient_backround_result">
 
         <ImageView
             android:id="@+id/categoryIV"
@@ -26,14 +27,16 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/gardient_backround_result">
 
             <TextView
                 android:id="@+id/category2TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist."
-                android:textColor="@color/black"
+                android:textColor="@color/orange"
+                android:background="@drawable/gardient_backround_result"
                 android:textStyle="bold"
                 android:gravity="center"/>
         </ScrollView>
