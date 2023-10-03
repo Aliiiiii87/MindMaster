@@ -49,6 +49,8 @@ class CategoryAdapter(
             holder.binding.categoryCV.setOnClickListener {
 
 
+
+
                 val difficulty = spinner.selectedItem.toString()
                 viewModel.currentDifficulty = difficulty
 

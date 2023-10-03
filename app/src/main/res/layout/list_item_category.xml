@@ -3,45 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/categoryCV"
-    android:layout_width="100dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
+    app:circularflow_radiusInDP="10dp"
     android:layout_marginBottom="16dp"
-    android:background="@drawable/gardient_backround_result"
-    app:cardCornerRadius="5dp"
-    app:circularflow_radiusInDP="10dp">
+    android:background="@drawable/custom_backround"
+    app:cardCornerRadius="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/gardient_backround_result">
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_backround"
+        android:orientation="vertical"></LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/categoryIV"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="fitXY"
-            android:background="@drawable/picture_rechtangle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <ScrollView
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/category2TV"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/gardient_backround_result">
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="120dp"
+            android:text="TextView"
+            android:textColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@+id/categoryIV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/categoryIV"
+            app:layout_constraintTop_toTopOf="@+id/categoryIV" />
 
-            <TextView
-                android:id="@+id/category2TV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist. Hier ist ein langer Text, der scrollbar ist."
-                android:textColor="@color/orange"
-                android:background="@drawable/gardient_backround_result"
-                android:textStyle="bold"
-                android:gravity="center"/>
-        </ScrollView>
-
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 

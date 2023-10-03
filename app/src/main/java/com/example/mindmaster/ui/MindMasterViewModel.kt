@@ -177,6 +177,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable._480974_15298,
         R.drawable._702479_59306,
         R.drawable._46471_44702_o48f37
+        
     )
 
 
