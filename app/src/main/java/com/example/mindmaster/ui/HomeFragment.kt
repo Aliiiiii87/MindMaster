@@ -54,7 +54,12 @@ class HomeFragment : Fragment() {
             binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
 
 
+
+
+
         }
+
+
 
 
 

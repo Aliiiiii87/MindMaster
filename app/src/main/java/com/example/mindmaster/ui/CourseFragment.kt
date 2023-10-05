@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
+import com.example.mindmaster.adapter.HomeAdapter
 import com.example.mindmaster.databinding.FragmentCategoryBinding
 import com.example.mindmaster.databinding.FragmentCourseBinding
 
@@ -33,6 +34,14 @@ class CourseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
+
+
+
+
 
 
     }

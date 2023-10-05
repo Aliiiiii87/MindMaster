@@ -47,9 +47,9 @@ class CategoryFragment : Fragment() {
             val adapter = CategoryAdapter(viewModel, categories, binding.spinner)
             binding.categoryRV.adapter = adapter
 
-
-            val helper: SnapHelper = PagerSnapHelper()
-            helper.attachToRecyclerView(binding.categoryRV)
+//
+//            val helper: SnapHelper = PagerSnapHelper()
+//            helper.attachToRecyclerView(binding.categoryRV)
 
 
 
