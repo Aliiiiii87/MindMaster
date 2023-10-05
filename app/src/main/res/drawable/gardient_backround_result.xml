@@ -13,10 +13,7 @@
     <item android:right="0dp">
         <shape android:shape="rectangle">
 
-            <stroke
-                android:width="4dp"
-            android:color="#9D15C1"
-            />
+
             <gradient
 
             />
