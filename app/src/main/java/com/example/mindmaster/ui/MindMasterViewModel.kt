@@ -2,15 +2,11 @@ package com.example.mindmaster.ui
 
 
 import android.app.Application
-import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-
 import com.example.mindmaster.R
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuizResult

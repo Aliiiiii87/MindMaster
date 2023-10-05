@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/gardient_scoretv"
+    android:background="@color/orange"
     android:layout_height="match_parent"
     tools:context=".ui.CategoryFragment">
 
@@ -32,7 +32,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/irish_grover_regular"
         android:text="Choose Your Category"
-        android:textColor="@color/orange"
+        android:textColor="@color/dark_purple"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
         android:layout_marginStart="14dp"
         android:fontFamily="@font/irish_grover_regular"
         android:text="Schwierigkeitsstufe"
-        android:textColor="@color/orange"
+        android:textColor="@color/dark_purple"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/spinner"
