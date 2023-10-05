@@ -138,8 +138,8 @@ class QuizFragment : Fragment() {
 
                 }
 
-//                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
-//                mediaplayer.start()
+                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
+                mediaplayer.start()
                 increasePoints(points)
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
