@@ -11,6 +11,8 @@ import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.mindmaster.R
 import com.example.mindmaster.adapter.CategoryAdapter
 import com.example.mindmaster.data.Question
@@ -44,6 +46,10 @@ class CategoryFragment : Fragment() {
         viewModel.categories.observe(viewLifecycleOwner) { categories ->
             val adapter = CategoryAdapter(viewModel, categories, binding.spinner)
             binding.categoryRV.adapter = adapter
+
+
+            val helper: SnapHelper = PagerSnapHelper()
+            helper.attachToRecyclerView(binding.categoryRV)
 
 
 

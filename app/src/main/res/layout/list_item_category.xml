@@ -6,7 +6,7 @@
     android:layout_height="200dp"
     android:layout_margin="12dp"
     android:layout_marginBottom="16dp"
-    android:background="@drawable/custom_backround"
+    android:background="@drawable/gardient_backround_result"
     app:cardCornerRadius="5dp"
     app:circularflow_radiusInDP="10dp">
 
@@ -51,7 +51,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/category_text"
+                android:background="@drawable/gardient_backround_result"
                 android:orientation="vertical"></LinearLayout>
 
             <TextView
@@ -62,7 +62,7 @@
                 android:fontFamily="@font/irish_grover_regular"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="@color/orange"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
