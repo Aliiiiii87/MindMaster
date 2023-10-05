@@ -3,5 +3,6 @@
     <translate
         android:fromYDelta="100%p"
         android:toYDelta="0"
-        android:duration="1000" /> <!-- Dauer der Animation in Millisekunden -->
+        android:duration="1000"
+    android:interpolator="@android:interpolator/overshoot" />
 </set>
