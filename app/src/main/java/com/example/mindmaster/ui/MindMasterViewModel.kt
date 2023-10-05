@@ -172,7 +172,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable.gif2,
         R.drawable.gif3,
         R.drawable.gif4,
-        R.drawable.gif5,
         R.drawable.gif6,
         R.drawable.gif7,
         R.drawable.gif8,

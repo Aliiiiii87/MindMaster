@@ -1,21 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/categoryCV"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:layout_margin="12dp"
-    app:circularflow_radiusInDP="10dp"
     android:layout_marginBottom="16dp"
     android:background="@drawable/custom_backround"
-    app:cardCornerRadius="5dp">
+    app:cardCornerRadius="5dp"
+    app:circularflow_radiusInDP="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gardient_backround_result"
+        android:background="@drawable/gardient_scoretv"
         android:orientation="vertical"></LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,31 +22,49 @@
 
         <ImageView
             android:id="@+id/categoryIV"
-            android:layout_width="160dp"
-            android:layout_height="110dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="60dp"
             android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/category2TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/irish_grover_regular"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="@color/black"
-            android:textSize="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/categoryIV"
-            app:layout_constraintStart_toStartOf="@+id/categoryIV"
-            app:layout_constraintTop_toBottomOf="@+id/categoryIV" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoryIV">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/category_text"
+                android:orientation="vertical"></LinearLayout>
+
+            <TextView
+                android:id="@+id/category2TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/irish_grover_regular"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/orange"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
-
-
