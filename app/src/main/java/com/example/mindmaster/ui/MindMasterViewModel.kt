@@ -180,7 +180,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable.gif10,
         R.drawable.gif11,
         R.drawable.gif12,
-        R.drawable.gif13
+        R.drawable.gif13,
+        R.drawable.gif14,
+        R.drawable.gif15,
+        R.drawable.gif16
         
     )
 

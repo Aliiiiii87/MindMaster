@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/categoryCV"
@@ -14,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/custom_backround"
+        android:background="@drawable/gardient_backround_result"
         android:orientation="vertical"></LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +24,10 @@
 
         <ImageView
             android:id="@+id/categoryIV"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="160dp"
+            android:layout_height="110dp"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -35,15 +36,19 @@
             android:id="@+id/category2TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="120dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/irish_grover_regular"
+            android:gravity="center"
             android:text="TextView"
-            android:textColor="@color/orange"
-            app:layout_constraintBottom_toBottomOf="@+id/categoryIV"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/categoryIV"
-            app:layout_constraintTop_toTopOf="@+id/categoryIV" />
+            android:textColor="@color/dark_purple"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/categoryIV"
+            app:layout_constraintStart_toStartOf="@+id/categoryIV"
+            app:layout_constraintTop_toBottomOf="@+id/categoryIV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
+
 

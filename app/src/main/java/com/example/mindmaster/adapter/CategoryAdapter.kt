@@ -1,17 +1,22 @@
 package com.example.mindmaster.adapter
 
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Spinner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mindmaster.R
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.databinding.ListItemCategoryBinding
 import com.example.mindmaster.ui.CategoryFragmentDirections
 import com.example.mindmaster.ui.MindMasterViewModel
+
+
 import kotlin.math.min
 
 class CategoryAdapter(
@@ -22,6 +27,8 @@ class CategoryAdapter(
 
 ) : RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
 
+    private lateinit var context: Context
+
     inner class ItemViewHolder(val binding: ListItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -29,6 +36,7 @@ class CategoryAdapter(
         parent: ViewGroup,
         viewType: Int
     ): CategoryAdapter.ItemViewHolder {
+        context = parent.context
         val binding =
             ListItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
@@ -41,6 +49,11 @@ class CategoryAdapter(
         holder.binding.category2TV.text = category
 
 
+
+        val slideinUp = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
+        holder.binding.category2TV.startAnimation(slideinUp)
+
+
         val imageResources = viewModel.getImageRessourceId()
         if (position >= 0 && position < imageResources.size) {
             val imageResource = imageResources[position]
@@ -51,6 +64,9 @@ class CategoryAdapter(
                 .asGif()
                 .load(imageResource)
                 .into(holder.binding.categoryIV)
+
+
+
 
             holder.binding.categoryCV.setOnClickListener {
 
