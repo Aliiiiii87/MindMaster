@@ -168,15 +168,19 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     val imageResourceId = listOf(
 
-        R.drawable._4556165_qqvt_fw79_220211,
-        R.drawable._0438641_rg8h_nfpw_190730,
-        R.drawable._5680158_thiu_v05v_220328,
-        R.drawable._9727741_hwfc_7qeh_170727,
-        R.drawable._252403_559,
-        R.drawable._609235_38252,
-        R.drawable._480974_15298,
-        R.drawable._702479_59306,
-        R.drawable._46471_44702_o48f37
+        R.drawable.gif1,
+        R.drawable.gif2,
+        R.drawable.gif3,
+        R.drawable.gif4,
+        R.drawable.gif5,
+        R.drawable.gif6,
+        R.drawable.gif7,
+        R.drawable.gif8,
+        R.drawable.gif9,
+        R.drawable.gif10,
+        R.drawable.gif11,
+        R.drawable.gif12,
+        R.drawable.gif13
         
     )
 

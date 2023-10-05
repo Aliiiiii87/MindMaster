@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Spinner
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mindmaster.data.dataQuestionModels.dataJokeModels.QuestionWithIncorrectAnswers
 import com.example.mindmaster.databinding.ListItemCategoryBinding
 import com.example.mindmaster.ui.CategoryFragmentDirections
@@ -45,6 +46,11 @@ class CategoryAdapter(
             val imageResource = imageResources[position]
 
             holder.binding.categoryIV.setImageResource(imageResource)
+
+            Glide.with(holder.itemView)
+                .asGif()
+                .load(imageResource)
+                .into(holder.binding.categoryIV)
 
             holder.binding.categoryCV.setOnClickListener {
 
