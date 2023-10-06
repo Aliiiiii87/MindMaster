@@ -46,7 +46,7 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryAdapter.ItemViewHolder, position: Int) {
         val category = categories[position]
 
-        viewModel.currentCategory = category
+
         holder.binding.category2TV.text = category
         Log.d("Show","$category")
 
@@ -71,7 +71,7 @@ class CategoryAdapter(
 
             holder.binding.categoryCV.setOnClickListener {
 
-
+                viewModel.currentCategory = category
 
 
                 val difficulty = spinner.selectedItem.toString()

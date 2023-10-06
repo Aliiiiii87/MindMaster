@@ -16,14 +16,13 @@ import com.example.mindmaster.remote.MindMasterApi
 import com.example.mindmaster.remote.MindMasterRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
-
+import kotlinx.coroutines.withContext
 
 
 class MindMasterViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var currentCategory : String
-    lateinit var currentDifficulty : String
+    lateinit var currentCategory: String
+    lateinit var currentDifficulty: String
 
 
     var database = getInstance(application)
@@ -64,20 +63,30 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
-    fun getCountOfQuizResult():Long{
+    fun getCountOfQuizResult(): Long {
 
         return repository.getCountResult()
     }
 
-    fun saveResult(){
+    fun saveResult() {
 
-       viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
 
 
+            _playerPoints.value?.let {
+                QuizResult(
+                    id = getCountOfQuizResult() + 1,
+                    category = currentCategory,
+                    difficulty = currentDifficulty,
+                    score = it
+                )
+            }
+                ?.let { repository.insertResult(it) }
+            withContext(Dispatchers.Main){
+                _playerPoints.value = 0
+            }
 
-           _playerPoints.value?.let { QuizResult(id = getCountOfQuizResult()+1,category = currentCategory, difficulty = currentDifficulty, score = it) }
-               ?.let { repository.insertResult(it) }
-       }
+        }
     }
 
     private var _answerIndex = MutableLiveData<Int>(0)
@@ -102,20 +111,18 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-
-
-
     fun nextQuestion() {
         // val delayMillis = 1000
         // Handler().postDelayed({
 
 
         if (_answerIndex.value!! < (question.value?.size!!)) {
-            _answerIndex.value = _answerIndex.value!! + 1
             _questionAnswered.value = false
             _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
 
 
+
+            _answerIndex.value = _answerIndex.value!! + 1
         } else {
 
 
@@ -136,9 +143,12 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
-    fun indexReset() {
+    fun finishQuiz() {
 
         _answerIndex.value = 0
+        Log.e("Position","${answerIndex.value}")
+        saveResult()
+
     }
 
 
@@ -181,9 +191,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable.gif14,
         R.drawable.gif15,
         R.drawable.gif16
-        
-    )
 
+    )
 
 
     fun getImageRessourceId(): List<Int> {

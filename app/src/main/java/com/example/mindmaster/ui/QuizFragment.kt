@@ -2,23 +2,19 @@ package com.example.mindmaster.ui
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.app.AlertDialog
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentQuizBinding
-import kotlin.time.Duration.Companion.seconds
 
 
 class QuizFragment : Fragment() {
@@ -64,24 +60,21 @@ class QuizFragment : Fragment() {
         }
 
 
-
-
+        // Wenn das Quiz fertig ist soll er dass Ergebnis abspeichern und zum Homefragment naviegieren und mir das Ergebnis anzeigen
         viewModel.answerIndex.observe(viewLifecycleOwner) { index ->
-            viewModel.question.observe(viewLifecycleOwner) { question ->
-                if (question.size <= (index)) {
 
 
-                    viewModel.saveResult()
+            val questionCount = viewModel.question.value?.size ?: 0
 
-                    findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
-                    viewModel.indexReset()
+            Log.e("Ergebnis","$index/$questionCount")
 
-                } else {
+            if (questionCount != 0 && questionCount <= index) {
+                viewModel.finishQuiz()
+                findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
 
-
-                }
             }
         }
+
 
 
 
