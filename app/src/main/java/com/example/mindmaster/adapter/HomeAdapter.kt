@@ -2,6 +2,7 @@ package com.example.mindmaster.adapter
 import android.view.animation.AnimationUtils
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -60,7 +61,9 @@ class HomeAdapter (val results : List<QuizResult>, private val gifResourceIds : 
 
         holder.binding.cardView.setOnClickListener {
 
-           val navController = holder.itemView.findNavController()
+            val questionResult= results[position]
+
+            val navController = holder.itemView.findNavController()
             navController.navigate(HomeFragmentDirections.actionHomeFragmentToCourseFragment())
 
 

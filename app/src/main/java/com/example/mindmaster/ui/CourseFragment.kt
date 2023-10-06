@@ -43,7 +43,6 @@ class CourseFragment : Fragment() {
 
 
 
-
     }
 
   }
