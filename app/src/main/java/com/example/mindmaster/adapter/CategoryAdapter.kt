@@ -45,9 +45,10 @@ class CategoryAdapter(
 
     override fun onBindViewHolder(holder: CategoryAdapter.ItemViewHolder, position: Int) {
         val category = categories[position]
+
         viewModel.currentCategory = category
         holder.binding.category2TV.text = category
-
+        Log.d("Show","$category")
 
 
         val slideinUp = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)

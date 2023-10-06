@@ -3,6 +3,7 @@ import android.view.animation.AnimationUtils
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -59,16 +60,7 @@ class HomeAdapter (val results : List<QuizResult>, private val gifResourceIds : 
 
 
 
-        holder.binding.cardView.setOnClickListener {
 
-            val questionResult= results[position]
-
-            val navController = holder.itemView.findNavController()
-            navController.navigate(HomeFragmentDirections.actionHomeFragmentToCourseFragment())
-
-
-
-        }
 
 
 

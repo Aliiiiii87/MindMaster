@@ -73,6 +73,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
        viewModelScope.launch (Dispatchers.IO){
 
+
+
            _playerPoints.value?.let { QuizResult(id = getCountOfQuizResult()+1,category = currentCategory, difficulty = currentDifficulty, score = it) }
                ?.let { repository.insertResult(it) }
        }

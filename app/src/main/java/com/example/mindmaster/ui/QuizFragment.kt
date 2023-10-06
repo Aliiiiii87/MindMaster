@@ -73,7 +73,7 @@ class QuizFragment : Fragment() {
 
                     viewModel.saveResult()
 
-                findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
+                    findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
                     viewModel.indexReset()
 
                 } else {
@@ -138,8 +138,8 @@ class QuizFragment : Fragment() {
 
                 }
 
-                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
-                mediaplayer.start()
+//                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
+//                mediaplayer.start()
                 increasePoints(points)
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
@@ -163,8 +163,8 @@ class QuizFragment : Fragment() {
                     "hard" -> 0
                     else -> 0
                 }
-                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-                mediaplayer.start()
+//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+//                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -184,8 +184,8 @@ class QuizFragment : Fragment() {
                     "hard" -> 0
                     else -> 0
                 }
-                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-                mediaplayer.start()
+//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+//                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -205,8 +205,8 @@ class QuizFragment : Fragment() {
                     else -> 0
                 }
 
-                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-                mediaplayer.start()
+//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+//                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
