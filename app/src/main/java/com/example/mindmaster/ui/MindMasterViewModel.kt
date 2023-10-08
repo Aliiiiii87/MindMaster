@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 class MindMasterViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var currentCategory: String
-    lateinit var currentDifficulty: String
+    var currentDifficulty: String = ""
 
 
     var database = getInstance(application)
@@ -48,6 +48,12 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     init {
         _playerPoints.value = 0
     }
+
+
+    private val evaluationMessage = MutableLiveData<String>()
+    val evaluationMessageLiveData: LiveData<String>
+        get() = evaluationMessage
+
 
     fun addPoints(points: Int) {
         if (!_questionAnswered.value!!) {
@@ -82,7 +88,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 )
             }
                 ?.let { repository.insertResult(it) }
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 _playerPoints.value = 0
             }
 
@@ -103,25 +109,16 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun setCurrentQuestion() {
-
-        Log.e("First", "${_currentQuestion.value}")
-
         _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
-
     }
 
 
     fun nextQuestion() {
         // val delayMillis = 1000
         // Handler().postDelayed({
-
-
         if (_answerIndex.value!! < (question.value?.size!!)) {
             _questionAnswered.value = false
             _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
-
-
-
             _answerIndex.value = _answerIndex.value!! + 1
         } else {
 
@@ -139,36 +136,25 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
             repository.getAllQuestions()
         }
-
-
     }
 
     fun finishQuiz() {
 
         _answerIndex.value = 0
-        Log.e("Position","${answerIndex.value}")
         saveResult()
 
     }
 
 
     fun questionLevels() {
-
-
         viewModelScope.launch(Dispatchers.IO) {
-
             repository.getQuestionsLevelAndCategory()
-
-
         }
     }
 
 
     fun getJokes() {
-
         viewModelScope.launch(Dispatchers.IO) {
-
-
             repository.getJokes()
         }
     }
@@ -203,12 +189,35 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     fun getQuestionsByCategory() {
         viewModelScope.launch(Dispatchers.IO) {
-
             repository.getQuestionByCategory(currentCategory, currentDifficulty)
         }
     }
 
     val categories = repository.categories
+
+
+
+
+
+    fun showEvaluation() {
+        val currentPoints = _playerPoints.value ?: 0
+
+
+        Log.d("Debug", "currentPoints: $currentPoints")
+        val message = when {
+            currentPoints >= 200 && currentDifficulty == "easy" -> "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
+            currentPoints >= 300 && currentDifficulty == "medium" -> "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
+            currentPoints >= 400 && currentDifficulty == "hard" -> "Bravo! Sie haben das schwierige Quiz bestanden!"
+            else -> "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
+        }
+
+
+        evaluationMessage.postValue(message)
+    }
+
+
+
+
 
 
 }

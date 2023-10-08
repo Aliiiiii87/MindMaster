@@ -38,6 +38,7 @@ class QuizFragment : Fragment() {
 
     }
 
+
     private var isAnswered = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,12 +46,6 @@ class QuizFragment : Fragment() {
 
 
         viewModel.getQuestionsByCategory()
-
-
-
-
-
-
 
         viewModel.question.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
@@ -66,14 +61,18 @@ class QuizFragment : Fragment() {
 
             val questionCount = viewModel.question.value?.size ?: 0
 
-            Log.e("Ergebnis","$index/$questionCount")
-
             if (questionCount != 0 && questionCount <= index) {
                 viewModel.finishQuiz()
                 findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
 
             }
+
+
         }
+
+
+
+
 
 
 
@@ -96,18 +95,12 @@ class QuizFragment : Fragment() {
             }
 
 
-
-
             viewModel.playerPoints.observe(viewLifecycleOwner) { points ->
 
 
                 createScoreAnimation()
                 binding.scoreTV.text = "Punkte: $points"
-
-
             }
-
-
         }
 
 

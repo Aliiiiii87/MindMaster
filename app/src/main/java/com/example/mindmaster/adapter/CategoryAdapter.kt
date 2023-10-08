@@ -46,10 +46,7 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: CategoryAdapter.ItemViewHolder, position: Int) {
         val category = categories[position]
 
-
         holder.binding.category2TV.text = category
-        Log.d("Show","$category")
-
 
         val slideinUp = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
         holder.binding.category2TV.startAnimation(slideinUp)
@@ -91,8 +88,6 @@ class CategoryAdapter(
 
     }
 
-
-    // Hier begrneze ich die ansichten der Kategorien in der Recyclerview auf 9
     override fun getItemCount(): Int {
         return categories.size
     }

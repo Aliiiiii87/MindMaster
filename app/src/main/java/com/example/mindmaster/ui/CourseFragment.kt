@@ -36,6 +36,11 @@ class CourseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        viewModel.evaluationMessageLiveData.observe(viewLifecycleOwner) { evaluationMessage ->
+            // Hier können Sie die Auswertungsnachricht in Ihrem UI anzeigen, z.B. in einem TextView
+            binding.courseTV.text = evaluationMessage
+        }
+
 
 
 
