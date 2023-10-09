@@ -5,7 +5,8 @@
     android:id="@+id/CourseFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CourseFragment">
+    tools:context=".ui.CourseFragment"
+    android:background="@drawable/gardient_scoretv">
 
     <TextView
         android:id="@+id/courseTV"

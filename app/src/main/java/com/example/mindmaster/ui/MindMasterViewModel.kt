@@ -88,6 +88,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 )
             }
                 ?.let { repository.insertResult(it) }
+
+
             withContext(Dispatchers.Main) {
                 _playerPoints.value = 0
             }
@@ -199,15 +201,12 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    fun showEvaluation() {
-        val currentPoints = _playerPoints.value ?: 0
+    fun showEvaluation(score : Int , difficulty : String ) {
 
-
-        Log.d("Debug", "currentPoints: $currentPoints")
         val message = when {
-            currentPoints >= 200 && currentDifficulty == "easy" -> "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
-            currentPoints >= 300 && currentDifficulty == "medium" -> "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
-            currentPoints >= 400 && currentDifficulty == "hard" -> "Bravo! Sie haben das schwierige Quiz bestanden!"
+            score >= 1500 && difficulty == "easy" -> "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
+            score >= 4000 && difficulty == "medium" -> "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
+            score >= 5000 && difficulty == "hard" -> "Bravo! Sie haben das schwierige Quiz bestanden!"
             else -> "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
         }
 

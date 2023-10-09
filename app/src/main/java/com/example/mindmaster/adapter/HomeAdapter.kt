@@ -66,13 +66,14 @@ class HomeAdapter(
 
 
         holder.itemView.setOnClickListener {
-            val questionResult = results[position]
-            viewModel.addPoints(questionResult.score)
-            viewModel.updatePlayerPoints(questionResult.score)
+//            val questionResult = results[position]
+//            viewModel.addPoints(questionResult.score)
+//            viewModel.updatePlayerPoints(questionResult.score)
 
             val action = HomeFragmentDirections.actionHomeFragmentToCourseFragment()
             navController.navigate(action)
-            viewModel.showEvaluation()
+            viewModel.showEvaluation(questionResult.score,questionResult.difficulty)
+
 
         }
 

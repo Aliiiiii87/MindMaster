@@ -1,12 +1,12 @@
 package com.example.mindmaster.ui
 
 import android.animation.Animator
-import android.animation.AnimatorInflater
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -167,9 +167,9 @@ class HomeFragment : Fragment() {
         }
 
 
-//        // Hiermit wird eine normale textview Scrollbar
-//
-//        binding.jokeTV.movementMethod = ScrollingMovementMethod()
+        // Hiermit wird eine normale textview Scrollbar
+
+        binding.jokeTV.movementMethod = ScrollingMovementMethod()
 
 
     }
