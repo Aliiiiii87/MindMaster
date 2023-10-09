@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentCourseBinding
-
-
-
-
+import android.widget.VideoView
 
 
 class CourseFragment : Fragment() {
@@ -20,7 +17,6 @@ class CourseFragment : Fragment() {
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentCourseBinding
-
 
 
     override fun onCreateView(
@@ -42,29 +38,20 @@ class CourseFragment : Fragment() {
             binding.courseTV.text = evaluationMessage
         }
 
-        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.money}"
+        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator}"
+        val videoView = binding.videoView
+        videoView.setVideoURI(Uri.parse(videoPath))
+//        binding.videoView.start()
 
-        binding.videoView.setVideoURI(Uri.parse(videoPath))
-        binding.videoView.start()
 
-
-        // Das ist der Wiederholungslistener für das Video
-        binding.videoView.setOnCompletionListener { mediyaPlayer->
+        videoView.setOnPreparedListener { mediyaPlayer ->
 
             mediyaPlayer.start()
+
+
         }
-
-
-
-
-
-
-
-
-
-
 
 
     }
 
-  }
+}
