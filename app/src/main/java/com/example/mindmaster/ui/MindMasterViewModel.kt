@@ -2,7 +2,9 @@ package com.example.mindmaster.ui
 
 
 import android.app.Application
+import android.net.Uri
 import android.util.Log
+import android.widget.VideoView
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,6 +25,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     lateinit var currentCategory: String
     var currentDifficulty: String = ""
+
+
+
+
 
 
     var database = getInstance(application)
@@ -53,6 +59,32 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     private val evaluationMessage = MutableLiveData<String>()
     val evaluationMessageLiveData: LiveData<String>
         get() = evaluationMessage
+
+
+    private val _easyVideoUri = MutableLiveData<Uri>()
+    val easyVideoUri: LiveData<Uri>
+        get() = _easyVideoUri
+
+    private val _mediumVideoUri = MutableLiveData<Uri>()
+    val mediumVideoUri: LiveData<Uri>
+        get() = _mediumVideoUri
+
+    private val _hardVideoUri = MutableLiveData<Uri>()
+    val hardVideoUri: LiveData<Uri>
+        get() = _hardVideoUri
+
+    fun loadEasyVideo() {
+        _easyVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator3}"))
+    }
+
+    fun loadMediumVideo() {
+        _mediumVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
+    }
+
+    fun loadHardVideo() {
+        _hardVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
+    }
+
 
 
     fun addPoints(points: Int) {
@@ -201,18 +233,28 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    fun showEvaluation(score : Int , difficulty : String ) {
-
+    fun showEvaluation(score: Int, difficulty: String) {
         val message = when {
-            score >= 1500 && difficulty == "easy" -> "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
-            score >= 4000 && difficulty == "medium" -> "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
-            score >= 5000 && difficulty == "hard" -> "Bravo! Sie haben das schwierige Quiz bestanden!"
-            else -> "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
+            score >= 1500 && difficulty == "easy" -> {
+                loadEasyVideo()
+                "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
+            }
+            score >= 4000 && difficulty == "medium" -> {
+                loadMediumVideo()
+                "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
+            }
+            score >= 5000 && difficulty == "hard" -> {
+                loadHardVideo()
+                "Bravo! Sie haben das schwierige Quiz bestanden!"
+            }
+            else -> {
+                "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
+            }
         }
-
-
         evaluationMessage.postValue(message)
     }
+
+
 
 
 

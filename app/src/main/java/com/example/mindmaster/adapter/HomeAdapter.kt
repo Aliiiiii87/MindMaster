@@ -3,7 +3,6 @@ package com.example.mindmaster.adapter
 import android.view.animation.AnimationUtils
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -22,7 +21,9 @@ class HomeAdapter(
     private val gifResourceIds: List<Int>,
     private val context: Context,
     private val navController: NavController,
-    private val viewModel: MindMasterViewModel
+    private val viewModel: MindMasterViewModel,
+
+
 
 
 ) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
@@ -66,13 +67,13 @@ class HomeAdapter(
 
 
         holder.itemView.setOnClickListener {
-//            val questionResult = results[position]
-//            viewModel.addPoints(questionResult.score)
-//            viewModel.updatePlayerPoints(questionResult.score)
-
             val action = HomeFragmentDirections.actionHomeFragmentToCourseFragment()
             navController.navigate(action)
             viewModel.showEvaluation(questionResult.score,questionResult.difficulty)
+
+
+
+
 
 
         }

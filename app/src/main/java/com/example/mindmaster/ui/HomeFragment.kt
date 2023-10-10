@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.animation.TranslateAnimation
+import android.widget.VideoView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mindmaster.R
@@ -26,6 +27,9 @@ class HomeFragment : Fragment() {
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentHomeBinding
+
+
+
 
 
     override fun onCreateView(
@@ -135,6 +139,9 @@ class HomeFragment : Fragment() {
             val gifRescourceIds = MutableList(questionResult.size) { R.drawable.marissa }
             val context = requireContext()
             val navController = findNavController()
+
+
+
 
 
             binding.homeRV.adapter =
