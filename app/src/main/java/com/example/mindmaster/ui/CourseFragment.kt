@@ -1,22 +1,29 @@
 package com.example.mindmaster.ui
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentCourseBinding
 import android.widget.VideoView
+import com.bumptech.glide.Glide
 
 
 class CourseFragment : Fragment() {
 
+
+
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentCourseBinding
+
+
 
 
     override fun onCreateView(
@@ -31,6 +38,13 @@ class CourseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
+//        binding.courseIV.setImageResource(R.drawable.marissa)
+//        val rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_item)
+//        binding.courseIV.startAnimation(rotationAnimation)
 
 
 

@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.courseFragment -> {
 
+                    viewModel.loadHomeVideo()
+
                     navController.navigate(R.id.courseFragment)
                     false
 
