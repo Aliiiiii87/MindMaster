@@ -73,6 +73,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     val hardVideoUri: LiveData<Uri>
         get() = _hardVideoUri
 
+    private val _homeVideoUri = MutableLiveData<Uri>()
+    val homeVideoUri: LiveData<Uri>
+        get() = _homeVideoUri
+
     fun loadEasyVideo() {
         _easyVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator3}"))
     }
@@ -85,7 +89,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         _hardVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
     }
 
-
+    fun loadHomeVideo() {
+        _homeVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator6}"))
+    }
 
     fun addPoints(points: Int) {
         if (!_questionAnswered.value!!) {
@@ -248,6 +254,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 "Bravo! Sie haben das schwierige Quiz bestanden!"
             }
             else -> {
+                loadHomeVideo()
                 "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
             }
         }

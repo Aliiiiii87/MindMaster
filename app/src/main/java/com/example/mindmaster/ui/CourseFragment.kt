@@ -42,7 +42,7 @@ class CourseFragment : Fragment() {
             binding.courseTV.text = evaluationMessage
         }
 
-        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator3}"
+        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator6}"
         val videoView = binding.videoView
         videoView.setVideoURI(Uri.parse(videoPath))
 
@@ -64,6 +64,11 @@ class CourseFragment : Fragment() {
         }
 
         viewModel.hardVideoUri.observe(viewLifecycleOwner) { uri ->
+            // Ähnlich wie oben setzen wir die Video-URI für "hard" und starten nicht erneut.
+            videoView.setVideoURI(uri)
+        }
+
+        viewModel.homeVideoUri.observe(viewLifecycleOwner) { uri ->
             // Ähnlich wie oben setzen wir die Video-URI für "hard" und starten nicht erneut.
             videoView.setVideoURI(uri)
         }
