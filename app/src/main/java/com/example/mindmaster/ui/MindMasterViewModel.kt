@@ -243,7 +243,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 loadMediumVideo()
                 "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
             }
-            score >= 5000 && difficulty == "hard" -> {
+            score >= 6000 && difficulty == "hard" -> {
                 loadHardVideo()
                 "Bravo! Sie haben das schwierige Quiz bestanden!"
             }
