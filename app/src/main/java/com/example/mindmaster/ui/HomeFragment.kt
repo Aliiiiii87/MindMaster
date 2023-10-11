@@ -24,6 +24,7 @@ import android.widget.VideoView
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.example.mindmaster.R
 import com.example.mindmaster.adapter.HomeAdapter
@@ -108,11 +109,15 @@ class HomeFragment : Fragment() {
                     val gifImageView = binding.invisibleImage
                     gifImageView.visibility = View.VISIBLE
 
-                    gifImageView.setImageResource(R.drawable.gif1)
+                    val gifDrawable = pl.droidsonroids.gif.GifDrawable(
+                        resources,
+                        R.drawable.gif1
+                    ) // Erstellen Sie ein GifDrawable aus der Ressource
 
-                    if (gifImageView.drawable is GifDrawable) {
-                        (gifImageView.drawable as GifDrawable).start()
-                    }
+                    gifImageView.setImageDrawable(gifDrawable)
+
+                    gifDrawable.start() // Starten Sie die GIF-Animation
+
 
 
                 }
