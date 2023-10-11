@@ -29,9 +29,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,100 +45,11 @@ class HomeFragment : Fragment() {
         val bottomNavigationView = requireActivity().findViewById<View>(R.id.bottomNavigationView)
         bottomNavigationView?.visibility = View.VISIBLE
 
-
-        val slideTextAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_text)
-        //Hier  Weise ich  die Animation der TextView zu
-        binding.punktestandTV.startAnimation(slideTextAnimation)
-        // Verzögerung, bevor die Animation wiederholt wird
-        val animationRepeatInterval = 1000000L
-        val handler = Handler()
-        handler.postDelayed({
-            // Hier Startet  die Animation erneut, nachdem die Verzögerung abgelaufen ist
-            binding.punktestandTV.startAnimation(slideTextAnimation)
-        }, animationRepeatInterval)
-
-
-        val textView = binding.jokeTV
-        var isZoomedIn = false
-
-        textView.setOnClickListener {
-            if (isZoomedIn) {
-                // Animation, um den Text kleiner zu skalieren
-                val scaleDownX = ObjectAnimator.ofFloat(textView, View.SCALE_X, 0.8f)
-                val scaleDownY = ObjectAnimator.ofFloat(textView, View.SCALE_Y, 0.8f)
-
-                val scaleDown = AnimatorSet()
-                scaleDown.playTogether(scaleDownX, scaleDownY)
-                scaleDown.duration = 300
-
-                // Animation, um den Text nach links außerhalb des Bildschirms zu verschieben
-                val translateOut = TranslateAnimation(
-                    Animation.RELATIVE_TO_PARENT, 0.0f, Animation.RELATIVE_TO_PARENT, -1.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
-                )
-                translateOut.duration = 300
-
-                // Animation, um den Text wieder sichtbar zu machen
-                val alphaIn = ObjectAnimator.ofFloat(textView, View.ALPHA, 1.0f)
-                alphaIn.duration = 300
-
-                val animationSet = AnimatorSet()
-                animationSet.playTogether(scaleDown, alphaIn)
-
-                animationSet.addListener(object : AnimatorListenerAdapter() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        // Hier können Sie den Text in der TextView aktualisieren, wenn nötig
-                        // Zum Beispiel: textView.text = "Neuer Text"
-                    }
-                })
-
-                animationSet.start()
-                isZoomedIn = false
-            } else {
-                // Animation, um den Text zu vergrößern
-                val scaleUpX = ObjectAnimator.ofFloat(textView, View.SCALE_X, 1.2f)
-                val scaleUpY = ObjectAnimator.ofFloat(textView, View.SCALE_Y, 1.2f)
-
-                val scaleUp = AnimatorSet()
-                scaleUp.playTogether(scaleUpX, scaleUpY)
-                scaleUp.duration = 300
-
-                // Animation, um den Text von links auf den Bildschirm zu verschieben
-                val translateIn = TranslateAnimation(
-                    Animation.RELATIVE_TO_PARENT, -1.0f, Animation.RELATIVE_TO_PARENT, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
-                )
-                translateIn.duration = 300
-
-                // Animation, um den Text sichtbar zu machen
-                val alphaIn = ObjectAnimator.ofFloat(textView, View.ALPHA, 1.0f)
-                alphaIn.duration = 300
-
-                val animationSet = AnimatorSet()
-                animationSet.playTogether(scaleUp, alphaIn)
-
-                animationSet.start()
-                isZoomedIn = true
-            }
-        }
-
-
-
-
-
-
-
-
-
-
         viewModel.questionResult.observe(viewLifecycleOwner) { questionResult ->
 
             val gifRescourceIds = MutableList(questionResult.size) { R.drawable.marissa }
             val context = requireContext()
             val navController = findNavController()
-
-
-
 
 
             binding.homeRV.adapter =
@@ -150,11 +58,29 @@ class HomeFragment : Fragment() {
 
         }
 
+        // Einblendanimation
+        val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+        binding.jokeTV.startAnimation(fadeInAnimation)
 
+        // Ausblendanimation nach Verzögerung
+        Handler().postDelayed({
+            val fadeOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
+            fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+                    // Die Animation startet
+                }
 
+                override fun onAnimationEnd(animation: Animation?) {
+                    // Die Animation ist beendet,Sichtbarkeit wird gesetzt
+                    binding.jokeTV.visibility = View.INVISIBLE
+                }
 
-
-
+                override fun onAnimationRepeat(animation: Animation?) {
+                    // Wird bei Wiederholungen der Animation aufgerufen
+                }
+            })
+            binding.jokeTV.startAnimation(fadeOutAnimation)
+        }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden (8 Sekunden) durchgeführt
 
 
         binding.startBT.setOnClickListener {
