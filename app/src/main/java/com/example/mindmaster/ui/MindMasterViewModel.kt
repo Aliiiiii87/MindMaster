@@ -1,10 +1,15 @@
 package com.example.mindmaster.ui
 
 
+import android.app.AlertDialog
 import android.app.Application
+import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.VideoView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +30,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     lateinit var currentCategory: String
     var currentDifficulty: String = ""
+
 
 
 
@@ -260,6 +266,29 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         }
         evaluationMessage.postValue(message)
     }
+
+
+
+    fun showPopup(context:Context) {
+        // Zeige das Popup-Fenster an
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.popup_layout, null)
+        val builder = AlertDialog.Builder(context)
+            .setView(dialogView)
+        val dialog = builder.create()
+
+        dialogView.findViewById<Button>(R.id.closeButton).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+
+
+
+
+
+
 
 
 

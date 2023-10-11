@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.Handler
 import android.text.method.ScrollingMovementMethod
@@ -12,9 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
+import android.view.animation.RotateAnimation
+import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
+import android.widget.Button
 import android.widget.VideoView
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mindmaster.R
@@ -27,6 +33,10 @@ class HomeFragment : Fragment() {
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentHomeBinding
+
+
+
+
 
 
     override fun onCreateView(
@@ -58,11 +68,31 @@ class HomeFragment : Fragment() {
 
         }
 
-        // Einblendanimation
-        val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+
+
+// Einblendanimation
+        val initialScaleX = 0.0f // Anfangs-X-Skalierung (0%, unsichtbar)
+        val finalScaleX = 1.0f // End-X-Skalierung (100%, sichtbar)
+        val initialScaleY = 1.0f // Anfangs-Y-Skalierung (100%, volle Höhe)
+        val finalScaleY = 1.0f // End-Y-Skalierung (100%, volle Höhe)
+
+        val fadeInAnimation = AnimationSet(true)
+
+// Hinzufügen der Skalierungsanimation
+        val scaleAnimation = ScaleAnimation(initialScaleX, finalScaleX, initialScaleY, finalScaleY)
+        scaleAnimation.duration = 1000
+        fadeInAnimation.addAnimation(scaleAnimation)
+
+// Hinzufügen der Drehanimation
+        val pivotX = 0.5f // X-Koordinate der Pivot-Achse (0.5 = Mitte der View)
+        val pivotY = 0.5f // Y-Koordinate der Pivot-Achse (0.5 = Mitte der View)
+        val rotateAnimation = RotateAnimation(0f, -360f, Animation.RELATIVE_TO_SELF, pivotX, Animation.RELATIVE_TO_SELF, pivotY)
+        rotateAnimation.duration = 2000
+        fadeInAnimation.addAnimation(rotateAnimation)
+
         binding.jokeTV.startAnimation(fadeInAnimation)
 
-        // Ausblendanimation nach Verzögerung
+// Ausblendanimation nach Verzögerung
         Handler().postDelayed({
             val fadeOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
             fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
@@ -71,7 +101,7 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onAnimationEnd(animation: Animation?) {
-                    // Die Animation ist beendet,Sichtbarkeit wird gesetzt
+                    // Die Animation ist beendet, Sichtbarkeit wird gesetzt
                     binding.jokeTV.visibility = View.INVISIBLE
                 }
 
@@ -81,6 +111,9 @@ class HomeFragment : Fragment() {
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
         }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden (8 Sekunden) durchgeführt
+
+
+
 
 
         binding.startBT.setOnClickListener {
@@ -95,6 +128,7 @@ class HomeFragment : Fragment() {
             if (it.isNotEmpty()) {
 
                 binding.jokeTV.text = it.random().joke
+
             }
 
         }
@@ -106,6 +140,9 @@ class HomeFragment : Fragment() {
 
 
     }
+
+
+
 
 
 }
