@@ -111,12 +111,12 @@ class HomeFragment : Fragment() {
 
                     val gifDrawable = pl.droidsonroids.gif.GifDrawable(
                         resources,
-                        R.drawable.gif1
-                    ) // Erstellen Sie ein GifDrawable aus der Ressource
+                        R.drawable.gif2
+                    )
 
                     gifImageView.setImageDrawable(gifDrawable)
 
-                    gifDrawable.start() // Starten Sie die GIF-Animation
+                    gifDrawable.start() // Startet  die GIF-Animation
 
 
 
@@ -127,7 +127,7 @@ class HomeFragment : Fragment() {
                 }
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
-        }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden (8 Sekunden) durchgeführt
+        }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden  durchgeführt
 
 
 
