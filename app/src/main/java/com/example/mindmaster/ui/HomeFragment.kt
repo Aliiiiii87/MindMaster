@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
@@ -23,6 +24,7 @@ import android.widget.VideoView
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.example.mindmaster.R
 import com.example.mindmaster.adapter.HomeAdapter
 import com.example.mindmaster.databinding.FragmentHomeBinding
@@ -103,6 +105,16 @@ class HomeFragment : Fragment() {
                 override fun onAnimationEnd(animation: Animation?) {
                     // Die Animation ist beendet, Sichtbarkeit wird gesetzt
                     binding.jokeTV.visibility = View.INVISIBLE
+                    val gifImageView = binding.invisibleImage
+                    gifImageView.visibility = View.VISIBLE
+
+                    gifImageView.setImageResource(R.drawable.marissa)
+
+                    if (gifImageView.drawable is GifDrawable) {
+                        (gifImageView.drawable as GifDrawable).start()
+                    }
+
+
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
@@ -111,6 +123,9 @@ class HomeFragment : Fragment() {
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
         }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden (8 Sekunden) durchgeführt
+
+
+
 
 
 
@@ -129,9 +144,14 @@ class HomeFragment : Fragment() {
 
                 binding.jokeTV.text = it.random().joke
 
+
+
             }
 
         }
+
+
+
 
 
         // Hiermit wird eine normale textview Scrollbar

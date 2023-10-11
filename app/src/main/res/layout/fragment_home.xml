@@ -26,8 +26,9 @@
         android:id="@+id/startBT"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rechtangle"
+        android:background="@drawable/caregory_cardview"
         android:text="Starte Quiz"
+        android:shadowRadius="40"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,13 +64,27 @@
                 app:layout_constraintEnd_toEndOf="@+id/punktestandTV"
                 app:layout_constraintStart_toStartOf="@+id/punktestandTV" />
 
+            <ImageView
+                android:id="@+id/invisibleImage"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/userNameTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.528"
+                android:visibility="invisible" />
+
             <TextView
                 android:id="@+id/jokeTV"
-                android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="40dp"
-                android:background="@drawable/gardient_scoretv"
+                android:background="@drawable/category_text"
                 android:gravity="center"
                 android:maxLines="2"
                 android:scrollbars="vertical"
@@ -78,9 +93,10 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/userNameTV"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.528" />
 
             <TextView
                 android:id="@+id/punktestandTV"
@@ -112,5 +128,4 @@
                 tools:src="@tools:sample/avatars" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
