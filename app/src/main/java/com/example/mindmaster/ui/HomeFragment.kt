@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                     val gifImageView = binding.invisibleImage
                     gifImageView.visibility = View.VISIBLE
 
-                    gifImageView.setImageResource(R.drawable.marissa)
+                    gifImageView.setImageResource(R.drawable.gif1)
 
                     if (gifImageView.drawable is GifDrawable) {
                         (gifImageView.drawable as GifDrawable).start()
