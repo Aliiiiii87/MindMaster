@@ -127,7 +127,9 @@ class HomeFragment : Fragment() {
                 }
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
-        }, 8000) // Hier wird die Ausblendung nach 8000 Millisekunden  durchgeführt
+        }, 5000) // Hier wird die Ausblendung nach 8000 Millisekunden  durchgeführt
+
+
 
 
 
