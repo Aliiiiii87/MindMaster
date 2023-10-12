@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.os.Handler
 import android.text.method.ScrollingMovementMethod
@@ -20,6 +21,7 @@ import android.view.animation.RotateAnimation
 import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.Button
+import android.widget.TextView
 import android.widget.VideoView
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.activityViewModels
@@ -36,10 +38,6 @@ class HomeFragment : Fragment() {
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentHomeBinding
-
-
-
-
 
 
     override fun onCreateView(
@@ -72,7 +70,6 @@ class HomeFragment : Fragment() {
         }
 
 
-
 // Einblendanimation
         val initialScaleX = 0.0f // Anfangs-X-Skalierung (0%, unsichtbar)
         val finalScaleX = 1.0f // End-X-Skalierung (100%, sichtbar)
@@ -89,7 +86,14 @@ class HomeFragment : Fragment() {
 // Hinzufügen der Drehanimation
         val pivotX = 0.5f // X-Koordinate der Pivot-Achse (0.5 = Mitte der View)
         val pivotY = 0.5f // Y-Koordinate der Pivot-Achse (0.5 = Mitte der View)
-        val rotateAnimation = RotateAnimation(0f, -360f, Animation.RELATIVE_TO_SELF, pivotX, Animation.RELATIVE_TO_SELF, pivotY)
+        val rotateAnimation = RotateAnimation(
+            0f,
+            -360f,
+            Animation.RELATIVE_TO_SELF,
+            pivotX,
+            Animation.RELATIVE_TO_SELF,
+            pivotY
+        )
         rotateAnimation.duration = 2000
         fadeInAnimation.addAnimation(rotateAnimation)
 
@@ -119,7 +123,6 @@ class HomeFragment : Fragment() {
                     gifDrawable.start() // Startet  die GIF-Animation
 
 
-
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
@@ -130,14 +133,6 @@ class HomeFragment : Fragment() {
         }, 5000) // Hier wird die Ausblendung nach 8000 Millisekunden  durchgeführt
 
 
-
-
-
-
-
-
-
-
         binding.startBT.setOnClickListener {
 
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment())
@@ -146,30 +141,30 @@ class HomeFragment : Fragment() {
         viewModel.getQuestions()
         viewModel.getJokes()
 
-        viewModel.joke.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
+        viewModel.joke.observe(viewLifecycleOwner) { jokes ->
+            if (jokes.isNotEmpty()) {
+                val joke = jokes.random().joke
 
-                binding.jokeTV.text = it.random().joke
+                // Dialog öffnen, wenn TextView angeklickt wird
+                binding.jokeTV.setOnClickListener { view ->
+                    val dialog = Dialog(requireContext())
+                    dialog.setContentView(R.layout.popup_layout)
 
+                    // Hier wird setzt man  die TextView-Ansicht im Dialog-Layout und setzt den Joke-Inhalt
+                    val popupJokeTextView = dialog.findViewById<TextView>(R.id.popupText)
+                    popupJokeTextView.text = joke
 
+                    // Klick-Handler für den "Schließen"-Button im Dialogfenster
+                    val closeButton = dialog.findViewById<Button>(R.id.closeButton)
+                    closeButton.setOnClickListener {
+                        dialog.dismiss()
+                    }
 
+                    dialog.show()
+                }
             }
-
         }
 
 
-
-
-
-        // Hiermit wird eine normale textview Scrollbar
-
-        binding.jokeTV.movementMethod = ScrollingMovementMethod()
-
-
     }
-
-
-
-
-
 }
