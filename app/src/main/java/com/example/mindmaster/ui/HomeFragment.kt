@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
         }
 
 
-        // Einblendanimation
+// Einblendanimation
         val initialScaleX = 0.0f // Anfangs-X-Skalierung (0%, unsichtbar)
         val finalScaleX = 1.0f // End-X-Skalierung (100%, sichtbar)
         val initialScaleY = 1.0f // Anfangs-Y-Skalierung (100%, volle Höhe)
@@ -78,12 +78,12 @@ class HomeFragment : Fragment() {
 
         val fadeInAnimation = AnimationSet(true)
 
-        // Hinzufügen der Skalierungsanimation
+// Hinzufügen der Skalierungsanimation
         val scaleAnimation = ScaleAnimation(initialScaleX, finalScaleX, initialScaleY, finalScaleY)
         scaleAnimation.duration = 1000
         fadeInAnimation.addAnimation(scaleAnimation)
 
-        // Hinzufügen der Drehanimation
+// Hinzufügen der Drehanimation
         val pivotX = 0.5f // X-Koordinate der Pivot-Achse (0.5 = Mitte der View)
         val pivotY = 0.5f // Y-Koordinate der Pivot-Achse (0.5 = Mitte der View)
         val rotateAnimation = RotateAnimation(
@@ -99,7 +99,7 @@ class HomeFragment : Fragment() {
 
         binding.jokeTV.startAnimation(fadeInAnimation)
 
-        // Ausblendanimation nach Verzögerung
+// Ausblendanimation nach Verzögerung
         Handler().postDelayed({
             val fadeOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_out)
             fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
@@ -120,9 +120,7 @@ class HomeFragment : Fragment() {
 
                     gifImageView.setImageDrawable(gifDrawable)
 
-                    gifDrawable.start() // Startet  die GIF-Animation
-
-
+                    gifDrawable.start() // Startet die GIF-Animation
                 }
 
                 override fun onAnimationRepeat(animation: Animation?) {
@@ -130,11 +128,9 @@ class HomeFragment : Fragment() {
                 }
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
-        }, 5000) // Hier wird die Ausblendung nach 8000 Millisekunden  durchgeführt
-
+        }, 2000) // Hier wird die Ausblendung nach 8000 Millisekunden durchgeführt
 
         binding.startBT.setOnClickListener {
-
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment())
         }
 
@@ -145,12 +141,12 @@ class HomeFragment : Fragment() {
             if (jokes.isNotEmpty()) {
                 val joke = jokes.random().joke
 
-                // Dialog öffnen, wenn TextView angeklickt wird
-                binding.jokeTV.setOnClickListener { view ->
+                // Klick-Handler für die "invisibleImage"
+                binding.invisibleImage.setOnClickListener { view ->
                     val dialog = Dialog(requireContext())
                     dialog.setContentView(R.layout.popup_layout)
 
-                    // Hier  setzt man  die TextView-Ansicht im Dialog-Layout und setzt den Joke-Inhalt
+                    // Hier setzt man die TextView-Ansicht im Dialog-Layout und setzt den Joke-Inhalt
                     val popupJokeTextView = dialog.findViewById<TextView>(R.id.popupText)
                     popupJokeTextView.text = joke
 
@@ -164,6 +160,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
 
 
     }
