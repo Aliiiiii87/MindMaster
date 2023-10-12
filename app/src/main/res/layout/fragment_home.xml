@@ -27,9 +27,9 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@drawable/gardient_backround_result"
-        android:text="Starte Quiz"
         android:clickable="true"
         android:shadowRadius="40"
+        android:text="Start Quiz"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,15 +106,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:animation="@anim/slide_text"
                 android:fontFamily="@font/irish_grover_regular"
-                android:text="Punktestand"
+                android:text="Points Ranking"
                 android:textColor="@color/orange"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:animation="@anim/slide_text" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userImageIV"
