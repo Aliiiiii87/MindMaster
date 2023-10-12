@@ -45,41 +45,30 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.bottomNavigationView.setOnItemSelectedListener {
-
-            when (it.itemId) {
-
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.homeFragment -> {
-
-                    navController.popBackStack(R.id.homeFragment, false)
-
+                    if (navController.currentDestination?.id != R.id.homeFragment) {
+                        navController.popBackStack(R.id.homeFragment, false)
+                        viewModel.loadHomeVideo()
+                    }
+                    true
                 }
-
                 R.id.courseFragment -> {
-
                     viewModel.loadHomeVideo()
-
                     navController.navigate(R.id.courseFragment)
                     false
-
-
                 }
-
                 else -> {
-
                     navController.navigate(R.id.detailCourseFragment)
                     false
                 }
             }
-
-
         }
 
 
+
     }
-
-
-
 
 
 }

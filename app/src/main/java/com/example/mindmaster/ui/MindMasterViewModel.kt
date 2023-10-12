@@ -1,15 +1,8 @@
 package com.example.mindmaster.ui
 
 
-import android.app.AlertDialog
 import android.app.Application
-import android.content.Context
 import android.net.Uri
-import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.VideoView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -67,36 +60,32 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = evaluationMessage
 
 
-    private val _easyVideoUri = MutableLiveData<Uri>()
-    val easyVideoUri: LiveData<Uri>
-        get() = _easyVideoUri
+    private val _videoUri = MutableLiveData<Uri>()
+    val videoUri: LiveData<Uri>
+        get() = _videoUri
 
-    private val _mediumVideoUri = MutableLiveData<Uri>()
-    val mediumVideoUri: LiveData<Uri>
-        get() = _mediumVideoUri
 
-    private val _hardVideoUri = MutableLiveData<Uri>()
-    val hardVideoUri: LiveData<Uri>
-        get() = _hardVideoUri
 
-    private val _homeVideoUri = MutableLiveData<Uri>()
-    val homeVideoUri: LiveData<Uri>
-        get() = _homeVideoUri
+
 
     fun loadEasyVideo() {
-        _easyVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator3}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator3}"))
     }
 
     fun loadMediumVideo() {
-        _mediumVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
     }
 
     fun loadHardVideo() {
-        _hardVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
     }
 
     fun loadHomeVideo() {
-        _homeVideoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator6}"))
+       _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator6}"))
+    }
+
+    fun loadLoseVideo() {
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator7}"))
     }
 
     fun addPoints(points: Int) {
@@ -260,7 +249,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 "Bravo! Sie haben das schwierige Quiz bestanden!"
             }
             else -> {
-                loadHomeVideo()
+
+                loadLoseVideo()
+
                 "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
             }
         }
@@ -269,19 +260,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    fun showPopup(context:Context) {
-        // Zeige das Popup-Fenster an
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.popup_layout, null)
-        val builder = AlertDialog.Builder(context)
-            .setView(dialogView)
-        val dialog = builder.create()
 
-        dialogView.findViewById<Button>(R.id.closeButton).setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
 
 
 

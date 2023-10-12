@@ -1,18 +1,14 @@
 package com.example.mindmaster.ui
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.fragment.app.activityViewModels
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentCourseBinding
-import android.widget.VideoView
-import com.bumptech.glide.Glide
 
 
 class CourseFragment : Fragment() {
@@ -39,18 +35,6 @@ class CourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
-//        binding.courseIV.setImageResource(R.drawable.marissa)
-//        val rotationAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate_item)
-//        binding.courseIV.startAnimation(rotationAnimation)
-
-
-
-
-
-
         viewModel.evaluationMessageLiveData.observe(viewLifecycleOwner) { evaluationMessage ->
             // Hier kann man  die Auswertungsnachricht im  UI anzeigen
             binding.courseTV.text = evaluationMessage
@@ -65,27 +49,14 @@ class CourseFragment : Fragment() {
             mediaPlayer.start()
         }
 
-        viewModel.easyVideoUri.observe(viewLifecycleOwner) { uri ->
-            // Hier setzen wir die Video-URI für "easy", wenn sie geändert wird.
-            // Wir starten das Video nicht hier, da es bereits im onPreparedListener gestartet wurde.
-            // Wenn das ViewModel die easyVideoUri aktualisiert, wird das Hauptvideo automatisch gestartet.
+        viewModel.videoUri.observe(viewLifecycleOwner) { uri ->
+
             videoView.setVideoURI(uri)
         }
 
-        viewModel.mediumVideoUri.observe(viewLifecycleOwner) { uri ->
-            // Ähnlich wie oben setzen wir die Video-URI für "medium" und starten nicht erneut.
-            videoView.setVideoURI(uri)
-        }
 
-        viewModel.hardVideoUri.observe(viewLifecycleOwner) { uri ->
-            // Ähnlich wie oben setzen wir die Video-URI für "hard" und starten nicht erneut.
-            videoView.setVideoURI(uri)
-        }
 
-        viewModel.homeVideoUri.observe(viewLifecycleOwner) { uri ->
-            // Ähnlich wie oben setzen wir die Video-URI für "hard" und starten nicht erneut.
-            videoView.setVideoURI(uri)
-        }
+
 
 }
      }

@@ -12,3 +12,4 @@
         android:icon="@drawable/baseline_show_chart_24"
         android:id="@+id/detailCourseFragment"/>
 </menu>
+
