@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="50dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="40dp"
                 android:animation="@anim/slide_text"
                 android:fontFamily="@font/irish_grover_regular"
                 android:text="Points Ranking"
