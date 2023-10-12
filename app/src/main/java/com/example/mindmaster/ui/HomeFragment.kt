@@ -150,7 +150,7 @@ class HomeFragment : Fragment() {
                     val dialog = Dialog(requireContext())
                     dialog.setContentView(R.layout.popup_layout)
 
-                    // Hier wird setzt man  die TextView-Ansicht im Dialog-Layout und setzt den Joke-Inhalt
+                    // Hier  setzt man  die TextView-Ansicht im Dialog-Layout und setzt den Joke-Inhalt
                     val popupJokeTextView = dialog.findViewById<TextView>(R.id.popupText)
                     popupJokeTextView.text = joke
 

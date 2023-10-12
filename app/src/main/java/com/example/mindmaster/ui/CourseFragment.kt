@@ -38,6 +38,7 @@ class CourseFragment : Fragment() {
         viewModel.evaluationMessageLiveData.observe(viewLifecycleOwner) { evaluationMessage ->
             // Hier kann man  die Auswertungsnachricht im  UI anzeigen
             binding.courseTV.text = evaluationMessage
+
         }
 
         val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator6}"
@@ -52,6 +53,12 @@ class CourseFragment : Fragment() {
         viewModel.videoUri.observe(viewLifecycleOwner) { uri ->
 
             videoView.setVideoURI(uri)
+            if (uri != null && uri == viewModel.videoUri.value) {
+                binding.courseTV.text = "Hey Los gehts! Du musst auf ein absolviertes Quiz klicken im Homebereich, um dir die Video-Auswertung anzuschauen."
+            } else {
+
+            }
+        }
         }
 
 
@@ -59,4 +66,4 @@ class CourseFragment : Fragment() {
 
 
 }
-     }
+

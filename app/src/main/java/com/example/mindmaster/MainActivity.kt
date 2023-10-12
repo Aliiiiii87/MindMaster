@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                     if (navController.currentDestination?.id != R.id.homeFragment) {
                         navController.popBackStack(R.id.homeFragment, false)
                         viewModel.loadHomeVideo()
+
                     }
                     true
                 }
