@@ -65,7 +65,8 @@ class HomeFragment : Fragment() {
 
             binding.homeRV.adapter =
                 HomeAdapter(questionResult, gifRescourceIds, context, navController, viewModel)
-            binding.userImageIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
+               binding.pointsRankingIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
+
 
         }
 
@@ -115,7 +116,7 @@ class HomeFragment : Fragment() {
 
                     val gifDrawable = pl.droidsonroids.gif.GifDrawable(
                         resources,
-                        R.drawable.gif8
+                        R.drawable.tv30
                     )
 
                     gifImageView.setImageDrawable(gifDrawable)

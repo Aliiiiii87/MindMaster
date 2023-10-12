@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/caregory_cardview"
     android:layout_height="400dp"
+    android:background="@drawable/tv11"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/popupText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Popup-Inhalt"
-        android:textColor="@color/dark_purple"
+        android:textColor="@color/orange"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/closeButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/JokeTV"
+        app:layout_constraintVertical_bias="0.445"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
@@ -38,8 +39,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/irish_grover_regular"
         android:text="JokeTV"
-        android:textColor="@color/dark_purple"
-        android:textSize="34sp"
+        android:textColor="@color/orange"
+        android:textSize="44sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
