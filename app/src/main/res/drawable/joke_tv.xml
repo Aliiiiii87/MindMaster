@@ -2,42 +2,28 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape>
-            <solid android:color="#FFFFFF" />
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+            <gradient
+
+
+                android:endColor="#000000"
+           />
         </shape>
     </item>
 
 
-    <item
-        android:left="30dp"
-        android:right="10dp"
-        android:top="10dp"
-        android:bottom="10dp">
-        <shape>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
             <stroke
-                android:width="10dp"
-                android:color="@color/white" />
-        </shape>
-    </item>
-
-    <item
-        android:left="0dp"
-        android:right="0dp"
-        android:top="0dp">
-        <shape>
-            <solid android:color="@color/black" />
-        </shape>
-    </item>
-
-    <item
-        android:top="0dp"
-        android:bottom="-20dp"
-        android:right="25dp">
-        <shape>
-            <solid android:color="@color/black" />
+                android:width="5dp"
+                android:color="@color/orange" />
         </shape>
     </item>
 </layer-list>
+
+
 
 
 
