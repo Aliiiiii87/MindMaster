@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
 
                     val gifDrawable = pl.droidsonroids.gif.GifDrawable(
                         resources,
-                        R.drawable.tv30
+                        R.drawable.tv33
                     )
 
                     gifImageView.setImageDrawable(gifDrawable)
