@@ -54,6 +54,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
+            android:fontFamily="@font/irish_grover_regular"
             android:textSize="20sp"
             android:gravity="center"
             android:textStyle="bold"

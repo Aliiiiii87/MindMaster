@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4B5894"
+        android:background="@drawable/caregory_cardview"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,46 +37,47 @@
                 android:id="@+id/categoryTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="40dp"
                 android:fontFamily="@font/irish_grover_regular"
                 android:text="Mathe"
-                android:textColor="@color/orange"
+                android:textColor="@color/dark_purple"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/pointsTV"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/pointsImageIV"
+                app:layout_constraintStart_toEndOf="@+id/pointsImageIV"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/pointsTV"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/pointsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
                 android:text="200 Punkte"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/difficultyTV"
-                app:layout_constraintEnd_toEndOf="@+id/categoryTV"
-                app:layout_constraintStart_toStartOf="@+id/categoryTV"
+                android:textColor="@color/black"
+                app:chipBackgroundColor="#FFAB40"
+                app:chipCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/difficultyTv"
+                app:layout_constraintStart_toEndOf="@+id/pointsImageIV"
                 app:layout_constraintTop_toBottomOf="@+id/categoryTV" />
 
-            <TextView
-                android:id="@+id/difficultyTV"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/difficultyTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="24dp"
-                android:text="TextView"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/pointsTV"
-                app:layout_constraintStart_toStartOf="@+id/pointsTV"
-                app:layout_constraintTop_toBottomOf="@+id/pointsTV" />
+                android:layout_marginStart="-30dp"
+                android:layout_marginEnd="16dp"
+                android:text="Schwierig"
+                android:textColor="@color/black"
+                app:chipBackgroundColor="@color/orange"
+                app:chipCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pointsTv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/pointsTv"
+                app:layout_constraintTop_toTopOf="@+id/pointsTv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
-

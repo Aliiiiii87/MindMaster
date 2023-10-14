@@ -17,6 +17,7 @@ import android.view.ViewTreeObserver
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
 import android.view.animation.AnimationUtils
+import android.view.animation.OvershootInterpolator
 import android.view.animation.RotateAnimation
 import android.view.animation.ScaleAnimation
 import android.view.animation.TranslateAnimation
@@ -58,7 +59,7 @@ class HomeFragment : Fragment() {
 
         viewModel.questionResult.observe(viewLifecycleOwner) { questionResult ->
 
-            val gifRescourceIds = MutableList(questionResult.size) { R.drawable.marissa }
+            val gifRescourceIds = MutableList(questionResult.size) { R.drawable.winner8 }
             val context = requireContext()
             val navController = findNavController()
 
@@ -71,34 +72,33 @@ class HomeFragment : Fragment() {
         }
 
 
-// Einblendanimation
-        val initialScaleX = 0.0f // Anfangs-X-Skalierung (0%, unsichtbar)
-        val finalScaleX = 1.0f // End-X-Skalierung (100%, sichtbar)
-        val initialScaleY = 1.0f // Anfangs-Y-Skalierung (100%, volle Höhe)
-        val finalScaleY = 1.0f // End-Y-Skalierung (100%, volle Höhe)
-
         val fadeInAnimation = AnimationSet(true)
 
-// Hinzufügen der Skalierungsanimation
-        val scaleAnimation = ScaleAnimation(initialScaleX, finalScaleX, initialScaleY, finalScaleY)
+// Skalierungsanimation
+        val scaleAnimation = ScaleAnimation(0f, 1f, 1f, 1f, Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f)
         scaleAnimation.duration = 1000
         fadeInAnimation.addAnimation(scaleAnimation)
 
-// Hinzufügen der Drehanimation
-        val pivotX = 0.5f // X-Koordinate der Pivot-Achse (0.5 = Mitte der View)
-        val pivotY = 0.5f // Y-Koordinate der Pivot-Achse (0.5 = Mitte der View)
-        val rotateAnimation = RotateAnimation(
-            0f,
-            -360f,
-            Animation.RELATIVE_TO_SELF,
-            pivotX,
-            Animation.RELATIVE_TO_SELF,
-            pivotY
+// Übersetzungsanimation, um die View von links nach rechts zu bewegen
+        val translateAnimation = TranslateAnimation(
+            Animation.RELATIVE_TO_SELF, -1f,
+            Animation.RELATIVE_TO_SELF, 0f,
+            Animation.RELATIVE_TO_SELF, 0f,
+            Animation.RELATIVE_TO_SELF, 0f
         )
-        rotateAnimation.duration = 2000
-        fadeInAnimation.addAnimation(rotateAnimation)
+        translateAnimation.duration = 1000
+        fadeInAnimation.addAnimation(translateAnimation)
+
+// Federungseffektanimation
+        val overshootInterpolator = OvershootInterpolator(10.0f) // Stärke des Federungseffekts anpassen
+        val bounceAnimation = ScaleAnimation(1f, 1.1f, 1f, 1.1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        bounceAnimation.duration = 3000
+        bounceAnimation.interpolator = overshootInterpolator
+        fadeInAnimation.addAnimation(bounceAnimation)
 
         binding.jokeTV.startAnimation(fadeInAnimation)
+
+
 
 // Ausblendanimation nach Verzögerung
         Handler().postDelayed({

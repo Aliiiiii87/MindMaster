@@ -50,14 +50,14 @@ class HomeAdapter(
         val questionResult = results[position]
         val gifResourceId = gifResourceIds[position]
 
-        holder.binding.pointsTV.text = "Punkte: " + questionResult.score.toString()
+        holder.binding.pointsTv.text = "Punkte: " + questionResult.score.toString()
         holder.binding.categoryTV.text = questionResult.category
-        holder.binding.difficultyTV.text = "Level: " + questionResult.difficulty
+        holder.binding.difficultyTv.text = questionResult.difficulty
 
 
 
 
-        holder.binding.pointsImageIV.setImageResource(R.drawable.marissa)
+        holder.binding.pointsImageIV.setImageResource(R.drawable.winner8)
 
         Glide.with(context).load(gifResourceId).into(holder.binding.pointsImageIV)
 
