@@ -72,6 +72,8 @@ class HomeAdapter(
             viewModel.showEvaluation(questionResult.score,questionResult.difficulty)
 
 
+            // der Hintergrund ändert sich beim klicken des Items
+            holder.itemView.isSelected = !holder.itemView.isSelected
 
 
 

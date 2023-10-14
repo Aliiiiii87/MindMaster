@@ -27,6 +27,7 @@ import android.widget.VideoView
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.example.mindmaster.R
@@ -70,6 +71,56 @@ class HomeFragment : Fragment() {
 
 
         }
+         // implementierung des Indekators und Animation des ein und aus Blenden
+        class ScrollIndicatorOnScrollListener(private val scrollIndicator: View) : RecyclerView.OnScrollListener() {
+            private var isScrolling = false // Benutzer scrollt
+            private val fadeInDuration = 1000L // Zeitdauer in Millisekunden für das Einblenden
+            private val fadeOutDuration = 1000L // Zeitdauer in Millisekunden für das Ausblenden
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    // Benutzer hat aufgehört zu scrollen
+                    isScrolling = false
+                    fadeIn()
+                } else {
+                    // Benutzer scrollt
+                    isScrolling = true
+                    fadeOut()
+                }
+            }
+
+            private fun fadeIn() {
+                scrollIndicator.animate()
+                    .alpha(1f)
+                    .setDuration(fadeInDuration)
+                    .start()
+            }
+
+            private fun fadeOut() {
+                scrollIndicator.animate()
+                    .alpha(0f)
+                    .setDuration(fadeOutDuration)
+                    .start()
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        }
+
+        val scrollIndicator = binding.scrollIndicator
+        val recyclerView = binding.homeRV
+        val scrollListener = ScrollIndicatorOnScrollListener(scrollIndicator)
+        recyclerView.addOnScrollListener(scrollListener)
+
+
+
+
+
+
+
+
 
 
         val fadeInAnimation = AnimationSet(true)
