@@ -39,7 +39,7 @@ class CourseFragment : Fragment() {
 //
 //        }
 
-        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator14}"
+        val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator5}"
         val videoView = binding.videoView
         videoView.setVideoURI(Uri.parse(videoPath))
 
