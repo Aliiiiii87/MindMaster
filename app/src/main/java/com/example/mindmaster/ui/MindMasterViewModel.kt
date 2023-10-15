@@ -69,23 +69,23 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
     fun loadEasyVideo() {
-        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator3}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator10}"))
     }
 
     fun loadMediumVideo() {
-        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator11}"))
     }
 
     fun loadHardVideo() {
-        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator12}"))
     }
 
     fun loadHomeVideo() {
-       _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator6}"))
+       _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator14}"))
     }
 
     fun loadLoseVideo() {
-        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator7}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator13}"))
     }
 
     fun addPoints(points: Int) {
