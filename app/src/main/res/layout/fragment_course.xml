@@ -14,7 +14,7 @@
         android:layout_height="350dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,8 @@
             android:id="@+id/videoView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:background="#00000000" />
     </androidx.cardview.widget.CardView>
 
 
