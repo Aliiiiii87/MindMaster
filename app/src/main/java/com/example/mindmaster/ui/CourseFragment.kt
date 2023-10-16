@@ -48,6 +48,7 @@ class CourseFragment : Fragment() {
 //
 //        }
 
+
         // binding von der progressbar und imagview und die Animation für den Ladebalken
 
         val progressBar = binding.quizPB
@@ -89,6 +90,8 @@ class CourseFragment : Fragment() {
             animatorSet.start()
         }, delayMillis.toLong())
 
+
+
         // Klick-Listener für TextView1
         textView1.setOnClickListener {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
@@ -121,6 +124,11 @@ class CourseFragment : Fragment() {
             textView2.visibility = View.INVISIBLE
             textView3.visibility = View.INVISIBLE
         }
+
+
+
+
+
 
 
 

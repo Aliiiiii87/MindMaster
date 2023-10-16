@@ -3,6 +3,7 @@ package com.example.mindmaster.ui
 
 import android.app.Application
 import android.net.Uri
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,11 +24,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     lateinit var currentCategory: String
     var currentDifficulty: String = ""
-
-
-
-
-
 
 
     var database = getInstance(application)
@@ -68,6 +64,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
+
     fun loadEasyVideo() {
         _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderatror1}"))
     }
@@ -81,7 +78,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadHomeVideo() {
-       _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
+        _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
     }
 
     fun loadLoseVideo() {
@@ -164,6 +161,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
+
+
     fun getQuestions() {
 
 
@@ -231,23 +230,23 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     val categories = repository.categories
 
 
-
-
-
     fun showEvaluation(score: Int, difficulty: String) {
         val message = when {
             score >= 1500 && difficulty == "easy" -> {
                 loadEasyVideo()
                 "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
             }
+
             score >= 4000 && difficulty == "medium" -> {
                 loadMediumVideo()
                 "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
             }
+
             score >= 6000 && difficulty == "hard" -> {
                 loadHardVideo()
                 "Bravo! Sie haben das schwierige Quiz bestanden!"
             }
+
             else -> {
 
                 loadLoseVideo()
@@ -257,23 +256,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         }
         evaluationMessage.postValue(message)
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

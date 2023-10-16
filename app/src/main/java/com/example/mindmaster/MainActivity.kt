@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
                         navController.popBackStack(R.id.homeFragment, false)
                         viewModel.loadHomeVideo()
 
+
+
                     }
                     true
                 }
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.loadHomeVideo()
                     navController.navigate(R.id.courseFragment)
                     false
+
                 }
                 else -> {
                     navController.navigate(R.id.detailCourseFragment)
