@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CourseFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_green"
+    android:background="@drawable/category_text"
     tools:context=".ui.CourseFragment">
 
     <VideoView
@@ -19,6 +19,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@drawable/arrow"
+        android:gravity="center"
+        android:text="Suprise"
+        android:textSize="24sp"
+        android:fontFamily="@font/irish_grover_regular"
+        android:textColor="@color/orange"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/quizPB"
+        app:layout_constraintTop_toBottomOf="@+id/videoView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@drawable/arrow2"
+        android:gravity="center"
+        android:text="Suprise"
+        android:textSize="24sp"
+        android:fontFamily="@font/irish_grover_regular"
+        android:textColor="@color/orange"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/quizPB"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-5dp"
+        android:background="@drawable/arrow3"
+        android:gravity="center"
+        android:text="Suprise"
+        android:textSize="24sp"
+        android:fontFamily="@font/irish_grover_regular"
+        android:textColor="@color/orange"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <ProgressBar
         android:id="@+id/quizPB"
@@ -34,17 +89,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/videoView" />
 
+    <!-- Unsichtbare ImageView -->
     <ImageView
         android:id="@+id/hiddenImageView"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/gif3"
+        android:layout_height="wrap_content"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/videoView" />
-
+        app:layout_constraintTop_toBottomOf="@+id/videoView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 

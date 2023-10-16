@@ -1,5 +1,7 @@
 package com.example.mindmaster.ui
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.net.Uri
@@ -49,20 +51,79 @@ class CourseFragment : Fragment() {
         // binding von der progressbar und imagview und die Animation für den Ladebalken
 
         val progressBar = binding.quizPB
-        val imageView = binding.hiddenImageView
+        val textView1 = binding.textView1
+        val textView2 = binding.textView2
+        val textView3 = binding.textView3
 
-        val imageResource = R.drawable.gif40
+        val screenWidth = resources.displayMetrics.widthPixels
 
-        Glide.with(this)
-            .asGif()
-            .load(imageResource)
-            .into(imageView)
+// Verschiebe die TextViews aus dem Bildschirm (rechts)
+        textView1.translationX = screenWidth.toFloat()
+        textView2.translationX = screenWidth.toFloat()
+        textView3.translationX = screenWidth.toFloat()
 
         val delayMillis = 4000 // 4 Sekunden
         Handler(Looper.getMainLooper()).postDelayed({
             progressBar.visibility = View.INVISIBLE
-            imageView.visibility = View.VISIBLE
+
+            // Erstelle Animationen für die TextViews
+            val animation1 = ObjectAnimator.ofFloat(textView1, "translationX", 0f)
+            animation1.duration = 1000 // Dauer der Animation in Millisekunden
+
+            val animation2 = ObjectAnimator.ofFloat(textView2, "translationX", 0f)
+            animation2.duration = 1000
+
+            val animation3 = ObjectAnimator.ofFloat(textView3, "translationX", 0f)
+            animation3.duration = 1000
+
+            // Setze die Sichtbarkeit der TextViews auf sichtbar
+            textView1.visibility = View.VISIBLE
+            textView2.visibility = View.VISIBLE
+            textView3.visibility = View.VISIBLE
+
+            // Erstelle eine AnimatorSet, um die Animationen gemeinsam auszuführen
+            val animatorSet = AnimatorSet()
+            animatorSet.playTogether(animation1, animation2, animation3)
+
+            // Starte die Animationen
+            animatorSet.start()
         }, delayMillis.toLong())
+
+        // Klick-Listener für TextView1
+        textView1.setOnClickListener {
+            // Setze die Sichtbarkeit der ImageView auf sichtbar
+            binding.hiddenImageView.visibility = View.VISIBLE
+            binding.hiddenImageView.setImageResource(R.drawable.gif8)
+            // Setze die Sichtbarkeit der TextViews auf unsichtbar
+            textView1.visibility = View.INVISIBLE
+            textView2.visibility = View.INVISIBLE
+            textView3.visibility = View.INVISIBLE
+        }
+
+// Klick-Listener für TextView2
+        textView2.setOnClickListener {
+            // Setze die Sichtbarkeit der ImageView auf sichtbar
+           binding.hiddenImageView.visibility = View.VISIBLE
+            binding.hiddenImageView.setImageResource(R.drawable.gif15)
+            // Setze die Sichtbarkeit der TextViews auf unsichtbar
+            textView1.visibility = View.INVISIBLE
+            textView2.visibility = View.INVISIBLE
+            textView3.visibility = View.INVISIBLE
+        }
+
+// Klick-Listener für TextView3
+        textView3.setOnClickListener {
+            // Setze die Sichtbarkeit der ImageView auf sichtbar
+            binding.hiddenImageView.visibility = View.VISIBLE
+            binding.hiddenImageView.setImageResource(R.drawable.gif17)
+            // Setze die Sichtbarkeit der TextViews auf unsichtbar
+            textView1.visibility = View.INVISIBLE
+            textView2.visibility = View.INVISIBLE
+            textView3.visibility = View.INVISIBLE
+        }
+
+
+
 
 
 
