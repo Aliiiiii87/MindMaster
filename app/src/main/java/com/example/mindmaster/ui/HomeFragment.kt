@@ -74,8 +74,8 @@ class HomeFragment : Fragment() {
          // implementierung des Indekators und Animation des ein und aus Blenden
         class ScrollIndicatorOnScrollListener(private val scrollIndicator: View) : RecyclerView.OnScrollListener() {
             private var isScrolling = false // Benutzer scrollt
-            private val fadeInDuration = 1000L // Zeitdauer in Millisekunden für das Einblenden
-            private val fadeOutDuration = 1000L // Zeitdauer in Millisekunden für das Ausblenden
+            private val fadeInDuration = 500L // Zeitdauer in Millisekunden für das Einblenden
+            private val fadeOutDuration = 500L // Zeitdauer in Millisekunden für das Ausblenden
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -180,7 +180,7 @@ class HomeFragment : Fragment() {
                 }
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
-        }, 2000) // Hier wird die Ausblendung nach 8000 Millisekunden durchgeführt
+        }, 2000) // Hier wird die Ausblendung nach 1000 Millisekunden durchgeführt
 
         binding.startBT.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment())
