@@ -7,5 +7,7 @@
     <color name="orange">#FDAA02</color>
     <color name="dark_purple">#522093</color>
     <color name="my_green">#3F9320</color>
+    <color name="customProgressBarColor">#FFAB40</color>
+
 
 </resources>

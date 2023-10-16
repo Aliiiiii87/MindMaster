@@ -65,7 +65,7 @@
     </androidx.cardview.widget.CardView>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/quizPB"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -86,10 +86,10 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="@+id/progressBar"
-        app:layout_constraintStart_toStartOf="@+id/progressBar"
-        app:layout_constraintTop_toTopOf="@+id/progressBar" />
+        app:layout_constraintBottom_toBottomOf="@+id/quizPB"
+        app:layout_constraintEnd_toEndOf="@+id/quizPB"
+        app:layout_constraintStart_toStartOf="@+id/quizPB"
+        app:layout_constraintTop_toTopOf="@+id/quizPB" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

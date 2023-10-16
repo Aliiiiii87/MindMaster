@@ -32,7 +32,7 @@ class QuizFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
-        quizProgressBar = binding.progressBar
+        quizProgressBar = binding.quizPB
         return binding.root
 
 

@@ -19,6 +19,13 @@
     </style>
 
 
+    <style name="CustomProgressBarStyle" parent="android:Widget.ProgressBar.Large">
+        <item name="android:progressTint">@color/customProgressBarColor</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
+
+
 
     <style name="Theme.MindMaster" parent="Base.Theme.MindMaster" />
     <style name="Theme.MindMaster.NoActionBar">
