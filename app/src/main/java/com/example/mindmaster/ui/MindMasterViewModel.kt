@@ -64,8 +64,35 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
+    private val _hideProgressBar = MutableLiveData<Boolean>(false)
+    val hideProgressBar: LiveData<Boolean>
+        get() = _hideProgressBar
+
+    private val _hideArrows = MutableLiveData<Boolean>(false)
+    val hideArrows: LiveData<Boolean>
+        get() = _hideArrows
+
+
+
+    fun hideProgressBar() {
+        _hideProgressBar.postValue(true)
+    }
+
+    fun hideArrows() {
+        _hideArrows.postValue(true)
+    }
+
+
+
+
+
+
+
+
+
 
     fun loadEasyVideo() {
+
         _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderatror1}"))
     }
 
@@ -91,6 +118,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
             _questionAnswered.value = true
         }
     }
+
+
+
 
     fun updatePlayerPoints(newPoints: Int) {
         val currentPoints = _playerPoints.value ?: 0

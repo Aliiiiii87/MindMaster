@@ -49,12 +49,18 @@ class CourseFragment : Fragment() {
 //        }
 
 
+
+
+
         // binding von der progressbar und imagview und die Animation für den Ladebalken
 
         val progressBar = binding.quizPB
         val textView1 = binding.textView1
         val textView2 = binding.textView2
         val textView3 = binding.textView3
+
+
+
 
         val screenWidth = resources.displayMetrics.widthPixels
 
@@ -77,6 +83,9 @@ class CourseFragment : Fragment() {
             val animation3 = ObjectAnimator.ofFloat(textView3, "translationX", 0f)
             animation3.duration = 1000
 
+
+
+
             // Setze die Sichtbarkeit der TextViews auf sichtbar
             textView1.visibility = View.VISIBLE
             textView2.visibility = View.VISIBLE
@@ -89,6 +98,24 @@ class CourseFragment : Fragment() {
             // Starte die Animationen
             animatorSet.start()
         }, delayMillis.toLong())
+
+
+
+
+        viewModel.hideProgressBar.observe(viewLifecycleOwner) { hide ->
+            if (hide) {
+                binding.quizPB.visibility = View.INVISIBLE
+            }
+        }
+
+
+        viewModel.hideArrows.observe(viewLifecycleOwner) { hide2 ->
+            if (hide2) {
+                binding.textView1.visibility = View.INVISIBLE
+                binding.textView2.visibility = View.INVISIBLE
+                binding.textView3.visibility = View.INVISIBLE
+            }
+        }
 
 
 
@@ -127,20 +154,6 @@ class CourseFragment : Fragment() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator5}"
         val videoView = binding.videoView
         videoView.setVideoURI(Uri.parse(videoPath))
@@ -161,6 +174,9 @@ class CourseFragment : Fragment() {
             }
         }
     }
+
+
+
 
 
 }

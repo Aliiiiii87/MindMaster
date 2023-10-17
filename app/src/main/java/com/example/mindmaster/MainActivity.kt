@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.courseFragment -> {
-                    viewModel.loadHomeVideo()
+                    viewModel.hideArrows()
+                    viewModel.hideProgressBar()
                     navController.navigate(R.id.courseFragment)
                     false
 
