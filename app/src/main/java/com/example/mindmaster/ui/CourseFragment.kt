@@ -75,7 +75,7 @@ class CourseFragment : Fragment() {
 
 
 
-            // Erstelle Animationen für die TextViews
+            // Erstellt Animationen für die TextViews
                 val animation1 = ObjectAnimator.ofFloat(textView1, "translationX", 0f)
                 animation1.duration = 1000 // Dauer der Animation in Millisekunden
 
@@ -120,7 +120,7 @@ class CourseFragment : Fragment() {
         }
 
 
-
+        var imagViewShown = false
 
         // Klick-Listener für TextView1
         textView1.setOnClickListener {
@@ -129,6 +129,9 @@ class CourseFragment : Fragment() {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
             binding.hiddenImageView.visibility = View.VISIBLE
             binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
+
+            val slideInFromRight = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
+            binding.hiddenImageView.startAnimation(slideInFromRight)
 
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
@@ -142,6 +145,11 @@ class CourseFragment : Fragment() {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
            binding.hiddenImageView.visibility = View.VISIBLE
             binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
+
+            val slideInFromRight = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
+            binding.hiddenImageView.startAnimation(slideInFromRight)
+
+
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
@@ -153,6 +161,10 @@ class CourseFragment : Fragment() {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
             binding.hiddenImageView.visibility = View.VISIBLE
             binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
+
+            val slideInFromRight = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
+            binding.hiddenImageView.startAnimation(slideInFromRight)
+
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
