@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
+
+
         viewModel.questionLevels()
 
 
@@ -44,14 +48,14 @@ class MainActivity : AppCompatActivity() {
                         navController.popBackStack(R.id.homeFragment, false)
                         viewModel.loadHomeVideo()
 
-
-
                     }
                     true
                 }
                 R.id.courseFragment -> {
-                    viewModel.hideArrows()
-                    viewModel.hideProgressBar()
+
+                    viewModel.hideArrows(true)
+                    viewModel.hideProgressBar(true)
+
                     navController.navigate(R.id.courseFragment)
                     false
 

@@ -74,22 +74,14 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
 
-    fun hideProgressBar() {
-        _hideProgressBar.postValue(true)
+    fun hideProgressBar(hide1 : Boolean) {
+        _hideProgressBar.postValue(hide1)
+
     }
 
-    fun hideArrows() {
-        _hideArrows.postValue(true)
+    fun hideArrows(hide2: Boolean) {
+        _hideArrows.postValue(hide2)
     }
-
-
-
-
-
-
-
-
-
 
     fun loadEasyVideo() {
 
@@ -109,6 +101,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadLoseVideo() {
+        hideProgressBar
         _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
     }
 
@@ -280,7 +273,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
             else -> {
 
                 loadLoseVideo()
-
                 "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
             }
         }

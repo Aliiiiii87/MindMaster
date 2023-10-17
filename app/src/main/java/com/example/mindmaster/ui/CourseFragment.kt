@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.VideoView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -34,7 +35,6 @@ class CourseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCourseBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -42,17 +42,12 @@ class CourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        viewModel.evaluationMessageLiveData.observe(viewLifecycleOwner) { evaluationMessage ->
-//            // Hier kann man  die Auswertungsnachricht im  UI anzeigen
-//            binding.courseTV.text = evaluationMessage
-//
-//        }
+
+     // Hier werden die Funktionen aufgerufen um das einblenden der Items zu gewährleisten
+        viewModel.hideArrows(false)
+        viewModel.hideProgressBar(false)
 
 
-
-
-
-        // binding von der progressbar und imagview und die Animation für den Ladebalken
 
         val progressBar = binding.quizPB
         val textView1 = binding.textView1
@@ -69,44 +64,44 @@ class CourseFragment : Fragment() {
         textView2.translationX = screenWidth.toFloat()
         textView3.translationX = screenWidth.toFloat()
 
+
+
+
+        if(viewModel.hideArrows.value == false){
+
         val delayMillis = 4000 // 4 Sekunden
         Handler(Looper.getMainLooper()).postDelayed({
             progressBar.visibility = View.INVISIBLE
 
+
+
             // Erstelle Animationen für die TextViews
-            val animation1 = ObjectAnimator.ofFloat(textView1, "translationX", 0f)
-            animation1.duration = 1000 // Dauer der Animation in Millisekunden
+                val animation1 = ObjectAnimator.ofFloat(textView1, "translationX", 0f)
+                animation1.duration = 1000 // Dauer der Animation in Millisekunden
 
-            val animation2 = ObjectAnimator.ofFloat(textView2, "translationX", 0f)
-            animation2.duration = 1000
+                val animation2 = ObjectAnimator.ofFloat(textView2, "translationX", 0f)
+                animation2.duration = 1000
 
-            val animation3 = ObjectAnimator.ofFloat(textView3, "translationX", 0f)
-            animation3.duration = 1000
-
-
+                val animation3 = ObjectAnimator.ofFloat(textView3, "translationX", 0f)
+                animation3.duration = 1000
 
 
-            // Setze die Sichtbarkeit der TextViews auf sichtbar
-            textView1.visibility = View.VISIBLE
-            textView2.visibility = View.VISIBLE
-            textView3.visibility = View.VISIBLE
-
-            // Erstelle eine AnimatorSet, um die Animationen gemeinsam auszuführen
-            val animatorSet = AnimatorSet()
-            animatorSet.playTogether(animation1, animation2, animation3)
-
-            // Starte die Animationen
-            animatorSet.start()
-        }, delayMillis.toLong())
+                // Setze die Sichtbarkeit der TextViews auf sichtbar
+                textView1.visibility = View.VISIBLE
+                textView2.visibility = View.VISIBLE
+                textView3.visibility = View.VISIBLE
 
 
+                // Erstelle eine AnimatorSet, um die Animationen gemeinsam auszuführen
+                val animatorSet = AnimatorSet()
+                animatorSet.playTogether(animation1, animation2, animation3)
+
+                // Starte die Animationen
+                animatorSet.start()
+            }, delayMillis.toLong())
 
 
-        viewModel.hideProgressBar.observe(viewLifecycleOwner) { hide ->
-            if (hide) {
-                binding.quizPB.visibility = View.INVISIBLE
-            }
-        }
+         }
 
 
         viewModel.hideArrows.observe(viewLifecycleOwner) { hide2 ->
@@ -118,16 +113,28 @@ class CourseFragment : Fragment() {
         }
 
 
+        viewModel.hideProgressBar.observe(viewLifecycleOwner) { hide ->
+            if (hide) {
+                binding.quizPB.visibility = View.INVISIBLE
+            }
+        }
+
+
+
 
         // Klick-Listener für TextView1
         textView1.setOnClickListener {
+
+
             // Setze die Sichtbarkeit der ImageView auf sichtbar
             binding.hiddenImageView.visibility = View.VISIBLE
             binding.hiddenImageView.setImageResource(R.drawable.gif8)
+
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
             textView3.visibility = View.INVISIBLE
+
         }
 
 // Klick-Listener für TextView2
