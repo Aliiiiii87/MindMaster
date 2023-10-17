@@ -61,9 +61,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _videoUri
 
 
-
-
-
     private val _hideProgressBar = MutableLiveData<Boolean>(false)
     val hideProgressBar: LiveData<Boolean>
         get() = _hideProgressBar
@@ -73,8 +70,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _hideArrows
 
 
-
-    fun hideProgressBar(hide1 : Boolean) {
+    fun hideProgressBar(hide1: Boolean) {
         _hideProgressBar.postValue(hide1)
 
     }
@@ -111,8 +107,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
             _questionAnswered.value = true
         }
     }
-
-
 
 
     fun updatePlayerPoints(newPoints: Int) {
@@ -184,8 +178,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-
-
     fun getQuestions() {
 
 
@@ -242,6 +234,27 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
         return imageResourceId
     }
+
+
+   // Ist die Liste der Preise
+    val newImageResourceList = listOf(
+        R.drawable.code1,
+        R.drawable.code2,
+        R.drawable.code3,
+        R.drawable.code4,
+        R.drawable.code5,
+        R.drawable.code6,
+
+    )
+    fun getRandomImageResource(): Int {
+        if (newImageResourceList.isEmpty()) {
+            return 0 // Oder eine Standardbildressourcen-ID, wenn die Liste leer ist
+        }
+
+        val randomIndex = (newImageResourceList.indices).random()
+        return newImageResourceList[randomIndex]
+    }
+
 
 
     fun getQuestionsByCategory() {

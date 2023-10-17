@@ -92,11 +92,11 @@ class CourseFragment : Fragment() {
                 textView3.visibility = View.VISIBLE
 
 
-                // Erstelle eine AnimatorSet, um die Animationen gemeinsam auszuführen
+                // AnimatorSet, um die Animationen gemeinsam auszuführen
                 val animatorSet = AnimatorSet()
                 animatorSet.playTogether(animation1, animation2, animation3)
 
-                // Starte die Animationen
+                // Startet die Animationen
                 animatorSet.start()
             }, delayMillis.toLong())
 
@@ -128,7 +128,7 @@ class CourseFragment : Fragment() {
 
             // Setze die Sichtbarkeit der ImageView auf sichtbar
             binding.hiddenImageView.visibility = View.VISIBLE
-            binding.hiddenImageView.setImageResource(R.drawable.gif8)
+            binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
 
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
@@ -141,7 +141,7 @@ class CourseFragment : Fragment() {
         textView2.setOnClickListener {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
            binding.hiddenImageView.visibility = View.VISIBLE
-            binding.hiddenImageView.setImageResource(R.drawable.gif15)
+            binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
@@ -152,7 +152,7 @@ class CourseFragment : Fragment() {
         textView3.setOnClickListener {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
             binding.hiddenImageView.visibility = View.VISIBLE
-            binding.hiddenImageView.setImageResource(R.drawable.gif17)
+            binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
             // Setze die Sichtbarkeit der TextViews auf unsichtbar
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
