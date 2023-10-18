@@ -99,7 +99,7 @@ class QuizFragment : Fragment() {
 
 
                 createScoreAnimation()
-                binding.scoreTV.text = "Punkte: $points"
+                binding.scoreTV.text = "Punkte:$points"
             }
         }
 
