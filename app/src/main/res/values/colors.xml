@@ -8,6 +8,8 @@
     <color name="dark_purple">#522093</color>
     <color name="my_green">#3F9320</color>
     <color name="customProgressBarColor">#FFAB40</color>
+    <color name="quiz_question_border_color">#FF5722</color>
+
 
 
 </resources>
