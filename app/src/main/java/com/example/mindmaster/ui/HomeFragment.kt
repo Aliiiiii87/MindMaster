@@ -6,6 +6,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.app.Dialog
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.text.method.ScrollingMovementMethod
@@ -41,14 +42,25 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
+    private var mediaPlayer: MediaPlayer? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.home_musik)
+        mediaPlayer?.start()
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Stopp die Musik, wenn das Fragment zerstört wird
+        mediaPlayer?.stop()
+
     }
 
 

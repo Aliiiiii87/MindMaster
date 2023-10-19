@@ -3,8 +3,10 @@ package com.example.mindmaster.adapter
 import android.view.animation.AnimationUtils
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -24,11 +26,7 @@ class HomeAdapter(
     private val viewModel: MindMasterViewModel,
 
 
-
-
-) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
-
-
+    ) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
 
 
     inner class ItemViewHolder(val binding: ListItemHomeBinding) :
@@ -38,6 +36,7 @@ class HomeAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding =
             ListItemHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return ItemViewHolder(binding)
     }
 
@@ -69,17 +68,14 @@ class HomeAdapter(
         holder.itemView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToCourseFragment()
             navController.navigate(action)
-            viewModel.showEvaluation(questionResult.score,questionResult.difficulty)
+            viewModel.showEvaluation(questionResult.score, questionResult.difficulty)
 
 
             // der Hintergrund ändert sich beim klicken des Items
             holder.itemView.isSelected = !holder.itemView.isSelected
 
 
-
-
         }
-
 
 
     }

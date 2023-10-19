@@ -73,7 +73,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/gardient_scoretv"
+                    android:background="@drawable/picture_rechtangle"
                     android:orientation="horizontal"></LinearLayout>
 
                 <ImageView

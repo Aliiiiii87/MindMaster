@@ -1,6 +1,7 @@
 package com.example.mindmaster.ui
 
 import android.app.AlertDialog
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ class CategoryFragment : Fragment() {
     private val viewModel: MindMasterViewModel by activityViewModels()
 
     private lateinit var binding: FragmentCategoryBinding
+    private var mediaPlayer: MediaPlayer? = null
 
 
     override fun onCreateView(
@@ -34,8 +36,17 @@ class CategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.home_musik)
+        mediaPlayer?.start()
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Stopp die Musik, wenn das Fragment zerstört wird
+        mediaPlayer?.stop()
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

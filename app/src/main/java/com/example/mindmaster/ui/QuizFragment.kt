@@ -28,6 +28,10 @@ class QuizFragment : Fragment() {
     private var countDownTimer: CountDownTimer? = null
     private var currentPoints = 0
     private var scoreAnimator = ValueAnimator()
+    private var mediaPlayer : MediaPlayer? = null
+
+
+
 
 
     override fun onCreateView(
@@ -36,10 +40,17 @@ class QuizFragment : Fragment() {
     ): View? {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
         quizProgressBar = binding.quizPB
-
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.quiz_musik)
+        mediaPlayer?.start()
         return binding.root
 
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Pausiere die Musik, wenn das Fragment pausiert wird (z. B. bei der Navigation)
+        mediaPlayer?.pause()
     }
 
 
