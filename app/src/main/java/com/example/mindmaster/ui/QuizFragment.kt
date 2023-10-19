@@ -2,6 +2,7 @@ package com.example.mindmaster.ui
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -34,6 +36,7 @@ class QuizFragment : Fragment() {
     ): View? {
         binding = FragmentQuizBinding.inflate(inflater, container, false)
         quizProgressBar = binding.quizPB
+
         return binding.root
 
 
@@ -45,22 +48,22 @@ class QuizFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
         // Initialisiere die VideoView und verknüpfe sie mit der XML-Ansicht
         val animation = binding.animierteVW
 
         // Stelle sicher, dass das Video aus dem raw-Ressourcenordner geladen wird
-        val videoUri = Uri.parse("android.resource://${requireContext().packageName}/${R.raw.quiztv}")
+        val videoUri =
+            Uri.parse("android.resource://${requireContext().packageName}/${R.raw.quiztv}")
 
         // Setze die Videoquelle der VideoView
-       animation.setVideoURI(videoUri)
+        animation.setVideoURI(videoUri)
 
 
         animation.setOnCompletionListener { mediaPlayer ->
             mediaPlayer.start()
         }
 
-        // Starte die Wiedergabe des Videos
+        // Startet die Wiedergabe des Videos
         animation.start()
 
 
@@ -87,33 +90,20 @@ class QuizFragment : Fragment() {
 
             }
 
-
         }
 
-
-
-
-
-
-
-
         viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
-
             if (question != null) {
-
                 val firstQuestion = question.question
-                binding.qustionTV.text = firstQuestion.question
-                binding.tvAnswerA.text = firstQuestion.correct_answer
-
+                val formattedQuestion = viewModel.formatText(firstQuestion.question)
+                binding.qustionTV.text = formattedQuestion
+                binding.tvAnswerA.text = viewModel.formatText(firstQuestion.correct_answer)
 
                 val incorrectAnswers = question.incorrectAnswers
-                binding.tvAnswerB.text = incorrectAnswers[0].incorrectAnswer
-                binding.tvAnswerC.text = incorrectAnswers[1].incorrectAnswer
-                binding.tvAnswerD.text = incorrectAnswers[2].incorrectAnswer
-
-
+                binding.tvAnswerB.text = viewModel.formatText(incorrectAnswers[0].incorrectAnswer)
+                binding.tvAnswerC.text = viewModel.formatText(incorrectAnswers[1].incorrectAnswer)
+                binding.tvAnswerD.text = viewModel.formatText(incorrectAnswers[2].incorrectAnswer)
             }
-
 
             viewModel.playerPoints.observe(viewLifecycleOwner) { points ->
 
@@ -144,8 +134,8 @@ class QuizFragment : Fragment() {
 
                 }
 
-//                val mediaplayer = MediaPlayer.create(requireContext(),R.raw.points)
-//                mediaplayer.start()
+                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.points)
+                mediaplayer.start()
                 increasePoints(points)
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
@@ -154,9 +144,6 @@ class QuizFragment : Fragment() {
 
             }
         }
-
-
-
 
         binding.tvAnswerB.setOnClickListener {
             countDownTimer?.cancel()
@@ -169,8 +156,8 @@ class QuizFragment : Fragment() {
                     "hard" -> 0
                     else -> 0
                 }
-//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-//                mediaplayer.start()
+                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -190,8 +177,8 @@ class QuizFragment : Fragment() {
                     "hard" -> 0
                     else -> 0
                 }
-//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-//                mediaplayer.start()
+                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -211,8 +198,8 @@ class QuizFragment : Fragment() {
                     else -> 0
                 }
 
-//                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
-//                mediaplayer.start()
+                val mediaplayer = MediaPlayer.create(requireContext(), R.raw.wrong)
+                mediaplayer.start()
                 viewModel.addPoints(points)
                 viewModel.nextQuestion()
                 startCountdownTimer()
@@ -253,8 +240,6 @@ class QuizFragment : Fragment() {
                     viewModel.addPoints(points)
                     viewModel.nextQuestion()
                     startCountdownTimer()
-
-
                 }
 
             }

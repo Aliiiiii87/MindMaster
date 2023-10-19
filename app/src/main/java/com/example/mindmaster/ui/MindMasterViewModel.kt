@@ -51,9 +51,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-    private val evaluationMessage = MutableLiveData<String>()
-    val evaluationMessageLiveData: LiveData<String>
-        get() = evaluationMessage
+
 
 
     private val _videoUri = MutableLiveData<Uri>()
@@ -267,30 +265,35 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
     fun showEvaluation(score: Int, difficulty: String) {
-        val message = when {
+         when {
             score >= 1500 && difficulty == "easy" -> {
                 loadEasyVideo()
-                "Herzlichen Glückwunsch! Sie haben das leichte Quiz bestanden!"
+
             }
 
             score >= 4000 && difficulty == "medium" -> {
                 loadMediumVideo()
-                "Gut gemacht! Sie haben das mittelschwere Quiz bestanden!"
+
             }
 
             score >= 6000 && difficulty == "hard" -> {
                 loadHardVideo()
-                "Bravo! Sie haben das schwierige Quiz bestanden!"
+
             }
 
             else -> {
 
                 loadLoseVideo()
-                "Leider haben Sie das Quiz nicht bestanden. Versuchen Sie es erneut."
+
             }
         }
-        evaluationMessage.postValue(message)
+
     }
+    // fun um alle Sonderzeichen zu entfernen
+    fun formatText(input: String): String {
+        return input.replace(Regex("[^A-Za-z0-9 ]"),"")
+    }
+
 
 
 }
