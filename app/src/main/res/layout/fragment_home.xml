@@ -108,18 +108,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/pointsRankingIV"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/collab_media_g5wo__xozji_unsplash_2"
-                app:layout_constraintBottom_toBottomOf="@+id/cardInner"
-                app:layout_constraintEnd_toEndOf="@+id/cardInner"
-                app:layout_constraintStart_toEndOf="@+id/cardInner"
-                app:layout_constraintTop_toTopOf="@+id/cardInner" />
-
             <TextView
                 android:id="@+id/punktestandTV"
                 android:layout_width="wrap_content"

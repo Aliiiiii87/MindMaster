@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
 
             binding.homeRV.adapter =
                 HomeAdapter(questionResult, gifRescourceIds, context, navController, viewModel)
-               binding.pointsRankingIV.setImageResource(R.drawable.vicky_hladynets_c8ta0gwpbqg_unsplash)
+
 
 
         }
