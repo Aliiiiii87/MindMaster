@@ -250,9 +250,9 @@ class QuizFragment : Fragment() {
 
     private fun updateProgressBar(secondsRemaining: Int) {
         val maxProgress = 20 // Der Startwert der ProgressBar
-        val currentProgress = maxProgress - secondsRemaining
+        val currentProgress = (maxProgress * 5 )- (secondsRemaining * 5 )
 
-        val animation = ObjectAnimator.ofInt(quizProgressBar, "progress", currentProgress * 5)
+        val animation = ObjectAnimator.ofInt(quizProgressBar, "progress", currentProgress)
         animation.duration = 1000// Dauer einer Sekunde für jede Aktualisierung
         animation.start()
 

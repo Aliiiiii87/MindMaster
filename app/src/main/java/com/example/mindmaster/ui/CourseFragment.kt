@@ -43,18 +43,15 @@ class CourseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-     // Hier werden die Funktionen aufgerufen um das einblenden der Items zu gewährleisten
+        // Hier werden die Funktionen aufgerufen um das einblenden der Items zu gewährleisten
         viewModel.hideArrows(false)
         viewModel.hideProgressBar(false)
-
 
 
         val progressBar = binding.quizPB
         val textView1 = binding.textView1
         val textView2 = binding.textView2
         val textView3 = binding.textView3
-
-
 
 
         val screenWidth = resources.displayMetrics.widthPixels
@@ -67,15 +64,14 @@ class CourseFragment : Fragment() {
 
 
 
-        if(viewModel.hideArrows.value == false){
+        if (viewModel.hideArrows.value == false) {
 
-        val delayMillis = 4000 // 4 Sekunden
-        Handler(Looper.getMainLooper()).postDelayed({
-            progressBar.visibility = View.INVISIBLE
+            val delayMillis = 4000 // 4 Sekunden
+            Handler(Looper.getMainLooper()).postDelayed({
+                progressBar.visibility = View.INVISIBLE
 
 
-
-            // Erstellt Animationen für die TextViews
+                // Erstellt Animationen für die TextViews
                 val animation1 = ObjectAnimator.ofFloat(textView1, "translationX", 0f)
                 animation1.duration = 1000 // Dauer der Animation in Millisekunden
 
@@ -101,7 +97,7 @@ class CourseFragment : Fragment() {
             }, delayMillis.toLong())
 
 
-         }
+        }
 
 
         viewModel.hideArrows.observe(viewLifecycleOwner) { hide2 ->
@@ -143,7 +139,7 @@ class CourseFragment : Fragment() {
 // Klick-Listener für TextView2
         textView2.setOnClickListener {
             // Setze die Sichtbarkeit der ImageView auf sichtbar
-           binding.hiddenImageView.visibility = View.VISIBLE
+            binding.hiddenImageView.visibility = View.VISIBLE
             binding.hiddenImageView.setImageResource(viewModel.getRandomImageResource())
 
             val slideInFromRight = AnimationUtils.loadAnimation(context, R.anim.slide_in_up)
@@ -172,7 +168,6 @@ class CourseFragment : Fragment() {
         }
 
 
-
         val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator5}"
         val videoView = binding.animierteVW
         videoView.setVideoURI(Uri.parse(videoPath))
@@ -186,16 +181,12 @@ class CourseFragment : Fragment() {
 
             videoView.setVideoURI(uri)
             if (uri != null && uri == viewModel.videoUri.value) {
-//                binding.courseTV.text =
-                    "Hey Los gehts! Du musst auf ein absolviertes Quiz klicken im Homebereich, um dir die Video-Auswertung anzuschauen."
+
             } else {
 
             }
         }
     }
-
-
-
 
 
 }

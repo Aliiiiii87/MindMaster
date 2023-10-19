@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Hintergrundbalken (grau) -->
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp" />
-            <solid android:color="@color/orange" /> <!-- Graue Farbe für den Hintergrund -->
+            <solid android:color="@color/orange" />
         </shape>
     </item>
-
-    <!-- Fortschrittsbalken (mit Glanzeffekt) -->
     <item android:id="@android:id/progress">
         <clip>
-            <scale
-                android:scaleWidth="100%"
-                android:drawable="@drawable/gardient_scoretv" />
+            <scale android:scaleWidth="70%" android:drawable="@drawable/background_red" />
         </clip>
+        <shape>
+            <corners android:radius="10dp" />
+        </shape>
     </item>
 </layer-list>
+
