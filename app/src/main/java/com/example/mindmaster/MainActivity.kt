@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
             (supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment).navController
 
+
+
+
         binding.bottomNavigationView.setupWithNavController(navController)
 
 
@@ -51,6 +54,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     true
                 }
+
                 R.id.courseFragment -> {
 
                     viewModel.hideArrows(true)
@@ -60,13 +64,13 @@ class MainActivity : AppCompatActivity() {
                     false
 
                 }
+
                 else -> {
                     navController.navigate(R.id.detailCourseFragment)
                     false
                 }
             }
         }
-
 
 
     }

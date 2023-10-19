@@ -20,8 +20,8 @@ class SplashActivity : AppCompatActivity() {
 
 
 
-//        val mediaplayer = MediaPlayer.create(this,R.raw.audio2)
-//        mediaplayer.start()
+        val mediaplayer = MediaPlayer.create(this,R.raw.splash_wave)
+        mediaplayer.start()
 
 
         val splashDuration = 8000 //
