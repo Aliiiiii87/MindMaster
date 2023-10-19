@@ -4,7 +4,7 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="10dp" />
-            <solid android:color="@color/my_green" /> <!-- Graue Farbe für den Hintergrund -->
+            <solid android:color="@color/orange" /> <!-- Graue Farbe für den Hintergrund -->
         </shape>
     </item>
 
