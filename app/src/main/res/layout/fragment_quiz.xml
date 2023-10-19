@@ -41,7 +41,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/quiz1"
+            android:background="@drawable/score"
             android:orientation="horizontal"></LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,9 +69,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="10dp"
         android:progressDrawable="@drawable/custom_progress_bar"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,51 +95,58 @@
         tools:layout_editor_absoluteX="-25dp"
         tools:layout_editor_absoluteY="0dp">
 
+        <VideoView
+            android:id="@+id/animierteVW"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="340dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/qustionTV"
-            android:layout_width="0dp"
+            android:layout_width="350dp"
             android:layout_height="150dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="180dp"
             android:gravity="center"
             android:text="TextView"
-            android:textColor="@color/white"
+            android:textColor="@color/orange"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/animierteVW" />
 
         <TextView
             android:id="@+id/tvAnswerA"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/answer_gardient"
             android:gravity="center"
             android:text="TextView"
-            android:fontFamily="@font/irish_grover_regular"
             android:textColor="@color/orange"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/tvAnswerB"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="120dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/answer_wrong"
             android:gravity="center"
-            android:fontFamily="@font/irish_grover_regular"
             android:text="TextView"
             android:textColor="@color/orange"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,14 +154,13 @@
 
         <TextView
             android:id="@+id/tvAnswerC"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:background="@drawable/answer_wrong"
             android:gravity="center"
             android:text="TextView"
-            android:fontFamily="@font/irish_grover_regular"
             android:textColor="@color/orange"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvAnswerA"
@@ -165,14 +169,13 @@
 
         <TextView
             android:id="@+id/tvAnswerD"
-            android:layout_width="190dp"
+            android:layout_width="200dp"
             android:layout_height="50dp"
             android:background="@drawable/answer_wrong"
             android:gravity="center"
             android:text="TextView"
-            android:fontFamily="@font/irish_grover_regular"
             android:textColor="@color/orange"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvAnswerB"

@@ -174,7 +174,7 @@ class CourseFragment : Fragment() {
 
 
         val videoPath = "android.resource://${requireContext().packageName}/${R.raw.moderator5}"
-        val videoView = binding.videoView
+        val videoView = binding.animierteVW
         videoView.setVideoURI(Uri.parse(videoPath))
 
         videoView.setOnPreparedListener { mediaPlayer ->

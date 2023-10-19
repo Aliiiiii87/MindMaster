@@ -2,6 +2,7 @@ package com.example.mindmaster.ui
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -42,6 +43,25 @@ class QuizFragment : Fragment() {
     private var isAnswered = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+        // Initialisiere die VideoView und verknüpfe sie mit der XML-Ansicht
+        val animation = binding.animierteVW
+
+        // Stelle sicher, dass das Video aus dem raw-Ressourcenordner geladen wird
+        val videoUri = Uri.parse("android.resource://${requireContext().packageName}/${R.raw.quiztv}")
+
+        // Setze die Videoquelle der VideoView
+       animation.setVideoURI(videoUri)
+
+
+        animation.setOnCompletionListener { mediaPlayer ->
+            mediaPlayer.start()
+        }
+
+        // Starte die Wiedergabe des Videos
+        animation.start()
 
 
 

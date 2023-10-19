@@ -9,7 +9,7 @@
     tools:context=".ui.CourseFragment">
 
     <VideoView
-        android:id="@+id/videoView"
+        android:id="@+id/animierteVW"
         android:layout_width="0dp"
         android:layout_height="500dp"
         android:layout_centerInParent="true"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/quizPB"
-        app:layout_constraintTop_toBottomOf="@+id/videoView" />
+        app:layout_constraintTop_toBottomOf="@+id/animierteVW" />
 
     <TextView
         android:id="@+id/textView2"
@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView" />
+        app:layout_constraintTop_toBottomOf="@+id/animierteVW" />
 
     <!-- Unsichtbare ImageView -->
     <ImageView
@@ -101,7 +101,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView" />
+        app:layout_constraintTop_toBottomOf="@+id/animierteVW" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
