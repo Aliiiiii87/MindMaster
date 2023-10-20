@@ -192,7 +192,7 @@ class HomeFragment : Fragment() {
                 }
             })
             binding.jokeTV.startAnimation(fadeOutAnimation)
-        }, 2000) // Hier wird die Ausblendung nach 1000 Millisekunden durchgeführt
+        }, 2000) // Hier wird die Ausblendung nach 2000 Millisekunden durchgeführt
 
         binding.startBT.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCategoryFragment())

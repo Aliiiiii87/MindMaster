@@ -44,7 +44,7 @@ class CategoryFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        // Stopp die Musik, wenn das Fragment zerstört wird
+        // Stoppt die Musik, wenn das Fragment zerstört wird
         mediaPlayer?.stop()
 
     }
