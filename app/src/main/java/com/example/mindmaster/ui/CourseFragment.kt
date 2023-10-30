@@ -2,6 +2,7 @@ package com.example.mindmaster.ui
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.media.MediaPlayer
@@ -134,6 +135,8 @@ class CourseFragment : Fragment() {
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
             textView3.visibility = View.INVISIBLE
+
+
 
         }
 
