@@ -111,14 +111,17 @@ class CourseFragment : Fragment() {
         }
 
 
+
+
         viewModel.hideProgressBar.observe(viewLifecycleOwner) { hide ->
             if (hide) {
                 binding.quizPB.visibility = View.INVISIBLE
+
             }
         }
 
 
-        var imagViewShown = false
+//        var imagViewShown = false
 
         // Klick-Listener für TextView1
         textView1.setOnClickListener {
@@ -135,7 +138,6 @@ class CourseFragment : Fragment() {
             textView1.visibility = View.INVISIBLE
             textView2.visibility = View.INVISIBLE
             textView3.visibility = View.INVISIBLE
-
 
 
         }

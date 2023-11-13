@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_course" />
     <fragment
         android:id="@+id/detailCourseFragment"
-        android:name="com.example.mindmaster.ui.DetailCourseFragment"
+        android:name="com.example.mindmaster.ui.DetailFragment"
         android:label="fragment_detail_course"
         tools:layout="@layout/fragment_detail_course" />
     <fragment

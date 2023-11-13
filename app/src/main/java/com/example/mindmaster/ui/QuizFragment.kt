@@ -84,6 +84,8 @@ class QuizFragment : Fragment() {
         viewModel.question.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
 
+
+
                 viewModel.setCurrentQuestion()
             }
         }
@@ -105,6 +107,7 @@ class QuizFragment : Fragment() {
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
             if (question != null) {
+
                 val firstQuestion = question.question
                 val formattedQuestion = viewModel.formatText(firstQuestion.question)
                 binding.qustionTV.text = formattedQuestion
@@ -238,6 +241,7 @@ class QuizFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = (millisUntilFinished / 1000).toInt()
                 updateProgressBar(secondsRemaining)
+
 
 
             }

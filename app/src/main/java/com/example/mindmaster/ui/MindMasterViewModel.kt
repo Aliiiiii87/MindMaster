@@ -3,6 +3,7 @@ package com.example.mindmaster.ui
 
 import android.app.Application
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -47,6 +48,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _playerPoints
 
     init {
+
         _playerPoints.value = 0
     }
 
@@ -95,8 +97,12 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadLoseVideo() {
-        hideProgressBar
+
         _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator4}"))
+        hideProgressBar(true)
+        hideArrows(true)
+
+
     }
 
     fun addPoints(points: Int) {
@@ -161,18 +167,19 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
     fun nextQuestion() {
-        // val delayMillis = 1000
-        // Handler().postDelayed({
+
         if (_answerIndex.value!! < (question.value?.size!!)) {
             _questionAnswered.value = false
-            _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
             _answerIndex.value = _answerIndex.value!! + 1
+            _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+
+
         } else {
 
 
         }
 
-        // }, delayMillis.toLong())
+
     }
 
 
@@ -180,8 +187,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
         viewModelScope.launch(Dispatchers.IO) {
+         repository.getAllQuestions()
 
-            repository.getAllQuestions()
+
         }
     }
 
@@ -264,26 +272,34 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     val categories = repository.categories
 
 
-    fun showEvaluation(score: Int, difficulty: String) {
+    fun showEvaluation(score: Int, difficulty: String)  {
          when {
             score >= 1500 && difficulty == "easy" -> {
                 loadEasyVideo()
+
+
 
             }
 
             score >= 4000 && difficulty == "medium" -> {
                 loadMediumVideo()
 
+
             }
 
             score >= 6000 && difficulty == "hard" -> {
                 loadHardVideo()
+
 
             }
 
             else -> {
 
                 loadLoseVideo()
+                hideProgressBar(true)
+                hideArrows(true)
+
+
 
             }
         }

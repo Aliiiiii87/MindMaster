@@ -8,8 +8,5 @@
     <item android:title="Video"
         android:icon="@drawable/baseline_video_library_24"
         android:id="@+id/courseFragment"/>
-    <item android:title="Detail"
-        android:icon="@drawable/baseline_show_chart_24"
-        android:id="@+id/detailCourseFragment"/>
 </menu>
 
