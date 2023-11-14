@@ -70,6 +70,15 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _hideArrows
 
 
+    private val _invisibleButton  = MutableLiveData<Boolean>(false)
+    val invisibleButton : LiveData<Boolean>
+        get()= _invisibleButton
+
+    fun hideButton(hide3: Boolean){
+        _invisibleButton.postValue(hide3)
+    }
+
+
     fun hideProgressBar(hide1: Boolean) {
         _hideProgressBar.postValue(hide1)
 
@@ -94,6 +103,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     fun loadHomeVideo() {
         _videoUri.postValue(Uri.parse("android.resource://${getApplication<Application>().packageName}/${R.raw.moderator5}"))
+
     }
 
     fun loadLoseVideo() {

@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils
 import android.widget.VideoView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mindmaster.R
 import com.example.mindmaster.databinding.FragmentCourseBinding
@@ -45,6 +46,11 @@ class CourseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
+
+
+
         // Hier werden die Funktionen aufgerufen um das einblenden der Items zu gewährleisten
         viewModel.hideArrows(false)
         viewModel.hideProgressBar(false)
@@ -63,6 +69,16 @@ class CourseFragment : Fragment() {
         textView2.translationX = screenWidth.toFloat()
         textView3.translationX = screenWidth.toFloat()
 
+
+
+         if(viewModel.invisibleButton.value== false){
+
+             binding.invisibleButton.visibility = View.VISIBLE
+             binding.invisibleButton.setOnClickListener {
+
+                 findNavController().navigate(CourseFragmentDirections.actionCourseFragmentToCategoryFragment())
+             }
+         }
 
 
 
@@ -88,6 +104,7 @@ class CourseFragment : Fragment() {
                 textView1.visibility = View.VISIBLE
                 textView2.visibility = View.VISIBLE
                 textView3.visibility = View.VISIBLE
+
 
 
                 // AnimatorSet, um die Animationen gemeinsam auszuführen
@@ -119,6 +136,9 @@ class CourseFragment : Fragment() {
 
             }
         }
+
+
+
 
 
 //        var imagViewShown = false

@@ -39,7 +39,11 @@
         android:id="@+id/courseFragment"
         android:name="com.example.mindmaster.ui.CourseFragment"
         android:label="fragment_course"
-        tools:layout="@layout/fragment_course" />
+        tools:layout="@layout/fragment_course" >
+        <action
+            android:id="@+id/action_courseFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailCourseFragment"
         android:name="com.example.mindmaster.ui.DetailFragment"

@@ -4,6 +4,7 @@ package com.example.mindmaster
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -50,6 +51,13 @@ class MainActivity : AppCompatActivity() {
                     if (navController.currentDestination?.id != R.id.homeFragment) {
                         navController.popBackStack(R.id.homeFragment, false)
                         viewModel.loadHomeVideo()
+                        viewModel.hideButton(true)
+
+
+
+
+
+
 
                     }
                     true
@@ -59,6 +67,8 @@ class MainActivity : AppCompatActivity() {
 
                     viewModel.hideArrows(true)
                     viewModel.hideProgressBar(true)
+                    viewModel.hideButton(false)
+
 
                     navController.navigate(R.id.courseFragment)
                     false
@@ -66,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    navController.navigate(R.id.detailCourseFragment)
+                    navController.navigate(R.id.homeFragment)
                     false
                 }
             }
