@@ -82,6 +82,8 @@ class QuizFragment : Fragment() {
         viewModel.getQuestionsByCategory()
 
         viewModel.question.observe(viewLifecycleOwner) {
+
+            Log.d("LiveDataLog","question")
             if (it.isNotEmpty()) {
 
 
@@ -94,9 +96,8 @@ class QuizFragment : Fragment() {
         // Wenn das Quiz fertig ist soll er dass Ergebnis abspeichern und zum Homefragment naviegieren und mir das Ergebnis anzeigen
         viewModel.answerIndex.observe(viewLifecycleOwner) { index ->
 
-
+            Log.d("LiveDataLog","answerIndex")
             val questionCount = viewModel.question.value?.size ?: 0
-
             if (questionCount != 0 && questionCount <= index) {
                 viewModel.finishQuiz()
                 findNavController().navigate(QuizFragmentDirections.actionQuizFragmentToHomeFragment())
@@ -106,6 +107,8 @@ class QuizFragment : Fragment() {
         }
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
+
+            Log.d("LiveDataLog","currentQuestion")
             if (question != null) {
 
                 val firstQuestion = question.question
@@ -121,6 +124,7 @@ class QuizFragment : Fragment() {
 
             viewModel.playerPoints.observe(viewLifecycleOwner) { points ->
 
+                Log.d("LiveDataLog","playerpoints")
 
                 createScoreAnimation()
                 binding.scoreTV.text = "Punkte:$points"

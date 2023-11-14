@@ -53,9 +53,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-
-
-
     private val _videoUri = MutableLiveData<Uri>()
     val videoUri: LiveData<Uri>
         get() = _videoUri
@@ -70,11 +67,11 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         get() = _hideArrows
 
 
-    private val _invisibleButton  = MutableLiveData<Boolean>(false)
-    val invisibleButton : LiveData<Boolean>
-        get()= _invisibleButton
+    private val _invisibleButton = MutableLiveData<Boolean>(true)
+    val invisibleButton: LiveData<Boolean>
+        get() = _invisibleButton
 
-    fun hideButton(hide3: Boolean){
+    fun hideButton(hide3: Boolean) {
         _invisibleButton.postValue(hide3)
     }
 
@@ -180,8 +177,15 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
         if (_answerIndex.value!! < (question.value?.size!!)) {
             _questionAnswered.value = false
-            _answerIndex.value = _answerIndex.value!! + 1
-            _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+            if (_answerIndex.value == 0) {
+                _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+                _answerIndex.postValue(_answerIndex.value!! + 1)
+            }else{
+
+
+                _answerIndex.postValue(_answerIndex.value!! + 1)
+                _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+            }
 
 
         } else {
@@ -197,7 +201,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
 
         viewModelScope.launch(Dispatchers.IO) {
-         repository.getAllQuestions()
+            repository.getAllQuestions()
 
 
         }
@@ -252,7 +256,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     }
 
 
-   // Ist die Liste der Preise
+    // Ist die Liste der Preise
     val newImageResourceList = listOf(
         R.drawable.code1,
         R.drawable.code2,
@@ -261,7 +265,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         R.drawable.code5,
         R.drawable.code6,
 
-    )
+        )
+
     fun getRandomImageResource(): Int {
         if (newImageResourceList.isEmpty()) {
             return 0 // Oder eine Standardbildressourcen-ID, wenn die Liste leer ist
@@ -270,7 +275,6 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
         val randomIndex = (newImageResourceList.indices).random()
         return newImageResourceList[randomIndex]
     }
-
 
 
     fun getQuestionsByCategory() {
@@ -282,11 +286,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     val categories = repository.categories
 
 
-    fun showEvaluation(score: Int, difficulty: String)  {
-         when {
+    fun showEvaluation(score: Int, difficulty: String) {
+        when {
             score >= 1500 && difficulty == "easy" -> {
                 loadEasyVideo()
-
 
 
             }
@@ -310,16 +313,15 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                 hideArrows(true)
 
 
-
             }
         }
 
     }
+
     // fun um alle Sonderzeichen zu entfernen
     fun formatText(input: String): String {
-        return input.replace(Regex("[^A-Za-z0-9 ]"),"")
+        return input.replace(Regex("[^A-Za-z0-9 ]"), "")
     }
-
 
 
 }

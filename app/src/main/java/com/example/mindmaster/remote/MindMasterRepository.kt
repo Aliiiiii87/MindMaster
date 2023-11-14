@@ -28,16 +28,13 @@ class MindMasterRepository(
 
 
     private val _questionResult = database.mindMasterDao.getQuizResults()
-    val questionResult : LiveData<List<QuizResult>>
-        get()= _questionResult
+    val questionResult: LiveData<List<QuizResult>>
+        get() = _questionResult
 
 
     private val _joke = database.mindMasterDao.getAllJokes()
     val joke: LiveData<List<Joke>>
         get() = _joke
-
-
-
 
 
     val categories = database.mindMasterDao.getCategories()
@@ -73,23 +70,22 @@ class MindMasterRepository(
     }
 
 
-    fun insertResult(quizResult : QuizResult){
+    fun insertResult(quizResult: QuizResult) {
 
         try {
             database.mindMasterDao.insertQuizResult(quizResult)
-        }catch (e : Exception){
+        } catch (e: Exception) {
 
 
         }
 
 
-
     }
 
-    fun getCountResult(): Long{
+    fun getCountResult(): Long {
 
 
-       return database.mindMasterDao.getCountQuizResult()
+        return database.mindMasterDao.getCountQuizResult()
     }
 
 
@@ -124,14 +120,11 @@ class MindMasterRepository(
     }
 
 
-
-
-
     suspend fun getQuestionByCategory(category: String, difficulty: String) {
 
         val questionLevel = (database.mindMasterDao.getQuestionByCategory(category, difficulty))
 
-        _question.postValue(questionLevel)
+        _question.postValue(questionLevel.take(20))
 
 
     }
@@ -152,40 +145,49 @@ class MindMasterRepository(
     }
 
 
-
-
-
     suspend fun getAllQuestions() {
 
         try {
 
             val questionResponse = api1.retrofitService.getQuestions()
-
             val questionList = questionResponse.results
 
             questionList.forEach { questionApi ->
-                val questionDb = Question(
-                    0,
-                    category = questionApi.category,
-                    type = questionApi.type,
-                    question = questionApi.question,
-                    difficulty = questionApi.difficulty,
-                    correct_answer = questionApi.correct_answer
+                val existingQuestion = database.mindMasterDao.getQuestionByCategory(
+                    questionApi.category,
+                    questionApi.difficulty
                 )
-                val id = database.mindMasterDao.insertQuestion(questionDb)
+
+                if (existingQuestion == null) {
 
 
-                questionApi.incorrect_answers.forEach { incorectAnswer ->
-
-                    val incorectAnswerDb = IncorrectAnswer(
-                        questionId = id,
-                        incorrectAnswer = incorectAnswer
+                    val questionDb = Question(
+                        0,
+                        category = questionApi.category,
+                        type = questionApi.type,
+                        question = questionApi.question,
+                        difficulty = questionApi.difficulty,
+                        correct_answer = questionApi.correct_answer
                     )
+                    val id = database.mindMasterDao.insertQuestion(questionDb)
 
-                    database.mindMasterDao.insertIncorrectAnswer(incorectAnswerDb)
+
+                    questionApi.incorrect_answers.forEach { incorectAnswer ->
+
+                        val incorectAnswerDb = IncorrectAnswer(
+                            questionId = id,
+                            incorrectAnswer = incorectAnswer
+                        )
+
+                        database.mindMasterDao.insertIncorrectAnswer(incorectAnswerDb)
+
+
+                    }
 
 
                 }
+
+
             }
 
 

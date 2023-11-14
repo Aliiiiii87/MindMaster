@@ -23,9 +23,6 @@ interface MindMasterDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertQuestion(question: Question): Long
 
-
-
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertQuizResult(quizResult:QuizResult)
 
@@ -35,12 +32,7 @@ interface MindMasterDao{
      @Query("SELECT COUNT (*) FROM QuizResult")
      fun getCountQuizResult (): Long
 
-
-
-
-
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertIncorrectAnswer(incorrectAnswer: IncorrectAnswer)
 
     @Query("SELECT *FROM question WHERE id = :id")
@@ -54,7 +46,6 @@ interface MindMasterDao{
 
     @Query("SELECT count(*) FROM question")
     fun getCount(): Int
-
 
 
     @Query("SELECT DISTINCT category FROM question ")

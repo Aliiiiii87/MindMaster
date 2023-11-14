@@ -46,11 +46,6 @@ class CourseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-
-
-
-
         // Hier werden die Funktionen aufgerufen um das einblenden der Items zu gewährleisten
         viewModel.hideArrows(false)
         viewModel.hideProgressBar(false)
@@ -70,16 +65,10 @@ class CourseFragment : Fragment() {
         textView3.translationX = screenWidth.toFloat()
 
 
-
-         if(viewModel.invisibleButton.value== false){
-
-             binding.invisibleButton.visibility = View.VISIBLE
-             binding.invisibleButton.setOnClickListener {
-
-                 findNavController().navigate(CourseFragmentDirections.actionCourseFragmentToCategoryFragment())
-             }
-         }
-
+//        viewModel.invisibleButton.observe(viewLifecycleOwner){
+//
+//            binding.invisibleButton.visibility = if (isVisible) View.VISIBLE else View.GONE
+//        }
 
 
         if (viewModel.hideArrows.value == false) {
@@ -104,7 +93,6 @@ class CourseFragment : Fragment() {
                 textView1.visibility = View.VISIBLE
                 textView2.visibility = View.VISIBLE
                 textView3.visibility = View.VISIBLE
-
 
 
                 // AnimatorSet, um die Animationen gemeinsam auszuführen
@@ -139,9 +127,20 @@ class CourseFragment : Fragment() {
 
 
 
+        viewModel.hideProgressBar(false)
+        viewModel.hideArrows(false)
 
 
-//        var imagViewShown = false
+
+        if (viewModel.invisibleButton.value == false) {
+
+            binding.invisibleButton.visibility = View.VISIBLE
+            binding.invisibleButton.setOnClickListener {
+
+                findNavController().navigate(CourseFragmentDirections.actionCourseFragmentToCategoryFragment())
+            }
+        }
+
 
         // Klick-Listener für TextView1
         textView1.setOnClickListener {
