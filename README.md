@@ -84,6 +84,10 @@ For each difficulty level, there are different points awarded for each correct a
 
 There are a total of 20 questions per quiz, with 20 seconds per question.
 
+## Coloborations
+
+ https://github.com/NoctRise
+
 ## Authors
 
 [Ali Onur Aksoy](https://github.com/Aliiiiii87)
