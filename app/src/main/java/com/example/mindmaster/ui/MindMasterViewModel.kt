@@ -180,11 +180,9 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
             if (_answerIndex.value == 0) {
                 _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
                 _answerIndex.postValue(_answerIndex.value!! + 1)
-            }else{
-
-
-                _answerIndex.postValue(_answerIndex.value!! + 1)
-                _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+           }else{
+               _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
+               _answerIndex.postValue(_answerIndex.value!! + 1)
             }
 
 

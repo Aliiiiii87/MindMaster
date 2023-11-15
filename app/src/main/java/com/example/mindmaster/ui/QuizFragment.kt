@@ -86,8 +86,6 @@ class QuizFragment : Fragment() {
             Log.d("LiveDataLog","question")
             if (it.isNotEmpty()) {
 
-
-
                 viewModel.setCurrentQuestion()
             }
         }
