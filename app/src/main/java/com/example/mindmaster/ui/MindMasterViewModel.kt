@@ -292,13 +292,13 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
             }
 
-            score >= 4000 && difficulty == "medium" -> {
+            score >= 3000 && difficulty == "medium" -> {
                 loadMediumVideo()
 
 
             }
 
-            score >= 6000 && difficulty == "hard" -> {
+            score >= 4000 && difficulty == "hard" -> {
                 loadHardVideo()
 
 
