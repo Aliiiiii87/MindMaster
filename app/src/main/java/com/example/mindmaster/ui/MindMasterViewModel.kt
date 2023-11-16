@@ -112,6 +112,8 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
+    // Es werden punkte hinzugefügt mit der Bedinung das die Frage richtig beantwortet wurde
+
     fun addPoints(points: Int) {
         if (!_questionAnswered.value!!) {
             updatePlayerPoints(points)
@@ -131,12 +133,12 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
 
         return repository.getCountResult()
     }
-
+// Das Quiz ergebnis wird in der Datenbank gespeichert und dann werden die Punkte wieder auf 0 gesetzt
     fun saveResult() {
 
         viewModelScope.launch(Dispatchers.IO) {
 
-
+         // playerpoints wird hier verwendet  um ein neuses Objekt zu erstellen das , dass Ergebniss abzuspeichern
             _playerPoints.value?.let {
                 QuizResult(
                     id = getCountOfQuizResult() + 1,
@@ -145,9 +147,10 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
                     score = it
                 )
             }
+                    // Hier wird das ergebnis in der Datenbank gespeichert wenn es nicht null ist (let)
                 ?.let { repository.insertResult(it) }
 
-
+           // Hier kehrt man zum Hauptthread zurüch , d.h der Wert von playerpoints wird wieder auf 0 gesetzt
             withContext(Dispatchers.Main) {
                 _playerPoints.value = 0
             }
@@ -180,6 +183,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
             if (_answerIndex.value == 0) {
                 _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
                 _answerIndex.postValue(_answerIndex.value!! + 1)
+
            }else{
                _currentQuestion.postValue(_answerIndex.value?.let { question.value?.get(it) })
                _answerIndex.postValue(_answerIndex.value!! + 1)
@@ -278,6 +282,7 @@ class MindMasterViewModel(application: Application) : AndroidViewModel(applicati
     fun getQuestionsByCategory() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getQuestionByCategory(currentCategory, currentDifficulty)
+
         }
     }
 

@@ -88,7 +88,8 @@ class MindMasterRepository(
         return database.mindMasterDao.getCountQuizResult()
     }
 
-
+    //saveQuestionsList speichert eine Liste von Fragen aus der  API in die Datenbank.
+    //Sie durchläuft die bereitgestellte Liste von Fragen und speichert jede Frage sowie ihre zugehörigen falschen Antworten in der Datenbank.
     private fun saveQuestionsList(questionList: List<QuestionApi>) {
         questionList.forEach { questionApi ->
             val questionDb = Question(
@@ -119,7 +120,8 @@ class MindMasterRepository(
 
     }
 
-
+    //getQuestionByCategory liest Fragen aus einer lokalen Datenbank
+//basierend auf der Kategorie und der Schwierigkeit und stellt sie über eine LiveData-Variable bereit
     suspend fun getQuestionByCategory(category: String, difficulty: String) {
 
         val questionLevel = (database.mindMasterDao.getQuestionByCategory(category, difficulty))
@@ -140,24 +142,28 @@ class MindMasterRepository(
 
         } catch (e: Exception) {
 
-            Log.e("JokeApiservice", "Error $e")
+
         }
     }
 
-
+    // Die Fragen werden von der API abgerufen und in der Datenbank gespeichert
     suspend fun getAllQuestions() {
 
         try {
-
+            // Durch den API aufruf (über Retrofit) werden die Fragen abgerufen und in der val gespeichert
             val questionResponse = api1.retrofitService.getQuestions()
+            // die Liste von Fragen wird aus der Api Antwort extrahiert und in questionList gespeichert
             val questionList = questionResponse.results
-
+            // Die for each Schleife durchläuft jede Frage aus der questionList
+            // Es wird überob ähnliche fragen in der Datenbank sind
             questionList.forEach { questionApi ->
+                // Sucht in der Datenbank nach einer Frage mit der selben category und difficulty
                 val existingQuestion = database.mindMasterDao.getQuestionByCategory(
                     questionApi.category,
                     questionApi.difficulty
                 )
-
+                //  Wenn keine übereinstimmende frage gefunden wird
+                // Wird die Frage mit ihren falschen Antworten in die Datenbank eingefügt
                 if (existingQuestion == null) {
 
 

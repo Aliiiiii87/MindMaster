@@ -93,8 +93,6 @@ class QuizFragment : Fragment() {
 
         // Wenn das Quiz fertig ist soll er dass Ergebnis abspeichern und zum Homefragment naviegieren und mir das Ergebnis anzeigen
         viewModel.answerIndex.observe(viewLifecycleOwner) { index ->
-
-            Log.d("LiveDataLog","answerIndex")
             val questionCount = viewModel.question.value?.size ?: 0
             if (questionCount != 0 && questionCount <= index) {
                 viewModel.finishQuiz()
@@ -106,7 +104,6 @@ class QuizFragment : Fragment() {
 
         viewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
 
-            Log.d("LiveDataLog","currentQuestion")
             if (question != null) {
 
                 val firstQuestion = question.question
